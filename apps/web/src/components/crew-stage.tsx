@@ -113,7 +113,7 @@ function CrewCard({ member }: { member: Crew }) {
       <span className="rm-crosshair absolute right-6 top-6 h-4 w-4" />
 
       {/* avatar */}
-      <div className="mt-8 flex h-20 w-20 overflow-hidden items-center justify-center border border-[var(--ink-line)] bg-[var(--ink-3)] transition-colors hover:border-primary">
+      <div className="mt-8 flex h-20 w-20 overflow-hidden items-center justify-center border border-border bg-muted transition-colors hover:border-primary">
         {member.avatar ? (
           <img
             src={member.avatar}
@@ -130,11 +130,11 @@ function CrewCard({ member }: { member: Crew }) {
       <h3 className="rm-heading mt-5 text-3xl">{member.name}</h3>
       <div className="rm-mono rm-mono-primary mt-2">{member.role}</div>
 
-      <p className="mt-6 max-w-sm text-sm italic leading-relaxed text-white/75">
+      <p className="mt-6 max-w-sm text-sm italic leading-relaxed text-foreground/75">
         “{member.caption}”
       </p>
 
-      <p className="mt-4 max-w-md text-sm leading-relaxed text-white/55">
+      <p className="mt-4 max-w-md text-sm leading-relaxed text-foreground/55">
         {member.bio}
       </p>
 
@@ -142,7 +142,7 @@ function CrewCard({ member }: { member: Crew }) {
         {member.tags.map((t) => (
           <span
             key={t}
-            className="border border-[var(--ink-line)] bg-[var(--ink)] px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-white/70"
+            className="border border-border bg-background px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-foreground/70"
           >
             {t}
           </span>
@@ -153,7 +153,7 @@ function CrewCard({ member }: { member: Crew }) {
         type="button"
         onClick={() => setOpen(!open)}
         aria-expanded={open}
-        className="group mt-7 inline-flex items-center gap-2 rm-mono rm-mono-primary transition-colors hover:text-white"
+        className="group mt-7 inline-flex items-center gap-2 rm-mono rm-mono-primary transition-colors hover:text-foreground"
       >
         {open ? "ẨN STORY" : "ĐỌC STORY"}
         <ChevronDown
@@ -166,14 +166,14 @@ function CrewCard({ member }: { member: Crew }) {
         }`}
       >
         <div className="min-h-0 overflow-hidden">
-          <p className="rm-rule mt-5 pt-5 text-left text-sm leading-relaxed text-white/60">
+          <p className="rm-rule mt-5 pt-5 text-left text-sm leading-relaxed text-foreground/60">
             {member.story}
           </p>
         </div>
       </div>
 
       <div className="mt-auto w-full pt-8">
-        <div className="flex items-center justify-center gap-3 border-t border-[var(--ink-line)] pt-6">
+        <div className="flex items-center justify-center gap-3 border-t border-border pt-6">
           {member.socials.map((s) => (
             <a
               key={s.label}
@@ -197,7 +197,7 @@ function CrewCard({ member }: { member: Crew }) {
 
 export function CrewStage() {
   return (
-    <section className="relative border-t border-[var(--ink-line)] bg-[var(--ink)]">
+    <section className="relative border-t border-border bg-background">
       <div
         className="rm-grid-overlay pointer-events-none absolute inset-0"
         aria-hidden
@@ -212,7 +212,7 @@ export function CrewStage() {
               <span className="rm-outline">Không phải máy móc.</span>
             </h2>
           </div>
-          <p className="max-w-md text-sm leading-relaxed text-white/60">
+          <p className="max-w-md text-sm leading-relaxed text-foreground/60">
             Bốn con người, bốn đường rẽ khác nhau dẫn tới cùng một cỗ máy. Bấm
             ĐỌC STORY để xem mỗi người tới đây bằng cách nào.
           </p>

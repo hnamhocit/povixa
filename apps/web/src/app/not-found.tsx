@@ -93,14 +93,14 @@ function DiagnosticCell({
 }) {
   return (
     <div
-      className={`relative border-b border-[var(--ink-line)] p-4 transition-colors hover:bg-[var(--ink-3)] sm:border-b-0 sm:border-r last:border-r-0 ${
-        accent ? "bg-[var(--ink-3)]" : "bg-[var(--ink-2)]"
+      className={`relative border-b border-border p-4 transition-colors hover:bg-muted sm:border-b-0 sm:border-r last:border-r-0 ${
+        accent ? "bg-muted" : "bg-card"
       }`}
     >
       <div className="rm-mono">{label}</div>
       <div
         className={`mt-2 font-mono text-[11px] break-all tracking-tight ${
-          accent ? "text-[var(--signal)]" : "text-white/90"
+          accent ? "text-[var(--signal)]" : "text-foreground/90"
         }`}
       >
         {value}
@@ -121,7 +121,7 @@ export default function NotFound() {
   const hash = useMemo(() => hashString(pathname || "/unknown"), [pathname]);
 
   return (
-    <section className="relative flex min-h-[calc(100svh-64px)] flex-col overflow-hidden bg-[var(--ink)]">
+    <section className="relative flex min-h-[calc(100svh-64px)] flex-col overflow-hidden bg-background">
       {/* layers */}
       <div
         className="rm-grid-overlay pointer-events-none absolute inset-0"
@@ -287,9 +287,9 @@ export default function NotFound() {
           <span className="rm-outline">CHƯA ĐƯỢC NỐI.</span>
         </h1>
 
-        <p className="mt-6 max-w-xl text-base leading-relaxed text-white/60 [text-wrap:balance]">
+        <p className="mt-6 max-w-xl text-base leading-relaxed text-foreground/60 [text-wrap:balance]">
           Đường dẫn bạn tìm không nằm trong mạch của{" "}
-          <span className="text-white">{site.name}</span>. Có thể trang đã được
+          <span className="text-foreground">{site.name}</span>. Có thể trang đã được
           di chuyển, hoặc bạn rẽ nhầm tại một giao lộ cũ.
         </p>
 
@@ -298,13 +298,13 @@ export default function NotFound() {
           <Link href="/" className="rm-btn-primary">
             TÁI ĐỊNH TUYẾN <ArrowRight className="h-4 w-4" />
           </Link>
-          <Link href="/#capabilities" className="rm-btn-ghost">
+          <Link href="/about" className="rm-btn-ghost">
             XEM NĂNG LỰC
           </Link>
         </div>
 
         {/* diagnostic strip */}
-        <div className="mt-14 grid w-full max-w-2xl grid-cols-2 sm:grid-cols-4 border border-[var(--ink-line)]">
+        <div className="mt-14 grid w-full max-w-2xl grid-cols-2 sm:grid-cols-4 border border-border">
           <DiagnosticCell label="ROUTE" value={pathname || "/unknown"} />
           <DiagnosticCell label="STATUS" value="404 / NOT_FOUND" accent />
           <DiagnosticCell label="UPTIME" value={`${mm}:${ss}`} />
@@ -312,12 +312,12 @@ export default function NotFound() {
         </div>
 
         {/* bottom */}
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 rm-mono text-white/40">
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 rm-mono text-foreground/40">
           <Terminal className="h-3 w-3" />
           <span>hoặc gửi log lỗi tới</span>
           <a
             href={`mailto:${site.email}`}
-            className="text-white/70 transition hover:text-primary"
+            className="text-foreground/70 transition hover:text-primary"
           >
             {site.email}
           </a>

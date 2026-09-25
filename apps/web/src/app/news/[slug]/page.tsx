@@ -47,7 +47,7 @@ export default function NewsDetailPage({
   const readingMinutes = Math.max(1, Math.ceil(wordCount / 250));
 
   return (
-    <section className="relative border-b border-[var(--ink-line)] bg-[var(--ink)]">
+    <section className="relative border-b border-border bg-background">
       <div
         className="rm-grid-overlay pointer-events-none absolute inset-0"
         aria-hidden
@@ -58,12 +58,12 @@ export default function NewsDetailPage({
         <div className="mb-12 flex items-center justify-between">
           <Link
             href="/news"
-            className="rm-mono flex items-center gap-2 text-white/60 transition hover:text-primary"
+            className="rm-mono flex items-center gap-2 text-foreground/60 transition hover:text-primary"
           >
             <ArrowLeft className="h-3 w-3" /> ALL SIGNALS
           </Link>
           <div className="flex items-center gap-4 rm-mono">
-            <span className="flex items-center gap-2 text-white/50">
+            <span className="flex items-center gap-2 text-foreground/50">
               <Clock className="h-3 w-3" /> {readingMinutes} MIN
             </span>
             <span className="rm-serial">
@@ -78,7 +78,7 @@ export default function NewsDetailPage({
         </div>
 
         {/* Tag + heading */}
-        <div className="mb-12 border-y border-[var(--ink-line)] py-10">
+        <div className="mb-12 border-y border-border py-10">
           <span className="rm-mono rm-mono-primary">
             / {post.tag.toUpperCase()}
           </span>
@@ -87,24 +87,24 @@ export default function NewsDetailPage({
           </h1>
           <div className="mt-8 flex flex-wrap items-center gap-6">
             <span className="rm-mono">{post.date}</span>
-            <span className="rm-mono text-white/40">·</span>
-            <span className="rm-mono text-white/50">
+            <span className="rm-mono text-foreground/40">·</span>
+            <span className="rm-mono text-foreground/50">
               {wordCount.toLocaleString()} WORDS
             </span>
-            <span className="rm-mono text-white/40">·</span>
-            <span className="rm-mono text-white/50">
+            <span className="rm-mono text-foreground/40">·</span>
+            <span className="rm-mono text-foreground/50">
               {readingMinutes} MIN READ
             </span>
           </div>
         </div>
 
         {/* Excerpt */}
-        <p className="mb-14 border-l-2 border-primary pl-6 text-lg leading-relaxed text-white/80 italic">
+        <p className="mb-14 border-l-2 border-primary pl-6 text-lg leading-relaxed text-foreground/80 italic">
           {post.excerpt}
         </p>
 
         {/* Body */}
-        <article className="space-y-6 text-base leading-[1.8] text-white/75">
+        <article className="space-y-6 text-base leading-[1.8] text-foreground/75">
           {post.body.map((p, i) => (
             <p
               key={i}
@@ -120,8 +120,8 @@ export default function NewsDetailPage({
         </article>
 
         {/* Footer actions */}
-        <div className="mt-16 flex flex-wrap items-center justify-between gap-6 border-t border-[var(--ink-line)] pt-8">
-          <button className="rm-mono flex items-center gap-2 text-white/60 transition hover:text-primary">
+        <div className="mt-16 flex flex-wrap items-center justify-between gap-6 border-t border-border pt-8">
+          <button className="rm-mono flex items-center gap-2 text-foreground/60 transition hover:text-primary">
             <Share2 className="h-3 w-3" /> SHARE SIGNAL
           </button>
 

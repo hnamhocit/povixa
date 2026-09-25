@@ -313,7 +313,7 @@ function HeroMetric({
   return (
     <div>
       <div className="rm-mono">{label}</div>
-      <div className="mt-2 font-mono text-xl font-bold tracking-tight text-white">
+      <div className="mt-2 font-mono text-xl font-bold tracking-tight text-foreground">
         {v}
         <span className="ml-1 text-[10px] font-normal text-primary">
           {unit}
@@ -347,7 +347,7 @@ export function HeroStage() {
       ref={stageRef}
       onMouseMove={onMove}
       onMouseLeave={() => setTilt({ x: 0, y: 0 })}
-      className="relative overflow-hidden bg-[var(--ink)]"
+      className="relative overflow-hidden bg-background"
     >
       <div
         className="rm-grid-overlay pointer-events-none absolute inset-0"
@@ -381,7 +381,7 @@ export function HeroStage() {
             <span className="rm-outline block">KHÁC BIỆT HÓA.</span>
           </h1>
 
-          <p className="mt-8 max-w-lg text-base leading-relaxed text-white/60">
+          <p className="mt-8 max-w-lg text-base leading-relaxed text-foreground/60">
             povixa hợp nhất web app, hạ tầng đám mây và giao diện phản hồi xúc
             giác vào một lõi duy nhất. Tự thiết kế, tự tối ưu biên độ, tự vận
             hành ổn định.
@@ -391,7 +391,7 @@ export function HeroStage() {
             <Link href="/contact" className="rm-btn-primary">
               KHỞI ĐỘNG DỰ ÁN <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link href="/#capabilities" className="rm-btn-ghost">
+            <Link href="/about" className="rm-btn-ghost">
               BẢNG NĂNG LỰC
             </Link>
           </div>

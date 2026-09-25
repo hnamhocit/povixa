@@ -90,7 +90,7 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="rm-card relative p-6 sm:p-10">
       {/* HUD Header */}
-      <div className="mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-[var(--ink-line)] pb-6">
+      <div className="mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-border pb-6">
         <div>
           <div className="flex items-center gap-2">
             <span className="rm-pulse-dot" />
@@ -170,7 +170,7 @@ export function ContactForm() {
             className="rm-input"
           >
             {PROJECT_TYPES.map((t) => (
-              <option key={t} value={t} className="bg-[var(--ink-2)]">
+              <option key={t} value={t} className="bg-card">
                 {t}
               </option>
             ))}
@@ -212,7 +212,7 @@ export function ContactForm() {
             className="rm-input resize-none font-mono"
             required
           />
-          <div className="mt-2 flex justify-between rm-mono text-white/40">
+          <div className="mt-2 flex justify-between rm-mono text-foreground/40">
             <span>// MIN 20 CHARS</span>
             <span>{data.message.length} CHARS</span>
           </div>
@@ -227,8 +227,8 @@ export function ContactForm() {
       )}
 
       {/* Submit row */}
-      <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-[var(--ink-line)] pt-6">
-        <div className="rm-mono text-white/50">
+      <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6">
+        <div className="rm-mono text-foreground/50">
           RESPONSE WITHIN 24H · ENCRYPTED CHANNEL
         </div>
         <button
@@ -256,7 +256,7 @@ export function ContactForm() {
 function SuccessPanel({ onReset }: { onReset: () => void }) {
   return (
     <div className="rm-card relative p-10 text-center">
-      <div className="mx-auto flex h-20 w-20 items-center justify-center border-2 border-primary bg-[var(--ink-3)]">
+      <div className="mx-auto flex h-20 w-20 items-center justify-center border-2 border-primary bg-muted">
         <Check className="h-10 w-10 text-primary" strokeWidth={1.5} />
       </div>
       <div className="mt-6 rm-mono rm-mono-primary">TRANSMISSION RECEIVED</div>
@@ -265,7 +265,7 @@ function SuccessPanel({ onReset }: { onReset: () => void }) {
         <br />
         Command Center.
       </h3>
-      <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-white/60">
+      <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-foreground/60">
         Đội ngũ povixa sẽ phản hồi trong 1–2 ngày làm việc qua email bạn đã cung
         cấp. Trong thời gian chờ, bạn có thể xem qua các case study hoặc tài
         liệu kỹ thuật.

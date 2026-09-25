@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <section className="relative border-t border-[var(--ink-line)] bg-[var(--ink)]">
+    <section className="relative border-t border-border bg-background">
       <div
         className="rm-grid-overlay pointer-events-none absolute inset-0"
         aria-hidden
@@ -28,10 +28,10 @@ export default function ContactPage() {
             <h1 className="rm-heading mt-4 text-5xl md:text-7xl">
               Mở kênh
               <br />
-              <span className="text-[var(--ink-hi)]">liên lạc.</span>
+              <span className="text-muted-foreground">liên lạc.</span>
             </h1>
           </div>
-          <p className="max-w-md text-sm leading-relaxed text-white/60">
+          <p className="max-w-md text-sm leading-relaxed text-foreground/60">
             Không cần brief hoàn chỉnh. Một vài câu mô tả thứ đang làm bạn mất
             ngủ là đủ để bắt đầu — chúng tôi sẽ phản hồi qua email trong vòng 24
             giờ.
@@ -46,7 +46,7 @@ export default function ContactPage() {
           <aside className="space-y-4">
             {/* Quick comms */}
             <div className="rm-card p-6">
-              <div className="mb-5 flex items-center gap-2 border-b border-[var(--ink-line)] pb-4">
+              <div className="mb-5 flex items-center gap-2 border-b border-border pb-4">
                 <span className="rm-mono rm-mono-primary">// INTEL</span>
                 <span className="rm-serial ml-auto">COMMS · 01</span>
               </div>
@@ -68,11 +68,11 @@ export default function ContactPage() {
 
             {/* Commitments */}
             <div className="rm-card p-6">
-              <div className="mb-5 flex items-center gap-2 border-b border-[var(--ink-line)] pb-4">
+              <div className="mb-5 flex items-center gap-2 border-b border-border pb-4">
                 <span className="rm-mono rm-mono-primary">// PROTOCOL</span>
                 <span className="rm-serial ml-auto">COMMS · 02</span>
               </div>
-              <ul className="space-y-3 text-sm text-white/70">
+              <ul className="space-y-3 text-sm text-foreground/70">
                 {[
                   "Phản hồi trong 1–2 ngày làm việc.",
                   "Trao đổi rõ vấn đề trước khi báo giá.",
@@ -89,7 +89,7 @@ export default function ContactPage() {
 
             {/* Quick links */}
             <div className="rm-card p-6">
-              <div className="mb-5 flex items-center gap-2 border-b border-[var(--ink-line)] pb-4">
+              <div className="mb-5 flex items-center gap-2 border-b border-border pb-4">
                 <span className="rm-mono rm-mono-primary">// QUICK ACCESS</span>
                 <span className="rm-serial ml-auto">COMMS · 03</span>
               </div>
@@ -102,7 +102,7 @@ export default function ContactPage() {
                   <li key={l.href}>
                     <a
                       href={l.href}
-                      className="group flex items-center justify-between py-2.5 px-3 -mx-3 text-sm text-white/70 transition-colors hover:bg-[var(--ink-3)] hover:text-white"
+                      className="group flex items-center justify-between py-2.5 px-3 -mx-3 text-sm text-foreground/70 transition-colors hover:bg-muted hover:text-foreground"
                     >
                       <span>{l.label}</span>
                       <ArrowUpRight className="h-3.5 w-3.5 opacity-40 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100 group-hover:text-primary" />
@@ -137,12 +137,12 @@ function IntelRow({
 }) {
   return (
     <li>
-      <div className="rm-mono text-white/40">{label}</div>
+      <div className="rm-mono text-foreground/40">{label}</div>
       <a
         href={href}
-        className="group mt-1 flex items-center gap-3 text-white transition hover:text-primary"
+        className="group mt-1 flex items-center gap-3 text-foreground transition hover:text-primary"
       >
-        <span className="flex h-8 w-8 items-center justify-center border border-[var(--ink-line)] bg-[var(--ink-3)] text-white/60 transition group-hover:border-primary group-hover:text-primary">
+        <span className="flex h-8 w-8 items-center justify-center border border-border bg-muted text-foreground/60 transition group-hover:border-primary group-hover:text-primary">
           {icon}
         </span>
         <span className="font-mono text-sm break-all">{value}</span>

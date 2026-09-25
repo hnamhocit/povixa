@@ -297,7 +297,7 @@ function SectionShell({
   return (
     <section
       id={id}
-      className={`relative border-t border-[var(--ink-line)] bg-[var(--ink)] ${className}`}
+      className={`relative border-t border-border bg-background ${className}`}
     >
       <div
         className="rm-grid-overlay pointer-events-none absolute inset-0"
@@ -336,7 +336,7 @@ function SectionHead({
         </h2>
       </div>
       {desc && (
-        <p className="max-w-md text-sm leading-relaxed text-white/60">{desc}</p>
+        <p className="max-w-md text-sm leading-relaxed text-foreground/60">{desc}</p>
       )}
     </div>
   );
@@ -365,7 +365,7 @@ function StatusChip({ status }: { status: JobStatus }) {
 
 function Bullet({ children }: { children: ReactNode }) {
   return (
-    <li className="flex gap-3 text-sm leading-relaxed text-white/70">
+    <li className="flex gap-3 text-sm leading-relaxed text-foreground/70">
       <span className="mt-[9px] h-[2px] w-3 shrink-0 bg-primary" />
       <span>{children}</span>
     </li>
@@ -384,7 +384,7 @@ function JobCard({
   onToggle: () => void;
 }) {
   return (
-    <div className={`rm-card group ${open ? "!bg-[var(--ink-3)]" : ""}`}>
+    <div className={`rm-card group ${open ? "!bg-muted" : ""}`}>
       <button
         type="button"
         onClick={onToggle}
@@ -403,15 +403,15 @@ function JobCard({
           >
             {job.title}
           </h3>
-          <div className="mt-3 flex flex-wrap gap-x-6 gap-y-1 rm-mono text-white/50">
+          <div className="mt-3 flex flex-wrap gap-x-6 gap-y-1 rm-mono text-foreground/50">
             <span>{job.location}</span>
             <span>{job.type}</span>
-            <span className="text-white/80">{job.salary}</span>
+            <span className="text-foreground/80">{job.salary}</span>
           </div>
         </div>
         <StatusChip status={job.status} />
         <ChevronDown
-          className={`h-5 w-5 shrink-0 text-white/40 transition-transform duration-300 ${open ? "rotate-180 text-primary" : ""}`}
+          className={`h-5 w-5 shrink-0 text-foreground/40 transition-transform duration-300 ${open ? "rotate-180 text-primary" : ""}`}
         />
       </button>
 
@@ -419,10 +419,10 @@ function JobCard({
         className={`grid transition-[grid-template-rows] duration-300 ease-out ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
       >
         <div className="min-h-0 overflow-hidden">
-          <div className="grid gap-10 border-t border-[var(--ink-line)] p-6 md:grid-cols-[1.15fr_1fr] md:p-8">
+          <div className="grid gap-10 border-t border-border p-6 md:grid-cols-[1.15fr_1fr] md:p-8">
             <div>
               <div className="rm-mono rm-mono-primary">// MISSION BRIEF</div>
-              <p className="mt-3 text-sm leading-relaxed text-white/70">
+              <p className="mt-3 text-sm leading-relaxed text-foreground/70">
                 {job.mission}
               </p>
               <div className="rm-mono mt-8">// YOU WILL</div>
@@ -446,12 +446,12 @@ function JobCard({
                 ))}
               </ul>
             </div>
-            <div className="flex flex-wrap items-center justify-between gap-5 border-t border-[var(--ink-line)] pt-6 md:col-span-2">
+            <div className="flex flex-wrap items-center justify-between gap-5 border-t border-border pt-6 md:col-span-2">
               <div className="flex flex-wrap gap-2">
                 {job.stack.map((s) => (
                   <span
                     key={s}
-                    className="border border-[var(--ink-line)] bg-[var(--ink)] px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-white/70"
+                    className="border border-border bg-background px-3 py-1 font-mono text-[10px] uppercase tracking-wider text-foreground/70"
                   >
                     {s}
                   </span>
@@ -481,7 +481,7 @@ export function CareersStage() {
   return (
     <>
       {/* ===== 1. HERO ===== */}
-      <section className="relative overflow-hidden bg-[var(--ink)]">
+      <section className="relative overflow-hidden bg-background">
         <div
           className="rm-grid-overlay pointer-events-none absolute inset-0"
           aria-hidden
@@ -515,7 +515,7 @@ export function CareersStage() {
             <span className="rm-outline block">LÀM ĐIỀU HAY.</span>
           </h1>
 
-          <p className="mt-8 max-w-xl text-base leading-relaxed text-white/60">
+          <p className="mt-8 max-w-xl text-base leading-relaxed text-foreground/60">
             povixa tuyển người như tuyển linh kiện cho một cỗ máy: khớp văn hoá,
             đủ tiêu chuẩn, chạy bền. Không hustle, không chính trị, không họp vô
             nghĩa — chỉ có sản phẩm tử tế và đồng đội đáng tin.
@@ -586,16 +586,16 @@ export function CareersStage() {
               <br />
               <span className="rm-outline">vận hành.</span>
             </h2>
-            <p className="mt-6 max-w-md text-sm leading-relaxed text-white/60">
+            <p className="mt-6 max-w-md text-sm leading-relaxed text-foreground/60">
               Năm nguyên tắc không đàm phán. Nếu đọc xong thấy gai mắt ở điều
               nào, có lẽ hai bên nên tiết kiệm thời gian cho nhau.
             </p>
           </div>
-          <div className="space-y-0 border-t border-[var(--ink-line)]">
+          <div className="space-y-0 border-t border-border">
             {CULTURE.map((c) => (
               <div
                 key={c.num}
-                className="group -mx-4 border-b border-[var(--ink-line)] px-4 py-9 transition-colors hover:bg-[var(--ink-3)]"
+                className="group -mx-4 border-b border-border px-4 py-9 transition-colors hover:bg-muted"
               >
                 <div className="flex items-baseline justify-between gap-4">
                   <span className="rm-mono rm-mono-primary">/ {c.num}</span>
@@ -604,7 +604,7 @@ export function CareersStage() {
                 <h3 className="rm-heading mt-3 text-2xl transition-colors group-hover:text-primary md:text-3xl">
                   {c.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-white/60">
+                <p className="mt-3 text-sm leading-relaxed text-foreground/60">
                   {c.desc}
                 </p>
               </div>
@@ -627,11 +627,11 @@ export function CareersStage() {
                 <span className="rm-serial">{b.serial}</span>
                 <span className="rm-crosshair h-4 w-4" />
               </div>
-              <div className="mb-6 flex h-14 w-14 items-center justify-center border border-[var(--ink-line)] bg-[var(--ink-3)] text-primary">
+              <div className="mb-6 flex h-14 w-14 items-center justify-center border border-border bg-muted text-primary">
                 <b.icon className="h-6 w-6" strokeWidth={1.5} />
               </div>
               <h3 className="rm-heading text-2xl">{b.title}</h3>
-              <p className="mt-4 text-sm leading-relaxed text-white/60">
+              <p className="mt-4 text-sm leading-relaxed text-foreground/60">
                 {b.desc}
               </p>
             </div>
@@ -655,7 +655,7 @@ export function CareersStage() {
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5 lg:gap-8">
             {PIPELINE.map((s, i) => (
               <div key={s.code} className="relative">
-                <div className="relative z-10 flex h-14 w-14 items-center justify-center border-2 border-[var(--ink-line)] bg-[var(--ink)] text-primary transition-all hover:border-primary">
+                <div className="relative z-10 flex h-14 w-14 items-center justify-center border-2 border-border bg-background text-primary transition-all hover:border-primary">
                   <s.icon className="h-6 w-6" />
                 </div>
                 <div className="mt-7">
@@ -664,7 +664,7 @@ export function CareersStage() {
                     <span className="rm-serial">STEP {i + 1}/5</span>
                   </div>
                   <h3 className="rm-heading mt-3 text-xl">{s.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-white/60">
+                  <p className="mt-3 text-sm leading-relaxed text-foreground/60">
                     {s.desc}
                   </p>
                 </div>
@@ -682,9 +682,9 @@ export function CareersStage() {
             <h2 className="rm-heading rm-title-hero mt-4 text-4xl md:text-6xl">
               Hỏi thẳng.
             </h2>
-            <div className="mt-10 border-t border-[var(--ink-line)]">
+            <div className="mt-10 border-t border-border">
               {FAQ.map((f, i) => (
-                <div key={f.q} className="border-b border-[var(--ink-line)]">
+                <div key={f.q} className="border-b border-border">
                   <button
                     type="button"
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
@@ -696,7 +696,7 @@ export function CareersStage() {
                     >
                       {f.q}
                     </span>
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center border border-[var(--ink-line)] text-white/60 transition group-hover:border-primary group-hover:text-primary">
+                    <span className="flex h-8 w-8 shrink-0 items-center justify-center border border-border text-foreground/60 transition group-hover:border-primary group-hover:text-primary">
                       {openFaq === i ? (
                         <Minus className="h-4 w-4" />
                       ) : (
@@ -708,7 +708,7 @@ export function CareersStage() {
                     className={`grid transition-[grid-template-rows] duration-300 ease-out ${openFaq === i ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
                   >
                     <div className="min-h-0 overflow-hidden">
-                      <p className="pb-6 pr-14 text-sm leading-relaxed text-white/60">
+                      <p className="pb-6 pr-14 text-sm leading-relaxed text-foreground/60">
                         {f.a}
                       </p>
                     </div>
@@ -719,7 +719,7 @@ export function CareersStage() {
           </div>
 
           <div className="rm-card relative p-8 lg:sticky lg:top-24">
-            <div className="mb-8 flex items-center justify-between border-b border-[var(--ink-line)] pb-6">
+            <div className="mb-8 flex items-center justify-between border-b border-border pb-6">
               <div className="flex items-center gap-3">
                 <span className="rm-pulse-dot" />
                 <span className="rm-mono rm-mono-signal">VAULT OPEN</span>
@@ -731,7 +731,7 @@ export function CareersStage() {
               <br />
               <span className="rm-outline">slot nào?</span>
             </h3>
-            <p className="mt-5 text-sm leading-relaxed text-white/60">
+            <p className="mt-5 text-sm leading-relaxed text-foreground/60">
               Giỏi thứ bọn mình chưa nghĩ ra? Gửi portfolio hoặc GitHub kèm vài
               dòng mô tả thứ bạn muốn làm tiếp theo. Hồ sơ mở được giữ 6 tháng
               trong vault và luôn có người đọc thật.
@@ -755,7 +755,7 @@ export function CareersStage() {
       </SectionShell>
 
       {/* ===== 7. CLOSE ===== */}
-      <section className="relative border-t border-[var(--ink-line)] bg-[var(--ink)]">
+      <section className="relative border-t border-border bg-background">
         <div
           className="rm-grid-overlay pointer-events-none absolute inset-0"
           aria-hidden

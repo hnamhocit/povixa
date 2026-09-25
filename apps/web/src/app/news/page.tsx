@@ -13,7 +13,7 @@ export default function NewsPage() {
   const [featured, ...rest] = news;
 
   return (
-    <section className="relative border-b border-[var(--ink-line)] bg-[var(--ink)]">
+    <section className="relative border-b border-border bg-background">
       <div
         className="rm-grid-overlay pointer-events-none absolute inset-0"
         aria-hidden
@@ -29,10 +29,10 @@ export default function NewsPage() {
             <h1 className="rm-heading mt-4 text-5xl md:text-8xl">
               Chúng tôi
               <br />
-              <span className="text-[var(--ink-hi)]">viết gì.</span>
+              <span className="text-muted-foreground">viết gì.</span>
             </h1>
           </div>
-          <p className="max-w-md text-sm leading-relaxed text-white/60">
+          <p className="max-w-md text-sm leading-relaxed text-foreground/60">
             Không phải content marketing. Là những thứ chúng tôi thật sự đã làm,
             đã sai và đã sửa.
           </p>
@@ -66,11 +66,11 @@ export default function NewsPage() {
           <h2 className="rm-heading text-3xl md:text-6xl leading-[0.95] group-hover:text-primary transition-colors">
             {featured.title}
           </h2>
-          <p className="mt-6 max-w-3xl text-base leading-relaxed text-white/60">
+          <p className="mt-6 max-w-3xl text-base leading-relaxed text-foreground/60">
             {featured.excerpt}
           </p>
 
-          <div className="mt-10 flex items-center gap-3 border-t border-[var(--ink-line)] pt-6 rm-mono">
+          <div className="mt-10 flex items-center gap-3 border-t border-border pt-6 rm-mono">
             READ ARTICLE{" "}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-2" />
           </div>
@@ -97,13 +97,13 @@ export default function NewsPage() {
                 {n.title}
               </h3>
 
-              <p className="mt-4 text-sm leading-relaxed text-white/60">
+              <p className="mt-4 text-sm leading-relaxed text-foreground/60">
                 {n.excerpt}
               </p>
 
-              <div className="mt-auto flex items-center justify-between gap-3 border-t border-[var(--ink-line)] pt-5">
+              <div className="mt-auto flex items-center justify-between gap-3 border-t border-border pt-5">
                 <span className="rm-mono">{n.date}</span>
-                <ArrowRight className="h-4 w-4 text-white/40 transition-transform group-hover:translate-x-1 group-hover:text-primary" />
+                <ArrowRight className="h-4 w-4 text-foreground/40 transition-transform group-hover:translate-x-1 group-hover:text-primary" />
               </div>
             </Link>
           ))}

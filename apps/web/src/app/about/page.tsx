@@ -58,7 +58,7 @@ export default function AboutPage() {
   return (
     <>
       {/* ===== 1. HERO ===== */}
-      <section className="relative overflow-hidden bg-[var(--ink)]">
+      <section className="relative overflow-hidden bg-background">
         <div
           className="rm-grid-overlay pointer-events-none absolute inset-0"
           aria-hidden
@@ -90,7 +90,7 @@ export default function AboutPage() {
             <span className="rm-outline block">NHIỀU VẾT SẸO ĐẸP.</span>
           </h1>
 
-          <p className="mt-8 max-w-xl text-base leading-relaxed text-white/60">
+          <p className="mt-8 max-w-xl text-base leading-relaxed text-foreground/60">
             povixa không bắt đầu bằng business plan. Nó bắt đầu bằng bốn người
             lần lượt rời những nơi trả lương cao hơn, vì muốn tự tay làm thứ
             mình dám ký tên.
@@ -108,7 +108,7 @@ export default function AboutPage() {
       </section>
 
       {/* ===== 2. ORIGIN LOG ===== */}
-      <section className="relative border-t border-[var(--ink-line)] bg-[var(--ink)]">
+      <section className="relative border-t border-border bg-background">
         <div
           className="rm-grid-overlay pointer-events-none absolute inset-0"
           aria-hidden
@@ -125,17 +125,17 @@ export default function AboutPage() {
                 <span className="rm-outline">Chưa hết truyện.</span>
               </h2>
             </div>
-            <p className="max-w-md text-sm leading-relaxed text-white/60">
+            <p className="max-w-md text-sm leading-relaxed text-foreground/60">
               Không có phiên bản nào của câu chuyện này được viết sẵn. Mỗi
               chương là một lần bọn mình chọn thứ khó hơn nhưng đúng hơn.
             </p>
           </div>
 
-          <ol className="relative space-y-14 border-l border-[var(--ink-line)] pl-8 md:pl-12">
+          <ol className="relative space-y-14 border-l border-border pl-8 md:pl-12">
             {TIMELINE.map((t) => (
               <li key={t.code} className="relative">
                 <span
-                  className="absolute -left-[38px] top-2 h-3 w-3 border border-primary bg-[var(--ink)] md:-left-[54px]"
+                  className="absolute -left-[38px] top-2 h-3 w-3 border border-primary bg-background md:-left-[54px]"
                   aria-hidden
                 />
                 <div className="flex flex-wrap items-baseline gap-4">
@@ -146,7 +146,7 @@ export default function AboutPage() {
                 <h3 className="rm-heading mt-3 text-2xl md:text-3xl">
                   {t.title}
                 </h3>
-                <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/60">
+                <p className="mt-3 max-w-2xl text-sm leading-relaxed text-foreground/60">
                   {t.desc}
                 </p>
               </li>
@@ -156,23 +156,23 @@ export default function AboutPage() {
       </section>
 
       {/* ===== 3. NUMBERS ===== */}
-      <section className="relative border-t border-[var(--ink-line)] bg-[var(--ink)]">
+      <section className="relative border-t border-border bg-background">
         <div
           className="rm-grid-overlay pointer-events-none absolute inset-0"
           aria-hidden
         />
         <div className="relative mx-auto max-w-7xl px-4 py-24 lg:px-8">
-          <div className="grid gap-0 border border-[var(--ink-line)] sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-0 border border-border sm:grid-cols-2 lg:grid-cols-4">
             {NUMBERS.map((n, i) => (
               <div
                 key={n.label}
-                className={`relative p-8 transition hover:bg-[var(--ink-3)] ${
+                className={`relative p-8 transition hover:bg-muted ${
                   i < NUMBERS.length - 1
-                    ? "lg:border-r lg:border-[var(--ink-line)]"
+                    ? "lg:border-r lg:border-border"
                     : ""
                 } ${
                   i % 2 === 0 && i < NUMBERS.length - 2
-                    ? "border-b border-[var(--ink-line)] sm:border-b-0 sm:border-r"
+                    ? "border-b border-border sm:border-b-0 sm:border-r"
                     : ""
                 }`}
               >
@@ -181,7 +181,7 @@ export default function AboutPage() {
                   {n.value}
                   <span className="rm-num-unit">{n.unit}</span>
                 </div>
-                <div className="mt-4 text-sm uppercase tracking-wider text-white/60">
+                <div className="mt-4 text-sm uppercase tracking-wider text-foreground/60">
                   {n.label}
                 </div>
               </div>
@@ -194,7 +194,7 @@ export default function AboutPage() {
       <CrewStage />
 
       {/* ===== 5. CTA ===== */}
-      <section className="relative border-t border-[var(--ink-line)] bg-[var(--ink)]">
+      <section className="relative border-t border-border bg-background">
         <div
           className="rm-grid-overlay pointer-events-none absolute inset-0"
           aria-hidden
@@ -206,7 +206,7 @@ export default function AboutPage() {
             <br />
             <span className="rm-outline">cùng bọn mình?</span>
           </h2>
-          <p className="mx-auto mt-8 max-w-xl text-base leading-relaxed text-white/60">
+          <p className="mx-auto mt-8 max-w-xl text-base leading-relaxed text-foreground/60">
             Chương 06 đang trống. Nó có thể là một dự án của bạn, hoặc chính bạn
             — người cầm bút tiếp theo của {site.name}.
           </p>

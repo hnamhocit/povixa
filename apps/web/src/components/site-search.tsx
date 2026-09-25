@@ -49,15 +49,15 @@ export function SiteSearch({
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-start justify-center px-4 pt-24"
+      className="fixed inset-0 z-[100] flex items-start justify-center px-4 pt-24 bg-background/80 backdrop-blur-sm"
       role="dialog"
       aria-modal="true"
+      onClick={onClose}
     >
-      <div
-        className="absolute inset-0 bg-background/80 backdrop-blur-sm"
-        onClick={onClose}
-      />
-      <div className="relative w-full max-w-xl overflow-hidden rounded-xl border bg-card shadow-2xl">
+      <div 
+        className="relative w-full max-w-xl overflow-hidden rounded-xl border bg-card shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="flex items-center gap-3 border-b px-4">
           <Search className="h-4 w-4 shrink-0 text-muted-foreground" />
           <input

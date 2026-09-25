@@ -31,7 +31,7 @@ const SOCIALS = [
 
 export function SiteFooter() {
   return (
-    <footer className="relative border-t border-[var(--ink-line)] bg-[var(--ink)] text-white">
+    <footer className="relative border-t border-border bg-background text-foreground">
       <div
         className="rm-grid-overlay pointer-events-none absolute inset-0"
         aria-hidden
@@ -45,7 +45,7 @@ export function SiteFooter() {
             <h2 className="rm-heading mt-6 text-5xl md:text-7xl">
               Nghĩ được.
               <br />
-              <span className="text-[var(--ink-hi)]">Chạm được.</span>
+              <span className="text-muted-foreground">Chạm được.</span>
               <br />
               Khác biệt hóa.
             </h2>
@@ -80,14 +80,14 @@ export function SiteFooter() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="font-condensed text-sm font-semibold uppercase tracking-wider text-white/80 transition hover:text-primary"
+                  className="font-condensed text-sm font-semibold uppercase tracking-wider text-foreground/80 transition hover:text-primary"
                 >
                   {item.label}
                 </Link>
               ))}
               <Link
                 href="/careers"
-                className="font-condensed text-sm font-semibold uppercase tracking-wider text-white/80 transition hover:text-primary"
+                className="font-condensed text-sm font-semibold uppercase tracking-wider text-foreground/80 transition hover:text-primary"
               >
                 Tuyển dụng
               </Link>
@@ -99,25 +99,25 @@ export function SiteFooter() {
             <nav className="grid gap-3">
               <a
                 href={site.authUrl}
-                className="font-condensed text-sm font-semibold uppercase tracking-wider text-white/80 transition hover:text-primary"
+                className="font-condensed text-sm font-semibold uppercase tracking-wider text-foreground/80 transition hover:text-primary"
               >
                 Auth Portal
               </a>
               <a
                 href={site.docsUrl}
-                className="font-condensed text-sm font-semibold uppercase tracking-wider text-white/80 transition hover:text-primary"
+                className="font-condensed text-sm font-semibold uppercase tracking-wider text-foreground/80 transition hover:text-primary"
               >
                 Documentation
               </a>
               <a
                 href={site.supportUrl}
-                className="font-condensed text-sm font-semibold uppercase tracking-wider text-white/80 transition hover:text-primary"
+                className="font-condensed text-sm font-semibold uppercase tracking-wider text-foreground/80 transition hover:text-primary"
               >
                 Help Center
               </a>
               <a
                 href={site.legalUrl}
-                className="font-condensed text-sm font-semibold uppercase tracking-wider text-white/80 transition hover:text-primary"
+                className="font-condensed text-sm font-semibold uppercase tracking-wider text-foreground/80 transition hover:text-primary"
               >
                 Legal
               </a>
@@ -129,13 +129,13 @@ export function SiteFooter() {
             <nav className="grid gap-3">
               <a
                 href={`mailto:${site.email}`}
-                className="font-condensed text-sm font-semibold uppercase tracking-wider text-white/80 transition hover:text-primary"
+                className="font-condensed text-sm font-semibold uppercase tracking-wider text-foreground/80 transition hover:text-primary"
               >
                 {site.email}
               </a>
               <a
                 href={`mailto:${site.supportEmail}`}
-                className="font-condensed text-sm font-semibold uppercase tracking-wider text-white/80 transition hover:text-primary"
+                className="font-condensed text-sm font-semibold uppercase tracking-wider text-foreground/80 transition hover:text-primary"
               >
                 {site.supportEmail}
               </a>
@@ -145,14 +145,14 @@ export function SiteFooter() {
 
           <div>
             <div className="rm-mono rm-mono-primary mb-5">// newsletter</div>
-            <p className="font-condensed text-sm text-white/70">
+            <p className="font-condensed text-sm text-foreground/70">
               Nhận bản tin kỹ thuật hàng tháng. Không spam.
             </p>
-            <form className="mt-4 flex border border-[var(--ink-line)]">
+            <form className="mt-4 flex border border-border">
               <input
                 type="email"
                 placeholder="your@email.com"
-                className="flex-1 bg-transparent px-4 py-3 font-mono text-xs text-white placeholder:text-white/30 focus:outline-none"
+                className="flex-1 bg-transparent px-4 py-3 font-mono text-xs text-foreground placeholder:text-foreground/30 focus:outline-none"
               />
               <button
                 type="submit"
