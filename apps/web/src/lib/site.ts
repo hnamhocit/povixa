@@ -25,7 +25,7 @@ export const site = {
   navPages: [
     { label: "Studio", href: "/about" },
     { label: "Tin tức", href: "/news" },
-    { label: "Hỗ trợ", href: "/support" },
+    { label: "Hỗ trợ", href: "https://support.povixa.cloud" },
     { label: "Liên hệ", href: "/contact" },
   ],
 };

@@ -98,20 +98,18 @@ export function SiteHeader() {
           </button>
           <a
             href={site.docsUrl}
-            target="_blank"
-            rel="noreferrer"
             aria-label="Tài liệu kỹ thuật"
             className="flex h-10 w-10 items-center justify-center border border-border text-foreground/70 transition hover:border-primary hover:text-primary"
           >
             <BookOpen className="h-4 w-4" />
           </a>
-          <Link
-            href="/support"
+          <a
+            href={site.supportUrl}
             aria-label="Hỗ trợ"
             className="flex h-10 w-10 items-center justify-center border border-border text-foreground/70 transition hover:border-primary hover:text-primary"
           >
             <LifeBuoy className="h-4 w-4" />
-          </Link>
+          </a>
 
           <a
             href={site.authUrl}
@@ -161,18 +159,16 @@ export function SiteHeader() {
               </button>
               <a
                 href={site.docsUrl}
-                target="_blank"
-                rel="noreferrer"
                 className="flex h-12 items-center justify-center border border-border text-foreground/70"
               >
                 <BookOpen className="h-4 w-4" />
               </a>
-              <Link
-                href="/support"
+              <a
+                href={site.supportUrl}
                 className="flex h-12 items-center justify-center border border-border text-foreground/70"
               >
                 <LifeBuoy className="h-4 w-4" />
-              </Link>
+              </a>
               <a
                 href={site.authUrl}
                 onClick={() => setMenuOpen(false)}
