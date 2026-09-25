@@ -60,7 +60,7 @@ export default function AboutPage() {
       {/* ===== 1. HERO ===== */}
       <section className="relative overflow-hidden bg-background">
         <div
-          className="rm-grid-overlay pointer-events-none absolute inset-0"
+          className="hidden"
           aria-hidden
         />
         <div
@@ -75,7 +75,7 @@ export default function AboutPage() {
 
         <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-24 lg:px-8 lg:pb-28 lg:pt-32">
           <div className="flex flex-wrap items-center gap-4">
-            <span className="rm-mono rm-mono-primary">
+            <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground-primary">
               // STUDIO — ORIGIN LOG
             </span>
             <span className="h-[1px] w-10 bg-[var(--ink-line)]" />
@@ -84,7 +84,7 @@ export default function AboutPage() {
             </span>
           </div>
 
-          <h1 className="rm-heading rm-title-hero mt-8 text-6xl md:text-8xl">
+          <h1 className="font-heading font-bold tracking-tight rm-title-hero mt-8 text-6xl md:text-8xl">
             <span className="block">BỐN CON NGƯỜI.</span>
             <span className="block">MỘT CỔ MÁY.</span>
             <span className="rm-outline block">NHIỀU VẾT SẸO ĐẸP.</span>
@@ -110,16 +110,16 @@ export default function AboutPage() {
       {/* ===== 2. ORIGIN LOG ===== */}
       <section className="relative border-t border-border bg-background">
         <div
-          className="rm-grid-overlay pointer-events-none absolute inset-0"
+          className="hidden"
           aria-hidden
         />
         <div className="relative mx-auto max-w-7xl px-4 py-24 lg:px-8">
           <div className="mb-16 flex flex-wrap items-end justify-between gap-6">
             <div>
-              <span className="rm-mono rm-mono-primary">
+              <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground-primary">
                 // 01 — ORIGIN LOG
               </span>
-              <h2 className="rm-heading rm-title-hero mt-4 text-5xl md:text-7xl">
+              <h2 className="font-heading font-bold tracking-tight rm-title-hero mt-4 text-5xl md:text-7xl">
                 Năm chương.
                 <br />
                 <span className="rm-outline">Chưa hết truyện.</span>
@@ -140,10 +140,10 @@ export default function AboutPage() {
                 />
                 <div className="flex flex-wrap items-baseline gap-4">
                   <span className="rm-num text-4xl md:text-5xl">{t.year}</span>
-                  <span className="rm-mono rm-mono-primary">{t.code}</span>
+                  <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground-primary">{t.code}</span>
                   <span className="rm-serial ml-auto">CHAPTER</span>
                 </div>
-                <h3 className="rm-heading mt-3 text-2xl md:text-3xl">
+                <h3 className="font-heading font-bold tracking-tight mt-3 text-2xl md:text-3xl">
                   {t.title}
                 </h3>
                 <p className="mt-3 max-w-2xl text-sm leading-relaxed text-foreground/60">
@@ -158,7 +158,7 @@ export default function AboutPage() {
       {/* ===== 3. NUMBERS ===== */}
       <section className="relative border-t border-border bg-background">
         <div
-          className="rm-grid-overlay pointer-events-none absolute inset-0"
+          className="hidden"
           aria-hidden
         />
         <div className="relative mx-auto max-w-7xl px-4 py-24 lg:px-8">
@@ -176,7 +176,7 @@ export default function AboutPage() {
                     : ""
                 }`}
               >
-                <span className="rm-mono">STAT 0{i + 1}</span>
+                <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">STAT 0{i + 1}</span>
                 <div className="rm-num mt-6 text-7xl md:text-8xl">
                   {n.value}
                   <span className="rm-num-unit">{n.unit}</span>
@@ -196,12 +196,12 @@ export default function AboutPage() {
       {/* ===== 5. CTA ===== */}
       <section className="relative border-t border-border bg-background">
         <div
-          className="rm-grid-overlay pointer-events-none absolute inset-0"
+          className="hidden"
           aria-hidden
         />
         <div className="relative mx-auto max-w-5xl px-4 py-28 text-center lg:px-8">
-          <span className="rm-mono rm-mono-primary">// END OF LOG</span>
-          <h2 className="rm-heading rm-title-hero mt-6 text-5xl md:text-8xl [text-wrap:balance]">
+          <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground-primary">// END OF LOG</span>
+          <h2 className="font-heading font-bold tracking-tight rm-title-hero mt-6 text-5xl md:text-8xl [text-wrap:balance]">
             Muốn viết chương tiếp
             <br />
             <span className="rm-outline">cùng bọn mình?</span>

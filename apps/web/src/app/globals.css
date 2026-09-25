@@ -3,79 +3,79 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --radius: 0;
+  --radius: 0.5rem;
 
-  /* palette sáng — tint đỏ nhẹ */
-  --background: oklch(0.975 0.01 25);
-  --foreground: oklch(0.16 0.02 25);
-  --card: oklch(0.995 0.005 25);
+  /* Nền trắng sáng, text xám đậm (Slate/Zinc) */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.14 0.005 260);
+  --card: oklch(1 0 0);
   --card-foreground: var(--foreground);
-  --popover: oklch(0.995 0.005 25);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--foreground);
+
+  /* Primary giữ màu Đỏ (oklch 0.6 0.25 25) */
+  --primary: oklch(0.6 0.25 25);
+  --primary-foreground: oklch(0.98 0.01 25);
+  --secondary: oklch(0.96 0.005 260);
+  --secondary-foreground: oklch(0.24 0.005 260);
+  --muted: oklch(0.96 0.005 260);
+  --muted-foreground: oklch(0.55 0.005 260);
+  --accent: oklch(0.96 0.005 260);
+  --accent-foreground: oklch(0.14 0.005 260);
+  --destructive: oklch(0.6 0.25 25);
+  --border: oklch(0.92 0.005 260);
+  --input: oklch(0.92 0.005 260);
+  --ring: var(--primary);
+  
+  --ink: var(--background);
+  --ink-2: var(--secondary);
+  --ink-3: var(--muted);
+  --ink-line: var(--border);
+  --ink-hi: var(--muted-foreground);
+  --signal: var(--primary);
+
+  --glow-1: var(--primary);
+  --glow-2: var(--primary);
+
+  --trace-0: var(--border);
+  --trace-4: var(--border);
+  --trace-5: var(--border);
+}
+
+.dark {
+  --background: oklch(0.10 0.005 260);
+  --foreground: oklch(0.98 0.005 260);
+  --card: oklch(0.14 0.005 260);
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.14 0.005 260);
   --popover-foreground: var(--foreground);
 
   --primary: oklch(0.6 0.25 25);
   --primary-foreground: oklch(0.98 0.01 25);
-  --secondary: oklch(0.94 0.016 25);
-  --secondary-foreground: oklch(0.24 0.025 25);
-  --muted: oklch(0.94 0.014 25);
-  --muted-foreground: oklch(0.48 0.025 25);
-  --accent: oklch(0.88 0.18 120);
-  --accent-foreground: oklch(0.18 0.04 120);
-  --destructive: oklch(0.58 0.22 25);
-  --border: oklch(0.9 0.016 25);
-  --input: oklch(0.92 0.016 25);
+  --secondary: oklch(0.20 0.005 260);
+  --secondary-foreground: oklch(0.98 0.005 260);
+  --muted: oklch(0.20 0.005 260);
+  --muted-foreground: oklch(0.65 0.005 260);
+  --accent: oklch(0.20 0.005 260);
+  --accent-foreground: oklch(0.98 0.005 260);
+  --destructive: oklch(0.6 0.25 25);
+  --border: oklch(0.24 0.005 260);
+  --input: oklch(0.24 0.005 260);
   --ring: var(--primary);
 
-  /* Red Magic: ink đỏ (đen nhuộm đỏ) */
   --ink: var(--background);
-  --ink-2: oklch(0.95 0.01 25);
-  --ink-3: oklch(0.92 0.015 25);
+  --ink-2: var(--secondary);
+  --ink-3: var(--muted);
   --ink-line: var(--border);
-  --ink-hi: oklch(0.85 0.02 25);
-  --signal: oklch(0.68 0.22 25);
+  --ink-hi: var(--muted-foreground);
+  --signal: var(--primary);
 
-  --glow-1: oklch(0.6 0.25 25);
-  --glow-2: oklch(0.85 0.15 220);
+  --glow-1: var(--primary);
+  --glow-2: var(--primary);
 
-  --trace-0: oklch(0.5 0.22 25);
-  --trace-4: oklch(0.55 0.2 15);
-  --trace-5: oklch(0.58 0.13 230);
-}
-
-.dark {
-  --background: oklch(0.13 0.022 25);
-  --foreground: oklch(0.97 0.006 25);
-  --card: oklch(0.18 0.025 25);
-  --card-foreground: var(--foreground);
-  --popover: oklch(0.18 0.025 25);
-  --popover-foreground: var(--foreground);
-
-  --primary: oklch(0.6 0.25 25);
-  --primary-foreground: oklch(0.13 0.02 25);
-  --secondary: oklch(0.23 0.025 25);
-  --secondary-foreground: oklch(0.94 0.006 25);
-  --muted: oklch(0.23 0.025 25);
-  --muted-foreground: oklch(0.68 0.02 25);
-  --accent: oklch(0.82 0.16 120);
-  --accent-foreground: oklch(0.15 0.03 120);
-  --destructive: oklch(0.63 0.2 25);
-  --border: oklch(0.27 0.025 25);
-  --input: oklch(0.27 0.025 25);
-  --ring: var(--primary);
-
-  --ink: #0b0406;
-  --ink-2: #130709;
-  --ink-3: #1c0a0d;
-  --ink-line: #291114;
-  --ink-hi: #371a20;
-  --signal: oklch(0.72 0.24 25);
-
-  --glow-1: oklch(0.6 0.25 25);
-  --glow-2: oklch(0.85 0.15 220);
-
-  --trace-0: oklch(0.72 0.19 25);
-  --trace-4: oklch(0.72 0.18 15);
-  --trace-5: oklch(0.78 0.12 230);
+  --trace-0: var(--border);
+  --trace-4: var(--border);
+  --trace-5: var(--border);
 }
 
 @theme inline {
@@ -108,15 +108,15 @@
   --color-glow-1: var(--glow-1);
   --color-glow-2: var(--glow-2);
 
-  --radius-sm: 2px;
-  --radius-md: 3px;
-  --radius-lg: 4px;
-  --radius-xl: 6px;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 2px);
 
-  --font-sans: var(--font-be-vietnam), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-display), "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
-  --font-condensed:
-    var(--font-be-vietnam), "Arial Narrow", system-ui, sans-serif;
+  --font-condensed: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
@@ -133,7 +133,7 @@
   h2,
   h3,
   h4 {
-    @apply tracking-tight;
+    @apply tracking-tight font-heading;
   }
   ::selection {
     @apply bg-primary text-primary-foreground;
@@ -219,122 +219,16 @@
 
 /* card với cut corner (góc phải-trên) */
 .rm-card {
-  background: var(--ink-2);
-  border: 1px solid var(--ink-line);
-  clip-path: polygon(0 0, calc(100% - 24px) 0, 100% 24px, 100% 100%, 0 100%);
-  transition:
-    border-color 200ms ease,
-    background 200ms ease;
+  position: relative;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: all 0.2s ease-out;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 .rm-card:hover {
-  border-color: var(--ink-hi);
-  background: var(--ink-3);
-}
-
-/* rule line với tick marks */
-.rm-rule {
-  position: relative;
-  border-top: 1px solid var(--ink-line);
-}
-.rm-rule::before {
-  content: "";
-  position: absolute;
-  top: -4px;
-  left: 0;
-  width: 1px;
-  height: 9px;
-  background: var(--primary);
-}
-
-/* HUD number */
-.rm-num {
-  font-family: var(--font-condensed);
-  font-weight: 900;
-  font-stretch: condensed;
-  letter-spacing: -0.04em;
-  line-height: 0.85;
-  color: var(--foreground);
-}
-.rm-num .rm-num-unit {
-  font-size: 0.35em;
-  color: var(--primary);
-  margin-left: 0.15em;
-  vertical-align: baseline;
-  letter-spacing: 0.1em;
-}
-
-/* mono label */
-.rm-mono {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted-foreground);
-}
-.rm-mono.rm-mono-primary {
-  color: var(--primary);
-}
-.rm-mono.rm-mono-signal {
-  color: var(--signal);
-}
-
-/* crosshair marker */
-.rm-crosshair {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-.rm-crosshair::before,
-.rm-crosshair::after {
-  content: "";
-  position: absolute;
-  background: var(--primary);
-}
-.rm-crosshair::before {
-  width: 1px;
-  height: 100%;
-  left: 50%;
-}
-.rm-crosshair::after {
-  width: 100%;
-  height: 1px;
-  top: 50%;
-}
-
-/* serial / barcode */
-.rm-serial {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--ink-hi);
-}
-
-/* button condensed uppercase */
-.rm-btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  height: 52px;
-  padding: 0 28px;
-  background: var(--primary);
-  color: var(--primary-foreground);
-  font-family: var(--font-condensed);
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  clip-path: polygon(
-    0 0,
-    calc(100% - 10px) 0,
-    100% 10px,
-    100% 100%,
-    10px 100%,
-    0 calc(100% - 10px)
-  );
-  transition: filter 200ms ease;
-  border: none;
+  background: var(--muted);
+  border-color: var(--border);
 }
 .rm-btn-primary:hover {
   filter: brightness(1.15)
@@ -373,13 +267,11 @@
 
 /* heading condensed */
 .rm-heading {
-  font-family: var(--font-condensed);
-  font-weight: 900;
-  font-stretch: condensed;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.025em;
   color: var(--foreground);
-  line-height: 0.95;
+  line-height: 1.1;
 }
 
 /* live pulse */
@@ -413,11 +305,7 @@
 
 /* grid overlay cho dark sections */
 .rm-grid-overlay {
-  background-image:
-    linear-gradient(to right, var(--ink-line) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--ink-line) 1px, transparent 1px);
-  background-size: 64px 64px;
-  opacity: 0.4;
+  display: none;
 }
 
 /* social icon */
@@ -781,13 +669,7 @@ select.rm-input {
   padding-top: 0.06em; /* chỗ thở cho stroke + dấu móc/mũ */
 }
 
-@media (pointer: fine) {
-  *,
-  *::before,
-  *::after {
-    cursor: none !important;
-  }
-}
+
 
 /* ===== GENTLE SCROLL ANIMATION ===== */
 .rm-animate-on-scroll {

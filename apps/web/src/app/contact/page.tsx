@@ -13,19 +13,19 @@ export default function ContactPage() {
   return (
     <section className="relative border-t border-border bg-background">
       <div
-        className="rm-grid-overlay pointer-events-none absolute inset-0"
+        className="hidden"
         aria-hidden
       />
       <div className="relative mx-auto max-w-7xl px-4 py-20 lg:px-8 lg:py-28">
         {/* HUD header */}
         <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
           <div>
-            <div className="flex items-center gap-3 rm-mono">
-              <span className="rm-mono rm-mono-primary">// CHANNEL 01</span>
+            <div className="flex items-center gap-3 font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">
+              <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground-primary">// CHANNEL 01</span>
               <span className="h-[1px] w-10 bg-[var(--ink-line)]" />
               <span>CONTACT · povixa STUDIO</span>
             </div>
-            <h1 className="rm-heading mt-4 text-5xl md:text-7xl">
+            <h1 className="font-heading font-bold tracking-tight mt-4 text-5xl md:text-7xl">
               Mở kênh
               <br />
               <span className="text-muted-foreground">liên lạc.</span>
@@ -45,9 +45,9 @@ export default function ContactPage() {
           {/* Intel sidebar */}
           <aside className="space-y-4">
             {/* Quick comms */}
-            <div className="rm-card p-6">
+            <div className="rounded-xl border bg-card shadow-sm p-6">
               <div className="mb-5 flex items-center gap-2 border-b border-border pb-4">
-                <span className="rm-mono rm-mono-primary">// INTEL</span>
+                <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground-primary">// INTEL</span>
                 <span className="rm-serial ml-auto">COMMS · 01</span>
               </div>
               <ul className="space-y-4">
@@ -67,9 +67,9 @@ export default function ContactPage() {
             </div>
 
             {/* Commitments */}
-            <div className="rm-card p-6">
+            <div className="rounded-xl border bg-card shadow-sm p-6">
               <div className="mb-5 flex items-center gap-2 border-b border-border pb-4">
-                <span className="rm-mono rm-mono-primary">// PROTOCOL</span>
+                <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground-primary">// PROTOCOL</span>
                 <span className="rm-serial ml-auto">COMMS · 02</span>
               </div>
               <ul className="space-y-3 text-sm text-foreground/70">
@@ -88,9 +88,9 @@ export default function ContactPage() {
             </div>
 
             {/* Quick links */}
-            <div className="rm-card p-6">
+            <div className="rounded-xl border bg-card shadow-sm p-6">
               <div className="mb-5 flex items-center gap-2 border-b border-border pb-4">
-                <span className="rm-mono rm-mono-primary">// QUICK ACCESS</span>
+                <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground-primary">// QUICK ACCESS</span>
                 <span className="rm-serial ml-auto">COMMS · 03</span>
               </div>
               <ul className="space-y-1">
@@ -137,7 +137,7 @@ function IntelRow({
 }) {
   return (
     <li>
-      <div className="rm-mono text-foreground/40">{label}</div>
+      <div className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground text-foreground/40">{label}</div>
       <a
         href={href}
         className="group mt-1 flex items-center gap-3 text-foreground transition hover:text-primary"

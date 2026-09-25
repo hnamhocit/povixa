@@ -49,7 +49,7 @@ export default function NewsDetailPage({
   return (
     <section className="relative border-b border-border bg-background">
       <div
-        className="rm-grid-overlay pointer-events-none absolute inset-0"
+        className="hidden"
         aria-hidden
       />
 
@@ -58,11 +58,11 @@ export default function NewsDetailPage({
         <div className="mb-12 flex items-center justify-between">
           <Link
             href="/news"
-            className="rm-mono flex items-center gap-2 text-foreground/60 transition hover:text-primary"
+            className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground flex items-center gap-2 text-foreground/60 transition hover:text-primary"
           >
             <ArrowLeft className="h-3 w-3" /> ALL SIGNALS
           </Link>
-          <div className="flex items-center gap-4 rm-mono">
+          <div className="flex items-center gap-4 font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">
             <span className="flex items-center gap-2 text-foreground/50">
               <Clock className="h-3 w-3" /> {readingMinutes} MIN
             </span>
@@ -79,20 +79,20 @@ export default function NewsDetailPage({
 
         {/* Tag + heading */}
         <div className="mb-12 border-y border-border py-10">
-          <span className="rm-mono rm-mono-primary">
+          <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground-primary">
             / {post.tag.toUpperCase()}
           </span>
-          <h1 className="rm-heading mt-6 text-4xl md:text-7xl leading-[0.95] [text-wrap:balance]">
+          <h1 className="font-heading font-bold tracking-tight mt-6 text-4xl md:text-7xl leading-[0.95] [text-wrap:balance]">
             {post.title}
           </h1>
           <div className="mt-8 flex flex-wrap items-center gap-6">
-            <span className="rm-mono">{post.date}</span>
-            <span className="rm-mono text-foreground/40">·</span>
-            <span className="rm-mono text-foreground/50">
+            <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">{post.date}</span>
+            <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground text-foreground/40">·</span>
+            <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground text-foreground/50">
               {wordCount.toLocaleString()} WORDS
             </span>
-            <span className="rm-mono text-foreground/40">·</span>
-            <span className="rm-mono text-foreground/50">
+            <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground text-foreground/40">·</span>
+            <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground text-foreground/50">
               {readingMinutes} MIN READ
             </span>
           </div>
@@ -121,7 +121,7 @@ export default function NewsDetailPage({
 
         {/* Footer actions */}
         <div className="mt-16 flex flex-wrap items-center justify-between gap-6 border-t border-border pt-8">
-          <button className="rm-mono flex items-center gap-2 text-foreground/60 transition hover:text-primary">
+          <button className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground flex items-center gap-2 text-foreground/60 transition hover:text-primary">
             <Share2 className="h-3 w-3" /> SHARE SIGNAL
           </button>
 

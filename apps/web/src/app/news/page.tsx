@@ -15,7 +15,7 @@ export default function NewsPage() {
   return (
     <section className="relative border-b border-border bg-background">
       <div
-        className="rm-grid-overlay pointer-events-none absolute inset-0"
+        className="hidden"
         aria-hidden
       />
 
@@ -23,10 +23,10 @@ export default function NewsPage() {
         {/* Header */}
         <div className="mb-20 flex flex-wrap items-end justify-between gap-6">
           <div>
-            <span className="rm-mono rm-mono-primary">
+            <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground-primary">
               // SIGNAL · ARTICLES
             </span>
-            <h1 className="rm-heading mt-4 text-5xl md:text-8xl">
+            <h1 className="font-heading font-bold tracking-tight mt-4 text-5xl md:text-8xl">
               Chúng tôi
               <br />
               <span className="text-muted-foreground">viết gì.</span>
@@ -41,14 +41,14 @@ export default function NewsPage() {
         {/* Featured */}
         <Link
           href={`/news/${featured.slug}`}
-          className="rm-card group relative block p-10 md:p-14"
+          className="rounded-xl border bg-card shadow-sm group relative block p-10 md:p-14"
         >
           <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-4">
-              <span className="inline-flex items-center gap-2 border border-primary/40 bg-primary/10 px-3 py-1.5 rm-mono rm-mono-primary">
+              <span className="inline-flex items-center gap-2 border border-primary/40 bg-primary/10 px-3 py-1.5 font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground-primary">
                 <span className="h-1.5 w-1.5 bg-primary" /> FEATURED
               </span>
-              <span className="rm-mono">{featured.date}</span>
+              <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">{featured.date}</span>
             </div>
             <span className="rm-serial">
               PVX-
@@ -60,17 +60,17 @@ export default function NewsPage() {
             </span>
           </div>
 
-          <span className="rm-mono rm-mono-primary mb-4 block">
+          <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground-primary mb-4 block">
             / {featured.tag.toUpperCase()}
           </span>
-          <h2 className="rm-heading text-3xl md:text-6xl leading-[0.95] group-hover:text-primary transition-colors">
+          <h2 className="font-heading font-bold tracking-tight text-3xl md:text-6xl leading-[0.95] group-hover:text-primary transition-colors">
             {featured.title}
           </h2>
           <p className="mt-6 max-w-3xl text-base leading-relaxed text-foreground/60">
             {featured.excerpt}
           </p>
 
-          <div className="mt-10 flex items-center gap-3 border-t border-border pt-6 rm-mono">
+          <div className="mt-10 flex items-center gap-3 border-t border-border pt-6 font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">
             READ ARTICLE{" "}
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-2" />
           </div>
@@ -82,10 +82,10 @@ export default function NewsPage() {
             <Link
               key={n.slug}
               href={`/news/${n.slug}`}
-              className="rm-card group relative flex flex-col p-8"
+              className="rounded-xl border bg-card shadow-sm group relative flex flex-col p-8"
             >
               <div className="mb-8 flex items-center justify-between">
-                <span className="rm-mono rm-mono-primary">
+                <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground-primary">
                   / {n.tag.toUpperCase()}
                 </span>
                 <span className="rm-serial">
@@ -93,7 +93,7 @@ export default function NewsPage() {
                 </span>
               </div>
 
-              <h3 className="rm-heading text-xl leading-tight group-hover:text-primary transition-colors">
+              <h3 className="font-heading font-bold tracking-tight text-xl leading-tight group-hover:text-primary transition-colors">
                 {n.title}
               </h3>
 
@@ -102,7 +102,7 @@ export default function NewsPage() {
               </p>
 
               <div className="mt-auto flex items-center justify-between gap-3 border-t border-border pt-5">
-                <span className="rm-mono">{n.date}</span>
+                <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">{n.date}</span>
                 <ArrowRight className="h-4 w-4 text-foreground/40 transition-transform group-hover:translate-x-1 group-hover:text-primary" />
               </div>
             </Link>

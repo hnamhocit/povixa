@@ -33,7 +33,7 @@ export function SiteFooter() {
   return (
     <footer className="relative border-t border-border bg-background text-foreground">
       <div
-        className="rm-grid-overlay pointer-events-none absolute inset-0"
+        className="hidden"
         aria-hidden
       />
 
@@ -41,8 +41,8 @@ export function SiteFooter() {
         {/* Top: big brand + social */}
         <div className="grid gap-14 pb-16 md:grid-cols-[1.5fr_1fr] md:items-end md:gap-8">
           <div>
-            <span className="rm-mono rm-mono-primary">povixa.studio</span>
-            <h2 className="rm-heading mt-6 text-5xl md:text-7xl">
+            <span className="font-mono text-xs font-medium uppercase tracking-wider text-primary">povixa.studio</span>
+            <h2 className="mt-6 text-4xl font-bold tracking-tight md:text-5xl">
               Nghĩ được.
               <br />
               <span className="text-muted-foreground">Chạm được.</span>
@@ -52,7 +52,7 @@ export function SiteFooter() {
           </div>
 
           <div className="md:text-right">
-            <span className="rm-mono">Connect / Follow</span>
+            <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">Connect / Follow</span>
             <div className="mt-6 flex flex-wrap gap-2 md:justify-end">
               {SOCIALS.map((s) => (
                 <a
@@ -61,7 +61,7 @@ export function SiteFooter() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={s.label}
-                  className="rm-social"
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-md border bg-background text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
                 >
                   <s.icon className="h-4 w-4" />
                 </a>
@@ -71,23 +71,23 @@ export function SiteFooter() {
         </div>
 
         {/* Middle: nav columns */}
-        <div className="rm-rule pt-12" />
+        <div className="border-t border-border pt-12" />
         <div className="grid gap-10 py-12 sm:grid-cols-2 md:grid-cols-4">
           <div>
-            <div className="rm-mono rm-mono-primary mb-5">// studio</div>
+            <div className="mb-5 font-mono text-xs font-medium uppercase tracking-wider text-primary">// studio</div>
             <nav className="grid gap-3">
               {site.navPages.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="font-condensed text-sm font-semibold uppercase tracking-wider text-foreground/80 transition hover:text-primary"
+                  className="text-sm font-medium text-foreground/80 transition hover:text-primary"
                 >
                   {item.label}
                 </Link>
               ))}
               <Link
                 href="/careers"
-                className="font-condensed text-sm font-semibold uppercase tracking-wider text-foreground/80 transition hover:text-primary"
+                className="text-sm font-medium text-foreground/80 transition hover:text-primary"
               >
                 Tuyển dụng
               </Link>
@@ -95,29 +95,29 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <div className="rm-mono rm-mono-primary mb-5">// system</div>
+            <div className="mb-5 font-mono text-xs font-medium uppercase tracking-wider text-primary">// system</div>
             <nav className="grid gap-3">
               <a
                 href={site.authUrl}
-                className="font-condensed text-sm font-semibold uppercase tracking-wider text-foreground/80 transition hover:text-primary"
+                className="text-sm font-medium text-foreground/80 transition hover:text-primary"
               >
                 Auth Portal
               </a>
               <a
                 href={site.docsUrl}
-                className="font-condensed text-sm font-semibold uppercase tracking-wider text-foreground/80 transition hover:text-primary"
+                className="text-sm font-medium text-foreground/80 transition hover:text-primary"
               >
                 Documentation
               </a>
               <a
                 href={site.supportUrl}
-                className="font-condensed text-sm font-semibold uppercase tracking-wider text-foreground/80 transition hover:text-primary"
+                className="text-sm font-medium text-foreground/80 transition hover:text-primary"
               >
                 Help Center
               </a>
               <a
                 href={site.legalUrl}
-                className="font-condensed text-sm font-semibold uppercase tracking-wider text-foreground/80 transition hover:text-primary"
+                className="text-sm font-medium text-foreground/80 transition hover:text-primary"
               >
                 Legal
               </a>
@@ -125,27 +125,27 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <div className="rm-mono rm-mono-primary mb-5">// contact</div>
+            <div className="mb-5 font-mono text-xs font-medium uppercase tracking-wider text-primary">// contact</div>
             <nav className="grid gap-3">
               <a
                 href={`mailto:${site.email}`}
-                className="font-condensed text-sm font-semibold uppercase tracking-wider text-foreground/80 transition hover:text-primary"
+                className="text-sm font-medium text-foreground/80 transition hover:text-primary"
               >
                 {site.email}
               </a>
               <a
                 href={`mailto:${site.supportEmail}`}
-                className="font-condensed text-sm font-semibold uppercase tracking-wider text-foreground/80 transition hover:text-primary"
+                className="text-sm font-medium text-foreground/80 transition hover:text-primary"
               >
                 {site.supportEmail}
               </a>
-              <span className="rm-mono mt-2">Ho Chi Minh · Vietnam</span>
+              <span className="mt-2 font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">Ho Chi Minh · Vietnam</span>
             </nav>
           </div>
 
           <div>
-            <div className="rm-mono rm-mono-primary mb-5">// newsletter</div>
-            <p className="font-condensed text-sm text-foreground/70">
+            <div className="mb-5 font-mono text-xs font-medium uppercase tracking-wider text-primary">// newsletter</div>
+            <p className="text-sm text-foreground/70">
               Nhận bản tin kỹ thuật hàng tháng. Không spam.
             </p>
             <form className="mt-4 flex border border-border">
@@ -166,19 +166,19 @@ export function SiteFooter() {
         </div>
 
         {/* Bottom: serial + copyright */}
-        <div className="rm-rule pt-8" />
+        <div className="border-t border-border pt-8" />
         <div className="flex flex-wrap items-center justify-between gap-4 pt-8">
-          <div className="rm-serial">
+          <div className="font-mono text-xs text-muted-foreground">
             Serial: PVX-{new Date().getFullYear()}-VIET · Build{" "}
             {process.env.NEXT_PUBLIC_BUILD || "0.1.0"}
           </div>
-          <div className="flex items-center gap-6 rm-mono">
+          <div className="flex items-center gap-6 font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">
             <span className="flex items-center gap-2">
-              <span className="rm-pulse-dot" />
+              <span className="h-2 w-2 rounded-full bg-primary animate-pulse inline-block" />
               All systems operational
             </span>
           </div>
-          <div className="rm-serial">
+          <div className="font-mono text-xs text-muted-foreground">
             © {new Date().getFullYear()} povixa. All rights reserved.
           </div>
         </div>

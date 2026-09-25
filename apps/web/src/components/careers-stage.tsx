@@ -300,7 +300,7 @@ function SectionShell({
       className={`relative border-t border-border bg-background ${className}`}
     >
       <div
-        className="rm-grid-overlay pointer-events-none absolute inset-0"
+        className="hidden"
         aria-hidden
       />
       <div className="relative mx-auto max-w-7xl px-4 py-24 lg:px-8">
@@ -324,13 +324,13 @@ function SectionHead({
   return (
     <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
       <div>
-        <span className="rm-mono rm-mono-primary">{code}</span>
-        <h2 className="rm-heading rm-title-hero mt-4 text-5xl md:text-7xl">
+        <span className="font-mono text-xs font-medium uppercase tracking-wider text-primary">{code}</span>
+        <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-6xl">
           {title}
           {outline && (
             <>
               <br />
-              <span className="rm-outline">{outline}</span>
+              <span className="text-muted-foreground">{outline}</span>
             </>
           )}
         </h2>
@@ -346,19 +346,19 @@ function StatusChip({ status }: { status: JobStatus }) {
   if (status === "HOT")
     return (
       <span className="inline-flex shrink-0 items-center gap-2 border border-[var(--signal)]/40 bg-[var(--signal)]/10 px-3 py-1.5">
-        <span className="rm-pulse-dot" />
-        <span className="rm-mono rm-mono-signal">HOT</span>
+        <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+        <span className="font-mono text-xs font-medium uppercase tracking-wider text-primary">HOT</span>
       </span>
     );
   if (status === "OPEN")
     return (
       <span className="inline-flex shrink-0 items-center border border-primary/40 bg-primary/10 px-3 py-1.5">
-        <span className="rm-mono rm-mono-primary">OPEN</span>
+        <span className="font-mono text-xs font-medium uppercase tracking-wider text-primary">OPEN</span>
       </span>
     );
   return (
     <span className="inline-flex shrink-0 items-center border border-[var(--ink-hi)] px-3 py-1.5">
-      <span className="rm-mono">SOON</span>
+      <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">SOON</span>
     </span>
   );
 }
@@ -384,7 +384,7 @@ function JobCard({
   onToggle: () => void;
 }) {
   return (
-    <div className={`rm-card group ${open ? "!bg-muted" : ""}`}>
+    <div className={`rounded-xl border bg-card shadow-sm group ${open ? "!bg-muted" : ""}`}>
       <button
         type="button"
         onClick={onToggle}
@@ -392,18 +392,18 @@ function JobCard({
         className="flex w-full items-center gap-5 p-6 text-left md:gap-8 md:p-8"
       >
         <div className="hidden shrink-0 flex-col items-center gap-2 sm:flex">
-          <span className="rm-crosshair h-4 w-4" />
-          <span className="rm-serial [writing-mode:vertical-rl]">
+          <span className="hidden" />
+          <span className="font-mono text-xs text-muted-foreground [writing-mode:vertical-rl]">
             {job.serial}
           </span>
         </div>
         <div className="min-w-0 flex-1">
           <h3
-            className={`rm-heading text-2xl transition-colors md:text-3xl ${open ? "text-primary" : "group-hover:text-primary"}`}
+            className={`text-2xl font-semibold tracking-tight transition-colors md:text-3xl ${open ? "text-primary" : "group-hover:text-primary"}`}
           >
             {job.title}
           </h3>
-          <div className="mt-3 flex flex-wrap gap-x-6 gap-y-1 rm-mono text-foreground/50">
+          <div className="mt-3 flex flex-wrap gap-x-6 gap-y-1 font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">
             <span>{job.location}</span>
             <span>{job.type}</span>
             <span className="text-foreground/80">{job.salary}</span>
@@ -421,11 +421,11 @@ function JobCard({
         <div className="min-h-0 overflow-hidden">
           <div className="grid gap-10 border-t border-border p-6 md:grid-cols-[1.15fr_1fr] md:p-8">
             <div>
-              <div className="rm-mono rm-mono-primary">// MISSION BRIEF</div>
+              <div className="font-mono text-xs font-medium uppercase tracking-wider text-primary">// MISSION BRIEF</div>
               <p className="mt-3 text-sm leading-relaxed text-foreground/70">
                 {job.mission}
               </p>
-              <div className="rm-mono mt-8">// YOU WILL</div>
+              <div className="mt-8 font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">// YOU WILL</div>
               <ul className="mt-4 grid gap-3">
                 {job.duties.map((d) => (
                   <Bullet key={d}>{d}</Bullet>
@@ -433,13 +433,13 @@ function JobCard({
               </ul>
             </div>
             <div>
-              <div className="rm-mono">// YOU HAVE</div>
+              <div className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">// YOU HAVE</div>
               <ul className="mt-4 grid gap-3">
                 {job.requires.map((r) => (
                   <Bullet key={r}>{r}</Bullet>
                 ))}
               </ul>
-              <div className="rm-mono mt-8">// BONUS POINTS</div>
+              <div className="mt-8 font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">// BONUS POINTS</div>
               <ul className="mt-4 grid gap-3">
                 {job.plus.map((p) => (
                   <Bullet key={p}>{p}</Bullet>
@@ -459,7 +459,7 @@ function JobCard({
               </div>
               <a
                 href={`mailto:${site.email}?subject=${encodeURIComponent(`[${job.serial}] ${job.title}`)}`}
-                className="rm-btn-primary !h-12 !px-6 !text-[11px]"
+                className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-6"
               >
                 ỨNG TUYỂN SLOT NÀY <ArrowRight className="h-4 w-4" />
               </a>
@@ -483,7 +483,7 @@ export function CareersStage() {
       {/* ===== 1. HERO ===== */}
       <section className="relative overflow-hidden bg-background">
         <div
-          className="rm-grid-overlay pointer-events-none absolute inset-0"
+          className="hidden"
           aria-hidden
         />
         <div
@@ -494,25 +494,25 @@ export function CareersStage() {
               "radial-gradient(55% 45% at 70% 40%, color-mix(in oklab, var(--signal) 12%, transparent), transparent 70%)",
           }}
         />
-        <span className="rm-scanline" aria-hidden />
+        <span className="hidden" aria-hidden />
 
         <div className="relative mx-auto max-w-7xl px-4 pb-20 pt-24 lg:px-8 lg:pb-28 lg:pt-32">
           <div className="flex flex-wrap items-center gap-4">
             <span className="inline-flex items-center gap-3 border border-[var(--signal)]/40 bg-[var(--signal)]/10 px-4 py-2">
-              <span className="rm-pulse-dot" />
-              <span className="rm-mono rm-mono-signal">
+              <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+              <span className="font-mono text-xs font-medium uppercase tracking-wider text-primary">
                 WE&apos;RE HIRING · {openSlots} SLOTS OPEN
               </span>
             </span>
-            <span className="rm-serial">
+            <span className="font-mono text-xs text-muted-foreground">
               SN/HR-{new Date().getFullYear()} · CREW MANIFEST
             </span>
           </div>
 
-          <h1 className="rm-heading rm-title-hero mt-8 text-6xl md:text-8xl">
+          <h1 className="mt-8 text-5xl font-bold tracking-tight md:text-7xl">
             <span className="block">CHỌN SLOT.</span>
             <span className="block">BẬT MÁY.</span>
-            <span className="rm-outline block">LÀM ĐIỀU HAY.</span>
+            <span className="block text-muted-foreground">LÀM ĐIỀU HAY.</span>
           </h1>
 
           <p className="mt-8 max-w-xl text-base leading-relaxed text-foreground/60">
@@ -522,18 +522,18 @@ export function CareersStage() {
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4">
-            <a href="#slots" className="rm-btn-primary">
+            <a href="#slots" className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8">
               XEM VỊ TRÍ MỞ <ArrowRight className="h-4 w-4" />
             </a>
             <a
               href={`mailto:${site.email}?subject=${encodeURIComponent("[OPEN] Ứng tuyển tự do")}`}
-              className="rm-btn-ghost"
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors border border-input bg-background hover:bg-accent hover:text-accent-foreground h-11 px-8"
             >
               GỬI OPEN APPLICATION
             </a>
           </div>
 
-          <div className="rm-rule mt-16 grid grid-cols-2 gap-8 pt-8 sm:grid-cols-4">
+          <div className="mt-16 grid grid-cols-2 gap-8 border-t border-border pt-8 sm:grid-cols-4">
             {[
               { v: String(openSlots), u: "SLOTS", l: "vị trí đang mở" },
               { v: "100", u: "%", l: "remote-friendly, lên hub khi muốn" },
@@ -541,10 +541,10 @@ export function CareersStage() {
               { v: "0", u: "LEETCODE", l: "bài thuật toán trong phỏng vấn" },
             ].map((m) => (
               <div key={m.l}>
-                <div className="rm-mono">{m.l.toUpperCase()}</div>
-                <div className="rm-num mt-3 text-6xl md:text-7xl">
+                <div className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">{m.l.toUpperCase()}</div>
+                <div className="mt-3 text-5xl font-bold tracking-tight md:text-6xl">
                   {m.v}
-                  <span className="rm-num-unit">{m.u}</span>
+                  <span className="text-2xl text-muted-foreground ml-1">{m.u}</span>
                 </div>
               </div>
             ))}
@@ -578,13 +578,13 @@ export function CareersStage() {
       <SectionShell>
         <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
           <div>
-            <span className="rm-mono rm-mono-primary">
+            <span className="font-mono text-xs font-medium uppercase tracking-wider text-primary">
               // 02 — OPERATING SYSTEM
             </span>
-            <h2 className="rm-heading rm-title-hero mt-4 text-5xl md:text-7xl">
+            <h2 className="mt-4 text-4xl font-bold tracking-tight md:text-6xl">
               Cách bọn mình
               <br />
-              <span className="rm-outline">vận hành.</span>
+              <span className="text-muted-foreground">vận hành.</span>
             </h2>
             <p className="mt-6 max-w-md text-sm leading-relaxed text-foreground/60">
               Năm nguyên tắc không đàm phán. Nếu đọc xong thấy gai mắt ở điều
@@ -598,10 +598,10 @@ export function CareersStage() {
                 className="group -mx-4 border-b border-border px-4 py-9 transition-colors hover:bg-muted"
               >
                 <div className="flex items-baseline justify-between gap-4">
-                  <span className="rm-mono rm-mono-primary">/ {c.num}</span>
-                  <span className="rm-mono">PRINCIPLE</span>
+                  <span className="font-mono text-xs font-medium uppercase tracking-wider text-primary">/ {c.num}</span>
+                  <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">PRINCIPLE</span>
                 </div>
-                <h3 className="rm-heading mt-3 text-2xl transition-colors group-hover:text-primary md:text-3xl">
+                <h3 className="mt-3 text-2xl font-bold tracking-tight transition-colors group-hover:text-primary md:text-3xl">
                   {c.title}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-foreground/60">
@@ -622,15 +622,15 @@ export function CareersStage() {
         />
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {BENEFITS.map((b) => (
-            <div key={b.serial} className="rm-card relative p-8">
+            <div key={b.serial} className="rounded-xl border bg-card shadow-sm relative p-8">
               <div className="mb-8 flex items-center justify-between">
-                <span className="rm-serial">{b.serial}</span>
-                <span className="rm-crosshair h-4 w-4" />
+                <span className="font-mono text-xs text-muted-foreground">{b.serial}</span>
+                <span className="hidden" />
               </div>
               <div className="mb-6 flex h-14 w-14 items-center justify-center border border-border bg-muted text-primary">
                 <b.icon className="h-6 w-6" strokeWidth={1.5} />
               </div>
-              <h3 className="rm-heading text-2xl">{b.title}</h3>
+              <h3 className="text-2xl font-semibold tracking-tight">{b.title}</h3>
               <p className="mt-4 text-sm leading-relaxed text-foreground/60">
                 {b.desc}
               </p>
@@ -660,10 +660,10 @@ export function CareersStage() {
                 </div>
                 <div className="mt-7">
                   <div className="flex items-baseline justify-between gap-3">
-                    <span className="rm-mono rm-mono-primary">{s.code}</span>
-                    <span className="rm-serial">STEP {i + 1}/5</span>
+                    <span className="font-mono text-xs font-medium uppercase tracking-wider text-primary">{s.code}</span>
+                    <span className="font-mono text-xs text-muted-foreground">STEP {i + 1}/5</span>
                   </div>
-                  <h3 className="rm-heading mt-3 text-xl">{s.title}</h3>
+                  <h3 className="mt-3 text-xl font-bold tracking-tight">{s.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-foreground/60">
                     {s.desc}
                   </p>
@@ -678,8 +678,8 @@ export function CareersStage() {
       <SectionShell>
         <div className="grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
           <div>
-            <span className="rm-mono rm-mono-primary">// 05 — FAQ</span>
-            <h2 className="rm-heading rm-title-hero mt-4 text-4xl md:text-6xl">
+            <span className="font-mono text-xs font-medium uppercase tracking-wider text-primary">// 05 — FAQ</span>
+            <h2 className="mt-4 text-3xl font-bold tracking-tight md:text-5xl">
               Hỏi thẳng.
             </h2>
             <div className="mt-10 border-t border-border">
@@ -692,7 +692,7 @@ export function CareersStage() {
                     className="group flex w-full items-center justify-between gap-6 py-6 text-left"
                   >
                     <span
-                      className={`rm-heading text-lg transition-colors md:text-xl ${openFaq === i ? "text-primary" : "group-hover:text-primary"}`}
+                      className={`text-lg font-semibold tracking-tight transition-colors md:text-xl ${openFaq === i ? "text-primary" : "group-hover:text-primary"}`}
                     >
                       {f.q}
                     </span>
@@ -718,18 +718,18 @@ export function CareersStage() {
             </div>
           </div>
 
-          <div className="rm-card relative p-8 lg:sticky lg:top-24">
+          <div className="rounded-xl border bg-card shadow-sm relative p-8 lg:sticky lg:top-24">
             <div className="mb-8 flex items-center justify-between border-b border-border pb-6">
               <div className="flex items-center gap-3">
-                <span className="rm-pulse-dot" />
-                <span className="rm-mono rm-mono-signal">VAULT OPEN</span>
+                <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
+                <span className="font-mono text-xs font-medium uppercase tracking-wider text-primary">VAULT OPEN</span>
               </div>
-              <span className="rm-serial">SN/HR-OPEN</span>
+              <span className="font-mono text-xs text-muted-foreground">SN/HR-OPEN</span>
             </div>
-            <h3 className="rm-heading text-3xl md:text-4xl">
+            <h3 className="text-3xl font-semibold tracking-tight md:text-4xl">
               Không khớp
               <br />
-              <span className="rm-outline">slot nào?</span>
+              <span className="text-muted-foreground">slot nào?</span>
             </h3>
             <p className="mt-5 text-sm leading-relaxed text-foreground/60">
               Giỏi thứ bọn mình chưa nghĩ ra? Gửi portfolio hoặc GitHub kèm vài
@@ -739,15 +739,15 @@ export function CareersStage() {
             <div className="mt-8 grid gap-3">
               <a
                 href={`mailto:${site.email}?subject=${encodeURIComponent("[OPEN] Ứng tuyển tự do")}`}
-                className="rm-btn-primary w-full justify-center"
+                className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8 w-full"
               >
                 GỬI TÍN HIỆU MỞ <ArrowRight className="h-4 w-4" />
               </a>
-              <a href="/about" className="rm-btn-ghost w-full justify-center">
+              <a href="/about" className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors border border-input bg-background hover:bg-accent hover:text-accent-foreground h-11 px-8 w-full">
                 XEM ĐỘI NGŨ HIỆN TẠI
               </a>
             </div>
-            <div className="rm-serial mt-8 text-center">
+            <div className="mt-8 text-center font-mono text-xs text-muted-foreground">
               RESPONSE ≤ 48H · HCM CITY · UTC+7
             </div>
           </div>
@@ -757,25 +757,25 @@ export function CareersStage() {
       {/* ===== 7. CLOSE ===== */}
       <section className="relative border-t border-border bg-background">
         <div
-          className="rm-grid-overlay pointer-events-none absolute inset-0"
+          className="hidden"
           aria-hidden
         />
         <div className="relative mx-auto max-w-5xl px-4 py-28 text-center lg:px-8">
-          <span className="rm-mono rm-mono-primary">// END OF MANIFEST</span>
-          <h2 className="rm-heading rm-title-hero mt-6 text-5xl md:text-8xl [text-wrap:balance]">
+          <span className="font-mono text-xs font-medium uppercase tracking-wider text-primary">// END OF MANIFEST</span>
+          <h2 className="mt-6 text-4xl font-bold tracking-tight md:text-7xl [text-wrap:balance]">
             Bạn vẫn ở đây?
             <br />
-            <span className="rm-outline">Thì ứng tuyển đi.</span>
+            <span className="text-muted-foreground">Thì ứng tuyển đi.</span>
           </h2>
           <div className="mt-12 flex flex-wrap justify-center gap-4">
-            <a href="#slots" className="rm-btn-primary">
+            <a href="#slots" className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8">
               QUAY LẠI BẢNG SLOT <ArrowRight className="h-4 w-4" />
             </a>
-            <a href={`mailto:${site.email}`} className="rm-btn-ghost">
+            <a href={`mailto:${site.email}`} className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors border border-input bg-background hover:bg-accent hover:text-accent-foreground h-11 px-8">
               HỎI TRƯỚC ỨNG TUYỂN SAU
             </a>
           </div>
-          <div className="rm-serial mt-14">
+          <div className="mt-14 font-mono text-xs text-muted-foreground">
             povixa CREW MANIFEST · REV {new Date().getFullYear()}.09 · KHÔNG
             DÙNG HEADHUNTER
           </div>

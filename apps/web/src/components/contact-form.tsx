@@ -2,6 +2,7 @@
 
 import { ArrowRight, Check, Loader2, Send } from "lucide-react";
 import { type FormEvent, type ReactNode, useState } from "react";
+import TextareaAutosize from "react-textarea-autosize";
 
 type Status = "idle" | "sending" | "success" | "error";
 
@@ -14,22 +15,9 @@ type FormData = {
   message: string;
 };
 
-const PROJECT_TYPES = [
-  "Web / Landing Page",
-  "SaaS / Dashboard",
-  "Mobile App",
-  "E-commerce",
-  "Internal Tool",
-  "Other",
-];
 
-const BUDGETS = [
-  { value: "under-50", label: "< 50M VND" },
-  { value: "50-150", label: "50 – 150M VND" },
-  { value: "150-500", label: "150 – 500M VND" },
-  { value: "500-plus", label: "500M+ VND" },
-  { value: "undecided", label: "Chưa xác định" },
-];
+
+
 
 const initial: FormData = {
   name: "",
@@ -88,30 +76,30 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rm-card relative p-6 sm:p-10">
+    <form onSubmit={handleSubmit} className="rounded-xl border bg-card shadow-sm relative p-6 sm:p-10">
       {/* HUD Header */}
       <div className="mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-border pb-6">
         <div>
           <div className="flex items-center gap-2">
-            <span className="rm-pulse-dot" />
-            <span className="rm-mono rm-mono-signal">LIVE · CHANNEL OPEN</span>
+            <span className="h-2 w-2 rounded-full bg-primary animate-pulse inline-block" />
+            <span className="font-mono text-xs font-medium uppercase tracking-wider text-primary">LIVE · CHANNEL OPEN</span>
           </div>
-          <h2 className="rm-heading mt-3 text-3xl md:text-4xl">
+          <h2 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
             TRANSMISSION
             <br />
             REQUEST
           </h2>
         </div>
-        <div className="rm-serial">SN/CTC-001 · {new Date().getFullYear()}</div>
+        <div className="font-mono text-xs text-muted-foreground">SN/CTC-001 · {new Date().getFullYear()}</div>
       </div>
 
       {/* Signal strength meter */}
       <div className="mb-8">
-        <div className="flex items-center justify-between rm-mono">
+        <div className="flex items-center justify-between font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">
           <span>// SIGNAL STRENGTH</span>
           <span
             className={
-              signalStrength >= 60 ? "rm-mono-primary" : "rm-mono-signal"
+              signalStrength >= 60 ? "text-primary" : "text-primary"
             }
           >
             {signalStrength}%
@@ -119,7 +107,7 @@ export function ContactForm() {
         </div>
         <div className="mt-2 h-[2px] w-full bg-[var(--ink-line)]">
           <div
-            className="h-full transition-all duration-300"
+            className="h-full transition-shadow duration-300"
             style={{
               width: `${signalStrength}%`,
               background:
@@ -137,7 +125,7 @@ export function ContactForm() {
             value={data.name}
             onChange={(e) => update("name", e.target.value)}
             placeholder="Tên của bạn"
-            className="rm-input"
+            className="flex h-10 w-full rounded-md border border-input bg-background transition-shadow duration-300 px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             required
           />
         </TacticalField>
@@ -148,71 +136,39 @@ export function ContactForm() {
             value={data.email}
             onChange={(e) => update("email", e.target.value)}
             placeholder="email@domain.com"
-            className="rm-input"
+            className="flex h-10 w-full rounded-md border border-input bg-background transition-shadow duration-300 px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             required
           />
         </TacticalField>
 
-        <TacticalField label="ORGANIZATION" index="03">
+        <TacticalField label="ORGANIZATION" index="03" className="md:col-span-2">
           <input
             type="text"
             value={data.company}
             onChange={(e) => update("company", e.target.value)}
             placeholder="Công ty / Studio (tuỳ chọn)"
-            className="rm-input"
+            className="flex h-10 w-full rounded-md border border-input bg-background transition-shadow duration-300 px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
           />
         </TacticalField>
 
-        <TacticalField label="MISSION TYPE" index="04">
-          <select
-            value={data.projectType}
-            onChange={(e) => update("projectType", e.target.value)}
-            className="rm-input"
-          >
-            {PROJECT_TYPES.map((t) => (
-              <option key={t} value={t} className="bg-card">
-                {t}
-              </option>
-            ))}
-          </select>
-        </TacticalField>
+        
 
-        <TacticalField
-          label="RESOURCE ALLOCATION"
-          index="05"
-          className="md:col-span-2"
-        >
-          <div className="grid grid-cols-2 gap-2 sm:grid-cols-5">
-            {BUDGETS.map((b) => {
-              const active = data.budget === b.value;
-              return (
-                <button
-                  key={b.value}
-                  type="button"
-                  onClick={() => update("budget", b.value)}
-                  className={`rm-chip ${active ? "rm-chip-active" : ""}`}
-                >
-                  {b.label}
-                </button>
-              );
-            })}
-          </div>
-        </TacticalField>
+        
 
         <TacticalField
           label="BRIEF // MISSION DESCRIPTION"
-          index="06"
+          index="04"
           className="md:col-span-2"
         >
-          <textarea
+          <TextareaAutosize
+            minRows={3}
             value={data.message}
             onChange={(e) => update("message", e.target.value)}
             placeholder="Mô tả vấn đề bạn đang gặp phải, mục tiêu sản phẩm, deadline dự kiến..."
-            rows={6}
-            className="rm-input resize-none font-mono"
+            className="flex min-h-[80px] w-full rounded-md border border-input bg-background transition-shadow duration-300 px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 resize-none font-mono"
             required
           />
-          <div className="mt-2 flex justify-between rm-mono text-foreground/40">
+          <div className="mt-2 flex justify-between font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">
             <span>// MIN 20 CHARS</span>
             <span>{data.message.length} CHARS</span>
           </div>
@@ -221,20 +177,20 @@ export function ContactForm() {
 
       {/* Error strip */}
       {status === "error" && errorMsg && (
-        <div className="mt-6 border border-[var(--signal)]/40 bg-[var(--signal)]/10 px-4 py-3 rm-mono rm-mono-signal">
+        <div className="mt-6 border border-primary/40 bg-primary/10 rounded-md px-4 py-3 font-mono text-xs font-medium uppercase tracking-wider text-primary">
           ⚠ {errorMsg}
         </div>
       )}
 
       {/* Submit row */}
       <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6">
-        <div className="rm-mono text-foreground/50">
+        <div className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">
           RESPONSE WITHIN 24H · ENCRYPTED CHANNEL
         </div>
         <button
           type="submit"
           disabled={status === "sending"}
-          className="rm-btn-primary disabled:opacity-60"
+          className="inline-flex h-10 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none"
         >
           {status === "sending" ? (
             <>
@@ -255,12 +211,12 @@ export function ContactForm() {
 
 function SuccessPanel({ onReset }: { onReset: () => void }) {
   return (
-    <div className="rm-card relative p-10 text-center">
+    <div className="rounded-xl border bg-card shadow-sm relative p-10 text-center">
       <div className="mx-auto flex h-20 w-20 items-center justify-center border-2 border-primary bg-muted">
         <Check className="h-10 w-10 text-primary" strokeWidth={1.5} />
       </div>
-      <div className="mt-6 rm-mono rm-mono-primary">TRANSMISSION RECEIVED</div>
-      <h3 className="rm-heading mt-3 text-3xl md:text-4xl">
+      <div className="mt-6 font-mono text-xs font-medium uppercase tracking-wider text-primary">TRANSMISSION RECEIVED</div>
+      <h3 className="mt-3 text-3xl font-bold tracking-tight md:text-4xl">
         Tín hiệu đã tới
         <br />
         Command Center.
@@ -271,14 +227,14 @@ function SuccessPanel({ onReset }: { onReset: () => void }) {
         liệu kỹ thuật.
       </p>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
-        <button onClick={onReset} className="rm-btn-ghost !h-12 !px-6">
+        <button onClick={onReset} className="inline-flex h-10 items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
           GỬI TÍN HIỆU KHÁC
         </button>
-        <a href="/news" className="rm-btn-ghost !h-12 !px-6">
+        <a href="/news" className="inline-flex h-10 items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2">
           XEM DOCS
         </a>
       </div>
-      <div className="mt-10 rm-serial">
+      <div className="mt-10 font-mono text-xs text-muted-foreground">
         ACK/{Date.now().toString(36).toUpperCase()} · STATUS OK
       </div>
     </div>
@@ -301,14 +257,14 @@ function TacticalField({
   return (
     <div className={className}>
       <div className="mb-2 flex items-center justify-between">
-        <div className="flex items-center gap-2 rm-mono">
-          <span className="rm-crosshair h-3 w-3" />
+        <div className="flex items-center gap-2 font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">
+          <span className="hidden" />
           <span>
             // {index} — {label}
             {required && " *"}
           </span>
         </div>
-        <span className="rm-serial">REQ</span>
+        <span className="font-mono text-xs text-muted-foreground">REQ</span>
       </div>
       {children}
     </div>

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { Chakra_Petch, JetBrains_Mono } from "next/font/google";
+import { Plus_Jakarta_Sans, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { CustomCursor } from "@/components/custom-cursor";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { SiteFooter } from "@/components/site-footer";
@@ -9,10 +8,15 @@ import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { site } from "@/lib/site";
 
-const chakraPetch = Chakra_Petch({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["vietnamese", "latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-be-vietnam",
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["vietnamese", "latin"],
+  variable: "--font-display",
   display: "swap",
 });
 
@@ -72,7 +76,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="vi" suppressHydrationWarning>
-      <body className={`${chakraPetch.variable} ${jetbrains.variable}`}>
+      <body className={`${jakarta.variable} ${spaceGrotesk.variable} ${jetbrains.variable}`}>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -90,10 +94,6 @@ export default function RootLayout({
             }),
           }}
         />
-        <div
-          className="noise pointer-events-none fixed inset-0 -z-10 opacity-[0.025]"
-          aria-hidden
-        />
 
         <ThemeProvider
           attribute="class"
@@ -102,7 +102,6 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <SiteHeader />
-          <CustomCursor />
           <main>{children}</main>
           <SiteFooter />
           <ScrollToTop />
@@ -112,3 +111,4 @@ export default function RootLayout({
     </html>
   );
 }
+

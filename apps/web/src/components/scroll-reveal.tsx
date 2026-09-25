@@ -27,12 +27,12 @@ export function ScrollReveal() {
     // Give it a tiny delay to ensure DOM is fully painted and stable
     const timer = setTimeout(() => {
       const elements = document.querySelectorAll(
-        "section h1, section h2, section h3, section p, .rm-card, article",
+        "section h1, section h2, section h3, section p, .rounded-xl, article",
       );
 
       elements.forEach((el) => {
         if (
-          el.closest(".rm-card") &&
+          el.closest(".rounded-xl") &&
           el.tagName.toLowerCase() !== "article" &&
           !el.classList.contains("rm-card")
         )

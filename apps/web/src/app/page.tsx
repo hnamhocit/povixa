@@ -198,55 +198,19 @@ export default function HomePage() {
       {/* 1. HERO */}
       <HeroStage />
 
-      {/* 2. STANDARD COMPLIANCE — dark strip */}
-      <section className="relative border-t border-border bg-background">
-        <div
-          className="rm-grid-overlay pointer-events-none absolute inset-0"
-          aria-hidden
-        />
-        <div className="relative mx-auto max-w-7xl px-4 py-16 lg:px-8">
-          <div className="mb-10 flex items-center gap-4">
-            <span className="rm-mono rm-mono-primary">COMPLIANCE</span>
-            <span className="h-[1px] flex-1 bg-[var(--ink-line)]" />
-            <span className="rm-mono">TIER-1 · SECURITY</span>
-          </div>
-          <div className="grid gap-8 md:grid-cols-3">
-            {standards.map((std, i) => (
-              <div
-                key={std.title}
-                className="flex items-start gap-5 border-l-2 border-border pl-6 transition hover:border-primary"
-              >
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center border border-border bg-card text-primary">
-                  <std.icon className="h-5 w-5" />
-                </div>
-                <div>
-                  <span className="rm-mono">0{i + 1} / SPEC</span>
-                  <h3 className="font-condensed mt-2 text-lg font-bold uppercase tracking-wider text-foreground">
-                    {std.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-foreground/60">
-                    {std.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* 3. CAPABILITIES */}
       <section className="relative border-t border-border bg-background">
         <div
-          className="rm-grid-overlay pointer-events-none absolute inset-0"
+          className="hidden"
           aria-hidden
         />
         <div className="relative mx-auto max-w-7xl px-4 py-24 lg:px-8">
           <div className="mb-16 flex flex-wrap items-end justify-between gap-6">
             <div>
-              <span className="rm-mono rm-mono-primary">
+              <span className="font-mono text-xs font-medium uppercase tracking-wider text-primary">
                 // 01 — CAPABILITIES
               </span>
-              <h2 className="rm-heading mt-4 text-5xl md:text-7xl">
+              <h2 className="font-semibold tracking-tight mt-4 text-5xl md:text-7xl">
                 Chúng tôi
                 <br />
                 làm được gì?
@@ -260,20 +224,20 @@ export default function HomePage() {
 
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {capabilities.map((item) => (
-              <div key={item.title} className="rm-card relative p-8">
+              <div key={item.title} className="rounded-xl border bg-card shadow-sm relative p-8">
                 <div className="mb-8 flex items-center justify-between">
-                  <span className="rm-serial">{item.serial}</span>
-                  <span className="rm-crosshair h-4 w-4" />
+                  <span className="font-mono text-xs text-muted-foreground">{item.serial}</span>
+                  <span className="hidden" />
                 </div>
                 <div className="mb-6 flex h-14 w-14 items-center justify-center border border-border bg-muted text-primary">
                   <item.icon className="h-6 w-6" strokeWidth={1.5} />
                 </div>
-                <h3 className="rm-heading text-2xl">{item.title}</h3>
+                <h3 className="font-semibold tracking-tight text-2xl">{item.title}</h3>
                 <p className="mt-4 text-sm leading-relaxed text-foreground/60">
                   {item.desc}
                 </p>
                 <div className="mt-8 border-t border-border pt-4">
-                  <div className="rm-mono">STACK /</div>
+                  <div className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">STACK /</div>
                   <div className="mt-2 font-mono text-[11px] text-foreground/80">
                     {item.tags.join(" · ")}
                   </div>
@@ -287,13 +251,13 @@ export default function HomePage() {
       {/* 4. METRICS — HUD */}
       <section className="relative border-t border-border bg-background">
         <div
-          className="rm-grid-overlay pointer-events-none absolute inset-0"
+          className="hidden"
           aria-hidden
         />
         <div className="relative mx-auto max-w-7xl px-4 py-24 lg:px-8">
           <div className="mb-16">
-            <span className="rm-mono rm-mono-primary">// 02 — EVIDENCE</span>
-            <h2 className="rm-heading mt-4 text-5xl md:text-7xl">
+            <span className="font-mono text-xs font-medium uppercase tracking-wider text-primary">// 02 — EVIDENCE</span>
+            <h2 className="font-semibold tracking-tight mt-4 text-5xl md:text-7xl">
               Không cần logo đối tác.
               <br />
               <span className="text-muted-foreground">Đây là thứ thật.</span>
@@ -310,10 +274,10 @@ export default function HomePage() {
                     : ""
                 } ${i % 2 === 0 && i < metrics.length - 2 ? "border-b border-border sm:border-b-0 sm:border-r" : ""}`}
               >
-                <span className="rm-mono">METRIC 0{i + 1}</span>
-                <div className="rm-num mt-6 text-[96px] md:text-[128px]">
+                <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">METRIC 0{i + 1}</span>
+                <div className="mt-6 text-[80px] md:text-[112px] font-bold tracking-tighter text-foreground">
                   {m.value}
-                  <span className="rm-num-unit">{m.unit}</span>
+                  <span className="text-3xl md:text-5xl font-semibold tracking-tight text-muted-foreground ml-2">{m.unit}</span>
                 </div>
                 <div className="mt-4 text-sm uppercase tracking-wider text-foreground/60">
                   {m.label}
@@ -324,9 +288,9 @@ export default function HomePage() {
 
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             {proofs.map((p, i) => (
-              <div key={p.title} className="rm-card relative p-8">
-                <span className="rm-mono rm-mono-primary">PROOF 0{i + 1}</span>
-                <h3 className="rm-heading mt-4 text-xl">{p.title}</h3>
+              <div key={p.title} className="rounded-xl border bg-card shadow-sm relative p-8">
+                <span className="font-mono text-xs font-medium uppercase tracking-wider text-primary">PROOF 0{i + 1}</span>
+                <h3 className="font-semibold tracking-tight mt-4 text-xl">{p.title}</h3>
                 <ul className="mt-6 grid gap-3 text-sm text-foreground/70">
                   {p.bullets.map((b) => (
                     <li key={b} className="flex gap-3">
@@ -344,14 +308,14 @@ export default function HomePage() {
       {/* 5. PROCESS — horizontal timeline */}
       <section className="relative border-t border-border bg-background">
         <div
-          className="rm-grid-overlay pointer-events-none absolute inset-0"
+          className="hidden"
           aria-hidden
         />
         <div className="relative mx-auto max-w-7xl px-4 py-24 lg:px-8">
           <div className="mb-20 flex flex-wrap items-end justify-between gap-6">
             <div>
-              <span className="rm-mono rm-mono-primary">// 03 — WORKFLOW</span>
-              <h2 className="rm-heading mt-4 text-5xl md:text-7xl">
+              <span className="font-mono text-xs font-medium uppercase tracking-wider text-primary">// 03 — WORKFLOW</span>
+              <h2 className="font-semibold tracking-tight mt-4 text-5xl md:text-7xl">
                 Pipeline.
               </h2>
             </div>
@@ -372,10 +336,10 @@ export default function HomePage() {
                   </div>
                   <div className="mt-8">
                     <div className="flex items-baseline justify-between gap-3">
-                      <span className="rm-mono rm-mono-primary">{s.code}</span>
-                      <span className="rm-serial">STEP {i + 1}/4</span>
+                      <span className="font-mono text-xs font-medium uppercase tracking-wider text-primary">{s.code}</span>
+                      <span className="font-mono text-xs text-muted-foreground">STEP {i + 1}/4</span>
                     </div>
-                    <h3 className="rm-heading mt-3 text-xl">{s.title}</h3>
+                    <h3 className="font-semibold tracking-tight mt-3 text-xl">{s.title}</h3>
                     <p className="mt-3 text-sm leading-relaxed text-foreground/60">
                       {s.desc}
                     </p>
@@ -390,14 +354,14 @@ export default function HomePage() {
       {/* 6. MANIFESTO — pillars */}
       <section className="relative border-t border-border bg-background">
         <div
-          className="rm-grid-overlay pointer-events-none absolute inset-0"
+          className="hidden"
           aria-hidden
         />
         <div className="relative mx-auto max-w-7xl px-4 py-24 lg:px-8">
           <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
             <div>
-              <span className="rm-mono rm-mono-primary">// 04 — MANIFESTO</span>
-              <h2 className="rm-heading mt-4 text-5xl md:text-7xl">
+              <span className="font-mono text-xs font-medium uppercase tracking-wider text-primary">// 04 — MANIFESTO</span>
+              <h2 className="font-semibold tracking-tight mt-4 text-5xl md:text-7xl">
                 Ba điều
                 <br />
                 không đổi.
@@ -415,10 +379,10 @@ export default function HomePage() {
                   className="group border-b border-border py-10 transition-colors hover:bg-muted px-4 -mx-4"
                 >
                   <div className="flex items-baseline justify-between gap-4">
-                    <span className="rm-mono rm-mono-primary">/ {p.num}</span>
-                    <span className="rm-mono">PRINCIPLE</span>
+                    <span className="font-mono text-xs font-medium uppercase tracking-wider text-primary">/ {p.num}</span>
+                    <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">PRINCIPLE</span>
                   </div>
-                  <h3 className="rm-heading mt-4 text-3xl md:text-4xl group-hover:text-primary transition-colors">
+                  <h3 className="font-semibold tracking-tight mt-4 text-3xl md:text-4xl group-hover:text-primary transition-colors">
                     {p.title}
                   </h3>
                   <p className="mt-4 text-base leading-relaxed text-foreground/60">
@@ -434,20 +398,20 @@ export default function HomePage() {
       {/* 7. NEWS */}
       <section className="relative border-t border-border bg-background">
         <div
-          className="rm-grid-overlay pointer-events-none absolute inset-0"
+          className="hidden"
           aria-hidden
         />
         <div className="relative mx-auto max-w-7xl px-4 py-24 lg:px-8">
           <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
             <div>
-              <span className="rm-mono rm-mono-primary">// 05 — SIGNAL</span>
-              <h2 className="rm-heading mt-4 text-5xl md:text-7xl">
+              <span className="font-mono text-xs font-medium uppercase tracking-wider text-primary">// 05 — SIGNAL</span>
+              <h2 className="font-semibold tracking-tight mt-4 text-5xl md:text-7xl">
                 Chúng tôi viết gì
               </h2>
             </div>
             <Link
               href="/news"
-              className="rm-btn-ghost !h-12 !px-6 !text-[11px]"
+              className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors border border-input bg-background hover:bg-accent hover:text-accent-foreground h-11 px-8 !h-12 !px-6 !text-[11px]"
             >
               Tất cả bài viết <ArrowRight className="h-4 w-4" />
             </Link>
@@ -458,21 +422,21 @@ export default function HomePage() {
               <Link
                 key={n.slug}
                 href={`/news/${n.slug}`}
-                className="rm-card group flex flex-col p-8"
+                className="rounded-xl border bg-card shadow-sm group flex flex-col p-8"
               >
                 <div className="mb-8 flex items-center justify-between">
-                  <span className="rm-mono rm-mono-primary">
+                  <span className="font-mono text-xs font-medium uppercase tracking-wider text-primary">
                     {n.tag.toUpperCase()}
                   </span>
-                  <span className="rm-mono">{n.date}</span>
+                  <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">{n.date}</span>
                 </div>
-                <h3 className="rm-heading text-2xl leading-tight group-hover:text-primary transition-colors">
+                <h3 className="font-semibold tracking-tight text-2xl leading-tight group-hover:text-primary transition-colors">
                   {n.title}
                 </h3>
                 <p className="mt-4 text-sm leading-relaxed text-foreground/60">
                   {n.excerpt}
                 </p>
-                <div className="mt-auto flex items-center gap-2 border-t border-border pt-5 rm-mono">
+                <div className="mt-auto flex items-center gap-2 border-t border-border pt-5 font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">
                   READ MORE <ArrowRight className="h-3 w-3" />
                 </div>
               </Link>
@@ -484,19 +448,19 @@ export default function HomePage() {
       {/* 8. CAREERS */}
       <section className="relative border-t border-border bg-background">
         <div
-          className="rm-grid-overlay pointer-events-none absolute inset-0"
+          className="hidden"
           aria-hidden
         />
         <div className="relative mx-auto max-w-7xl px-4 py-24 lg:px-8">
           <div className="grid gap-14 lg:grid-cols-2 lg:items-start">
             <div>
               <div className="mb-6 inline-flex items-center gap-3 border border-[var(--signal)]/40 bg-[var(--signal)]/10 px-4 py-2">
-                <span className="rm-pulse-dot" />
-                <span className="rm-mono rm-mono-signal">
+                <span className="h-2 w-2 rounded-full bg-primary animate-pulse inline-block" />
+                <span className="font-mono text-xs font-medium uppercase tracking-wider text-primary">
                   WE&apos;RE HIRING
                 </span>
               </div>
-              <h2 className="rm-heading text-4xl md:text-6xl leading-[0.95]">
+              <h2 className="font-semibold tracking-tight text-4xl md:text-6xl leading-[0.95]">
                 Cùng nhau xây dựng
                 <br />
                 <span className="text-muted-foreground">
@@ -510,10 +474,10 @@ export default function HomePage() {
                 hồn.
               </p>
               <div className="mt-10 flex flex-wrap gap-4">
-                <Link href="/careers" className="rm-btn-primary">
+                <Link href="/careers" className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8">
                   Xem vị trí mở <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link href="/about" className="rm-btn-ghost">
+                <Link href="/about" className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors border border-input bg-background hover:bg-accent hover:text-accent-foreground h-11 px-8">
                   Đội ngũ hiện tại
                 </Link>
               </div>
@@ -536,20 +500,20 @@ export default function HomePage() {
                 <Link
                   key={idx}
                   href="/careers"
-                  className="rm-card group flex items-center justify-between p-6"
+                  className="rounded-xl border bg-card shadow-sm group flex items-center justify-between p-6"
                 >
                   <div>
-                    <span className="rm-mono">
+                    <span className="font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground">
                       JOB {String(idx + 1).padStart(2, "0")}
                     </span>
-                    <h4 className="rm-heading mt-2 text-lg group-hover:text-primary transition-colors">
+                    <h4 className="font-semibold tracking-tight mt-2 text-lg group-hover:text-primary transition-colors">
                       {job.role}
                     </h4>
-                    <p className="mt-1 rm-mono text-foreground/60">{job.type}</p>
+                    <p className="mt-1 font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground text-foreground/60">{job.type}</p>
                   </div>
                   <div className="flex items-center gap-3">
                     <span
-                      className={`rm-mono ${job.status === "HOT" ? "rm-mono-signal" : "rm-mono-primary"}`}
+                      className={`font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground ${job.status === "HOT" ? "font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground-signal" : "font-mono text-xs font-medium uppercase tracking-wider text-muted-foreground-primary"}`}
                     >
                       {job.status}
                     </span>
@@ -565,12 +529,12 @@ export default function HomePage() {
       {/* 9. CTA */}
       <section className="relative border-t border-border bg-background">
         <div
-          className="rm-grid-overlay pointer-events-none absolute inset-0"
+          className="hidden"
           aria-hidden
         />
         <div className="relative mx-auto max-w-5xl px-4 py-32 text-center lg:px-8">
-          <span className="rm-mono rm-mono-primary">// CONTACT</span>
-          <h2 className="rm-heading mt-6 text-6xl md:text-8xl [text-wrap:balance]">
+          <span className="font-mono text-xs font-medium uppercase tracking-wider text-primary">// CONTACT</span>
+          <h2 className="font-semibold tracking-tight mt-6 text-6xl md:text-8xl [text-wrap:balance]">
             Bạn đang
             <br />
             có ý tưởng?
@@ -580,14 +544,14 @@ export default function HomePage() {
             sẽ giúp bạn hình dung sản phẩm có thể trở thành gì.
           </p>
           <div className="mt-12 flex flex-wrap justify-center gap-4">
-            <Link href="/contact" className="rm-btn-primary">
+            <Link href="/contact" className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-8">
               Gửi yêu cầu <ArrowRight className="h-4 w-4" />
             </Link>
-            <Link href="/support" className="rm-btn-ghost">
+            <Link href="/support" className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors border border-input bg-background hover:bg-accent hover:text-accent-foreground h-11 px-8">
               Câu hỏi thường gặp
             </Link>
           </div>
-          <div className="mt-16 rm-serial">
+          <div className="mt-16 font-mono text-xs text-muted-foreground">
             Response within 24 hours · Ho Chi Minh City · UTC+7
           </div>
         </div>

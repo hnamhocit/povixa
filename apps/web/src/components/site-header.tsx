@@ -32,7 +32,7 @@ export function SiteHeader() {
             className="object-cover"
           />
 
-          <span className="font-condensed text-sm font-black uppercase tracking-[0.2em] text-foreground">
+          <span className="font-heading text-lg font-bold tracking-tight text-foreground">
             povixa
           </span>
         </Link>
@@ -45,7 +45,7 @@ export function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative flex items-center h-full px-4 font-condensed text-xs font-bold uppercase tracking-[0.18em] transition-all duration-300 ${
+                className={`relative flex items-center h-full px-4 text-sm font-medium tracking-wide transition-all duration-300 ${
                   active 
                     ? "text-primary bg-[color-mix(in_oklab,var(--primary)_10%,transparent)]" 
                     : "text-foreground/70 hover:text-foreground hover:bg-background/50"
@@ -63,14 +63,14 @@ export function SiteHeader() {
           })}
           <Link
             href="/careers"
-            className={`relative flex items-center h-full gap-2 px-4 font-condensed text-xs font-bold uppercase tracking-[0.18em] transition-all duration-300 ${
+            className={`relative flex items-center h-full gap-2 px-4 text-sm font-medium tracking-wide transition-all duration-300 ${
               pathname.startsWith("/careers")
                 ? "text-primary bg-[color-mix(in_oklab,var(--primary)_10%,transparent)]"
                 : "text-foreground/70 hover:text-foreground hover:bg-background/50"
             }`}
           >
             Tuyển dụng
-            <span className="rm-pulse-dot" />
+            <span className="h-2 w-2 rounded-full bg-primary animate-pulse inline-block" />
             {pathname.startsWith("/careers") && (
               <>
                 <span className="absolute bottom-0 left-0 right-0 h-[3px] bg-primary shadow-[0_0_12px_var(--primary)]" />
@@ -115,7 +115,7 @@ export function SiteHeader() {
 
           <a
             href={site.authUrl}
-            className="rm-btn-primary ml-3 !h-10 !px-5 !text-[11px]"
+            className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4 ml-3"
           >
             Đăng nhập
           </a>
@@ -138,7 +138,7 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
-                className="flex items-center justify-between px-3 py-3 font-condensed text-xs font-bold uppercase tracking-[0.18em] text-foreground/80 transition hover:bg-muted hover:text-primary"
+                className="flex items-center justify-between px-3 py-3 text-sm font-medium tracking-wide text-foreground/80 transition hover:bg-muted hover:text-primary"
               >
                 {item.label}
               </Link>
@@ -146,9 +146,9 @@ export function SiteHeader() {
             <Link
               href="/careers"
               onClick={() => setMenuOpen(false)}
-              className="flex items-center justify-between px-3 py-3 font-condensed text-xs font-bold uppercase tracking-[0.18em] text-foreground/80 transition hover:bg-muted hover:text-primary"
+              className="flex items-center justify-between px-3 py-3 text-sm font-medium tracking-wide text-foreground/80 transition hover:bg-muted hover:text-primary"
             >
-              Tuyển dụng <span className="rm-pulse-dot" />
+              Tuyển dụng <span className="h-2 w-2 rounded-full bg-primary animate-pulse inline-block" />
             </Link>
 
             <div className="mt-3 grid grid-cols-4 gap-2 border-t border-border pt-4">
@@ -178,7 +178,7 @@ export function SiteHeader() {
                 onClick={() => setMenuOpen(false)}
                 className="flex h-12 items-center justify-center bg-primary text-[var(--ink)]"
               >
-                <span className="font-condensed text-[10px] font-black uppercase tracking-widest">
+                <span className="text-xs font-semibold uppercase tracking-wider">
                   ĐĂNG NHẬP
                 </span>
               </a>

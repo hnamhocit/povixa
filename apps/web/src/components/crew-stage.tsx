@@ -108,9 +108,9 @@ function CrewCard({ member }: { member: Crew }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <article className="rm-card relative flex h-full flex-col items-center p-8 text-center md:p-10">
-      <span className="rm-serial absolute left-6 top-6">{member.serial}</span>
-      <span className="rm-crosshair absolute right-6 top-6 h-4 w-4" />
+    <article className="rounded-xl border bg-card shadow-sm relative flex h-full flex-col items-center p-8 text-center md:p-10">
+      <span className="font-mono text-xs text-muted-foreground absolute left-6 top-6">{member.serial}</span>
+      
 
       {/* avatar */}
       <div className="mt-8 flex h-20 w-20 overflow-hidden items-center justify-center border border-border bg-muted transition-colors hover:border-primary">
@@ -121,14 +121,14 @@ function CrewCard({ member }: { member: Crew }) {
             className="h-full w-full object-cover"
           />
         ) : (
-          <span className="rm-heading text-2xl leading-none text-primary">
+          <span className="text-2xl font-semibold leading-none text-primary">
             {member.initials}
           </span>
         )}
       </div>
 
-      <h3 className="rm-heading mt-5 text-3xl">{member.name}</h3>
-      <div className="rm-mono rm-mono-primary mt-2">{member.role}</div>
+      <h3 className="mt-5 text-2xl font-semibold tracking-tight">{member.name}</h3>
+      <div className="mt-2 font-mono text-xs font-medium uppercase tracking-wider text-primary">{member.role}</div>
 
       <p className="mt-6 max-w-sm text-sm italic leading-relaxed text-foreground/75">
         “{member.caption}”
@@ -153,7 +153,7 @@ function CrewCard({ member }: { member: Crew }) {
         type="button"
         onClick={() => setOpen(!open)}
         aria-expanded={open}
-        className="group mt-7 inline-flex items-center gap-2 rm-mono rm-mono-primary transition-colors hover:text-foreground"
+        className="group mt-7 inline-flex items-center gap-2 font-mono text-xs font-medium uppercase tracking-wider text-primary transition-colors hover:text-primary/80"
       >
         {open ? "ẨN STORY" : "ĐỌC STORY"}
         <ChevronDown
@@ -166,7 +166,7 @@ function CrewCard({ member }: { member: Crew }) {
         }`}
       >
         <div className="min-h-0 overflow-hidden">
-          <p className="rm-rule mt-5 pt-5 text-left text-sm leading-relaxed text-foreground/60">
+          <p className="mt-5 border-t border-border pt-5 text-left text-sm leading-relaxed text-muted-foreground">
             {member.story}
           </p>
         </div>
@@ -182,7 +182,7 @@ function CrewCard({ member }: { member: Crew }) {
               rel="noreferrer noopener"
               aria-label={s.label}
               title={s.label}
-              className="rm-social"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-md border bg-background text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
             >
               <s.icon className="h-4 w-4" />
             </a>
@@ -199,17 +199,17 @@ export function CrewStage() {
   return (
     <section className="relative border-t border-border bg-background">
       <div
-        className="rm-grid-overlay pointer-events-none absolute inset-0"
+        className="hidden"
         aria-hidden
       />
       <div className="relative mx-auto max-w-7xl px-4 py-24 lg:px-8">
         <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
           <div>
-            <span className="rm-mono rm-mono-primary">// CREW MANIFEST</span>
-            <h2 className="rm-heading rm-title-hero mt-4 text-5xl md:text-7xl">
+            <span className="font-mono text-xs font-medium uppercase tracking-wider text-primary">// CREW MANIFEST</span>
+            <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
               Người thật.
               <br />
-              <span className="rm-outline">Không phải máy móc.</span>
+              <span className="text-muted-foreground">Không phải máy móc.</span>
             </h2>
           </div>
           <p className="max-w-md text-sm leading-relaxed text-foreground/60">
