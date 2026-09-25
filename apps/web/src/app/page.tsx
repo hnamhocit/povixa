@@ -20,8 +20,8 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { HeroStage } from "@/components/hero-stage";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Badge } from "@povixa/ui/components/badge";
+import { Button } from "@povixa/ui/components/button";
 import { news, team } from "@/lib/data/site-content";
 import { site } from "@/lib/site";
 

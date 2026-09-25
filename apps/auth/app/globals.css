@@ -1,26 +1,38 @@
 @import "tailwindcss";
+@import "../../../packages/ui/src/styles/globals.css";
+@source "../../../packages/ui/src"; 
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.noise {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  mix-blend-mode: overlay;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.bg-grid-pcb {
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in oklab, currentColor 16%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, currentColor 16%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to right,
+      color-mix(in oklab, currentColor 7%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklab, currentColor 7%, transparent) 1px,
+      transparent 1px
+    );
+  background-size:
+    40px 40px,
+    40px 40px,
+    8px 8px,
+    8px 8px;
 }

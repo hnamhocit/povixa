@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@povixa/ui/*": ["./src/*"]
+    },
+    "jsx": "preserve",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": ["src"]
+}

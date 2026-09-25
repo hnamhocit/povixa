@@ -2,7 +2,7 @@
 
 import { ArrowRight, Terminal, Smartphone, LayoutDashboard, Code2, Layers } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Button } from "@povixa/ui/components/button";
 
 export function HeroStage() {
   return (

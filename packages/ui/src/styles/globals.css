@@ -1,0 +1,139 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --radius: 0.5rem;
+
+  /* Nền trắng sáng, text xám đậm (Slate/Zinc) */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.14 0.005 260);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--foreground);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--foreground);
+
+  /* Primary giữ màu Đỏ (oklch 0.6 0.25 25) */
+  --primary: oklch(0.6 0.25 25);
+  --primary-foreground: oklch(0.98 0.01 25);
+  --secondary: oklch(0.96 0.005 260);
+  --secondary-foreground: oklch(0.24 0.005 260);
+  --muted: oklch(0.96 0.005 260);
+  --muted-foreground: oklch(0.55 0.005 260);
+  --accent: oklch(0.96 0.005 260);
+  --accent-foreground: oklch(0.14 0.005 260);
+  --destructive: oklch(0.6 0.25 25);
+  --border: oklch(0.92 0.005 260);
+  --input: oklch(0.92 0.005 260);
+  --ring: var(--primary);
+  
+  --ink: var(--background);
+  --ink-2: var(--secondary);
+  --ink-3: var(--muted);
+  --ink-line: var(--border);
+  --ink-hi: var(--muted-foreground);
+  --signal: var(--primary);
+
+  --glow-1: var(--primary);
+  --glow-2: var(--primary);
+
+  --trace-0: var(--border);
+  --trace-4: var(--border);
+  --trace-5: var(--border);
+}
+
+.dark {
+  --background: oklch(0.10 0.005 260);
+  --foreground: oklch(0.98 0.005 260);
+  --card: oklch(0.14 0.005 260);
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.14 0.005 260);
+  --popover-foreground: var(--foreground);
+
+  --primary: oklch(0.6 0.25 25);
+  --primary-foreground: oklch(0.98 0.01 25);
+  --secondary: oklch(0.20 0.005 260);
+  --secondary-foreground: oklch(0.98 0.005 260);
+  --muted: oklch(0.20 0.005 260);
+  --muted-foreground: oklch(0.65 0.005 260);
+  --accent: oklch(0.20 0.005 260);
+  --accent-foreground: oklch(0.98 0.005 260);
+  --destructive: oklch(0.6 0.25 25);
+  --border: oklch(0.24 0.005 260);
+  --input: oklch(0.24 0.005 260);
+  --ring: var(--primary);
+
+  --ink: var(--background);
+  --ink-2: var(--secondary);
+  --ink-3: var(--muted);
+  --ink-line: var(--border);
+  --ink-hi: var(--muted-foreground);
+  --signal: var(--primary);
+
+  --glow-1: var(--primary);
+  --glow-2: var(--primary);
+
+  --trace-0: var(--border);
+  --trace-4: var(--border);
+  --trace-5: var(--border);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-ink-line: var(--ink-line);
+  --color-ink-hi: var(--ink-hi);
+  --color-signal: var(--signal);
+
+  --color-glow-1: var(--glow-1);
+  --color-glow-2: var(--glow-2);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 2px);
+
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-display), "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, monospace;
+  --font-condensed: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply tracking-tight font-heading;
+  }
+  ::selection {
+    @apply bg-primary text-primary-foreground;
+  }
+}

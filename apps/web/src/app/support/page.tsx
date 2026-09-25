@@ -1,8 +1,8 @@
 import { BookOpen, LifeBuoy, Mail, MessageSquare } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@povixa/ui/components/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@povixa/ui/components/card";
 import { faq } from "@/lib/data/site-content";
 import { site } from "@/lib/site";
 
