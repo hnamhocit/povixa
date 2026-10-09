@@ -35,8 +35,7 @@ export default defineConfig(
 	},
 	{
 		// Override or add rule settings here, such as:
-		rules: {
-			'svelte/no-navigation-without-resolve': 'off'
-		}
+		// 'svelte/button-has-type': 'error'
+		rules: {}
 	}
 );

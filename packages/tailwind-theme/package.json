@@ -1,0 +1,15 @@
+{
+  "name": "@povixa/tailwind-theme",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": "./src/index.css",
+    "./base": "./src/base.css",
+    "./tokens": "./src/tokens.css",
+    "./theme": "./src/theme.css"
+  },
+  "devDependencies": {
+    "tailwindcss": "^4.0.0"
+  }
+}

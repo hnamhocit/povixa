@@ -1,0 +1,22 @@
+{
+  "name": "Povixa — Unified Developer Control Plane",
+  "short_name": "Povixa",
+  "description": "Auth, Config, Push, Analytics and Capped Revenue Sharing unified in one open-source developer control plane.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090d16",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/og-image.png",
+      "sizes": "1146x850",
+      "type": "image/png"
+    }
+  ]
+}
