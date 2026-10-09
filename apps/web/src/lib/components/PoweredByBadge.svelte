@@ -14,13 +14,13 @@
 	let copied = $state(false);
 
 	let codeSnippets = $derived.by<Record<'html' | 'markdown' | 'react', string>>(() => ({
-		html: `<a href="https://povixa.dev" target="_blank" rel="noopener">
-  <img src="https://povixa.dev/badge-${badgeVariant === 'dark' ? 'dark' : 'light'}.svg" alt="Powered by Povixa" height="32" />
+		html: `<a href="https://povixa.cloud" target="_blank" rel="noopener">
+  <img src="https://povixa.cloud/badge-${badgeVariant === 'dark' ? 'dark' : 'light'}.svg" alt="Powered by Povixa" height="32" />
 </a>`,
-		markdown: `[![Powered by Povixa](https://povixa.dev/badge-${badgeVariant === 'dark' ? 'dark' : 'light'}.svg)](https://povixa.dev)`,
+		markdown: `[![Powered by Povixa](https://povixa.cloud/badge-${badgeVariant === 'dark' ? 'dark' : 'light'}.svg)](https://povixa.cloud)`,
 		react: `// React / Svelte / Vue
-<a href="https://povixa.dev" target="_blank" rel="noopener" className="inline-flex">
-  <img src="https://povixa.dev/badge-${badgeVariant === 'dark' ? 'dark' : 'light'}.svg" alt="Powered by Povixa" height="32" />
+<a href="https://povixa.cloud" target="_blank" rel="noopener" className="inline-flex">
+  <img src="https://povixa.cloud/badge-${badgeVariant === 'dark' ? 'dark' : 'light'}.svg" alt="Powered by Povixa" height="32" />
 </a>`
 	}));
 
@@ -111,7 +111,7 @@
 			>
 				<!-- The actual Badge component preview -->
 				<a
-					href="https://povixa.dev"
+					href="https://povixa.cloud"
 					target="_blank"
 					rel="noopener noreferrer"
 					class="group inline-flex items-center gap-2.5 rounded-full border px-4 py-2 font-mono text-xs font-semibold shadow-md transition-all hover:scale-105 {badgeVariant ===

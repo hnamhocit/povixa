@@ -21,33 +21,41 @@
 		return 'en';
 	});
 
-	const orgWebsiteSchema = {
+	const origin = $derived(
+		page.url.origin && page.url.origin !== 'null' && !page.url.origin.includes('undefined')
+			? page.url.origin
+			: 'https://povixa.cloud'
+	);
+	const layoutOgImage = $derived(`${origin}/og-image.png`);
+
+	const orgWebsiteSchema = $derived({
 		'@context': 'https://schema.org',
 		'@graph': [
 			{
 				'@type': 'Organization',
-				'@id': 'https://povixa.dev/#organization',
+				'@id': `${origin}/#organization`,
 				name: 'Povixa',
-				url: 'https://povixa.dev',
-				logo: 'https://povixa.dev/favicon.svg',
-				image: 'https://povixa.dev/og-image.png',
+				url: origin,
+				logo: `${origin}/favicon.svg`,
+				image: layoutOgImage,
 				sameAs: ['https://github.com/povixa', 'https://x.com/povixa', 'https://discord.gg/povixa'],
 				description: 'Unified open-source developer control plane for modern applications.'
 			},
 			{
 				'@type': 'WebSite',
-				'@id': 'https://povixa.dev/#website',
-				url: 'https://povixa.dev',
+				'@id': `${origin}/#website`,
+				url: origin,
 				name: 'Povixa',
 				publisher: {
-					'@id': 'https://povixa.dev/#organization'
+					'@id': `${origin}/#organization`
 				}
 			}
 		]
-	};
+	});
 
-	const orgScript =
-		`<script type="application/ld+json">${JSON.stringify(orgWebsiteSchema)}<` + '/script>';
+	const orgScript = $derived(
+		`<script type="application/ld+json">${JSON.stringify(orgWebsiteSchema)}<` + '/script>'
+	);
 </script>
 
 <svelte:head>
@@ -60,14 +68,14 @@
 	<!-- Fallback Open Graph & Twitter -->
 	<meta property="og:site_name" content="Povixa" />
 	<meta property="og:type" content="website" />
-	<meta property="og:image" content="https://povixa.dev/og-image.png" />
+	<meta property="og:image" content={layoutOgImage} />
 	<meta property="og:image:width" content="1146" />
 	<meta property="og:image:height" content="850" />
 	<meta property="og:image:alt" content="Povixa — Unified Developer Control Plane" />
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content="@povixa" />
 	<meta name="twitter:creator" content="@povixa" />
-	<meta name="twitter:image" content="https://povixa.dev/og-image.png" />
+	<meta name="twitter:image" content={layoutOgImage} />
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 	{@html orgScript}
 </svelte:head>

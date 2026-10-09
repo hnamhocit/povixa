@@ -2,21 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://povixa.dev/</loc>
+    <loc>https://povixa.cloud/</loc>
     <lastmod>2026-10-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://povixa.dev/?lang=vi" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://povixa.dev/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://povixa.dev/" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://povixa.cloud/?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://povixa.cloud/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://povixa.cloud/" />
   </url>
   <url>
-    <loc>https://povixa.dev/sponsor</loc>
+    <loc>https://povixa.cloud/sponsor</loc>
     <lastmod>2026-10-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="vi" href="https://povixa.dev/sponsor?lang=vi" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://povixa.dev/sponsor?lang=en" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://povixa.dev/sponsor" />
+    <xhtml:link rel="alternate" hreflang="vi" href="https://povixa.cloud/sponsor?lang=vi" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://povixa.cloud/sponsor?lang=en" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://povixa.cloud/sponsor" />
   </url>
 </urlset>

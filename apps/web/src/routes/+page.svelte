@@ -29,6 +29,7 @@
 	} from '@tabler/icons-svelte-runes';
 	import * as m from '#lib/paraglide/messages.js';
 	import { getLocale } from '#lib/paraglide/runtime.js';
+	import { page } from '$app/state';
 	import CodeEditor from '#lib/components/CodeEditor.svelte';
 	import PartnerLogos from '#lib/components/PartnerLogos.svelte';
 	import OpenSourceProof from '#lib/components/OpenSourceProof.svelte';
@@ -42,7 +43,7 @@
 
 	async function copyHeroQuickstart() {
 		try {
-			await navigator.clipboard.writeText('curl -fsSL https://get.povixa.dev | bash');
+			await navigator.clipboard.writeText('curl -fsSL https://get.povixa.cloud | bash');
 			heroCommandCopied = true;
 			setTimeout(() => {
 				heroCommandCopied = false;
@@ -446,6 +447,13 @@
 	const pageTitle = $derived(`${m.hero_title_1()} ${m.hero_title_highlight()} — Povixa`);
 	const pageDesc = $derived(m.hero_desc());
 	const currentLocale = $derived(getLocale());
+	const origin = $derived(
+		page.url.origin && page.url.origin !== 'null' && !page.url.origin.includes('undefined')
+			? page.url.origin
+			: 'https://povixa.cloud'
+	);
+	const ogImageUrl = $derived(`${origin}/og-image.png`);
+	const currentUrl = $derived(page.url.href || `${origin}/`);
 
 	const softwareSchema = $derived({
 		'@context': 'https://schema.org',
@@ -460,8 +468,8 @@
 			highPrice: '499',
 			offerCount: '3'
 		},
-		image: 'https://povixa.dev/og-image.png',
-		downloadUrl: 'https://github.com/povixa/povixa',
+		image: ogImageUrl,
+		downloadUrl: 'https://github.com/hnamhocit/povixa',
 		description: pageDesc,
 		featureList: [
 			'Authentication & Identity (OIDC, Passkeys)',
@@ -549,19 +557,19 @@
 	/>
 
 	<!-- Canonical & Alternates -->
-	<link rel="canonical" href="https://povixa.dev" />
-	<link rel="alternate" hreflang="vi" href="https://povixa.dev/?lang=vi" />
-	<link rel="alternate" hreflang="en" href="https://povixa.dev/?lang=en" />
-	<link rel="alternate" hreflang="x-default" href="https://povixa.dev/" />
+	<link rel="canonical" href={currentUrl} />
+	<link rel="alternate" hreflang="vi" href="{origin}/?lang=vi" />
+	<link rel="alternate" hreflang="en" href="{origin}/?lang=en" />
+	<link rel="alternate" hreflang="x-default" href="{origin}/" />
 
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="Povixa" />
-	<meta property="og:url" content="https://povixa.dev" />
+	<meta property="og:url" content={currentUrl} />
 	<meta property="og:title" content={pageTitle} />
 	<meta property="og:description" content={pageDesc} />
-	<meta property="og:image" content="https://povixa.dev/og-image.png" />
-	<meta property="og:image:secure_url" content="https://povixa.dev/og-image.png" />
+	<meta property="og:image" content={ogImageUrl} />
+	<meta property="og:image:secure_url" content={ogImageUrl} />
 	<meta property="og:image:type" content="image/png" />
 	<meta property="og:image:width" content="1146" />
 	<meta property="og:image:height" content="850" />
@@ -573,10 +581,10 @@
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content="@povixa" />
 	<meta name="twitter:creator" content="@povixa" />
-	<meta name="twitter:url" content="https://povixa.dev" />
+	<meta name="twitter:url" content={currentUrl} />
 	<meta name="twitter:title" content={pageTitle} />
 	<meta name="twitter:description" content={pageDesc} />
-	<meta name="twitter:image" content="https://povixa.dev/og-image.png" />
+	<meta name="twitter:image" content={ogImageUrl} />
 	<meta name="twitter:image:alt" content="Povixa — {pageTitle}" />
 
 	<!-- Rich Snippets JSON-LD -->
@@ -683,7 +691,7 @@
 					/>
 				</a>
 				<a
-					href="https://github.com/povixa/povixa"
+					href="https://github.com/hnamhocit/povixa"
 					target="_blank"
 					rel="noopener noreferrer"
 					class="group inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-border bg-card/80 px-6 text-sm font-semibold text-foreground backdrop-blur-sm transition-all hover:border-primary/50 hover:bg-muted"
@@ -705,7 +713,7 @@
 					title="Copy install command"
 				>
 					<span class="font-bold text-primary">$</span>
-					<span>curl -fsSL https://get.povixa.dev | bash</span>
+					<span>curl -fsSL https://get.povixa.cloud | bash</span>
 					{#if heroCommandCopied}
 						<IconCheck size={12} class="text-emerald-500" stroke={3} />
 					{:else}

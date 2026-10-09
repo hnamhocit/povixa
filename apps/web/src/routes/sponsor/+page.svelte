@@ -20,7 +20,7 @@
 
 	const isCode = $derived(page.url.searchParams.get('type') === 'code');
 	const targetUrl = $derived(
-		isCode ? 'https://github.com/povixa/povixa' : 'https://github.com/sponsors/povixa'
+		isCode ? 'https://github.com/hnamhocit/povixa' : 'https://github.com/sponsors/hnamhocit'
 	);
 	const destinationLabel = $derived(isCode ? m.gratitude_dest_code() : m.gratitude_dest_sponsor());
 
@@ -60,6 +60,13 @@
 	const sponsorTitle = $derived(`${m.gratitude_title()} — Povixa`);
 	const sponsorDesc = $derived(m.gratitude_msg_1());
 	const currentLocale = $derived(getLocale());
+	const origin = $derived(
+		page.url.origin && page.url.origin !== 'null' && !page.url.origin.includes('undefined')
+			? page.url.origin
+			: 'https://povixa.cloud'
+	);
+	const ogImageUrl = $derived(`${origin}/og-image.png`);
+	const currentUrl = $derived(page.url.href || `${origin}/sponsor`);
 </script>
 
 <svelte:head>
@@ -68,19 +75,19 @@
 	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 
 	<!-- Canonical & Alternates -->
-	<link rel="canonical" href="https://povixa.dev/sponsor" />
-	<link rel="alternate" hreflang="vi" href="https://povixa.dev/sponsor?lang=vi" />
-	<link rel="alternate" hreflang="en" href="https://povixa.dev/sponsor?lang=en" />
-	<link rel="alternate" hreflang="x-default" href="https://povixa.dev/sponsor" />
+	<link rel="canonical" href={currentUrl} />
+	<link rel="alternate" hreflang="vi" href="{origin}/sponsor?lang=vi" />
+	<link rel="alternate" hreflang="en" href="{origin}/sponsor?lang=en" />
+	<link rel="alternate" hreflang="x-default" href="{origin}/sponsor" />
 
 	<!-- Open Graph / Facebook -->
 	<meta property="og:type" content="website" />
 	<meta property="og:site_name" content="Povixa" />
-	<meta property="og:url" content="https://povixa.dev/sponsor" />
+	<meta property="og:url" content={currentUrl} />
 	<meta property="og:title" content={sponsorTitle} />
 	<meta property="og:description" content={sponsorDesc} />
-	<meta property="og:image" content="https://povixa.dev/og-image.png" />
-	<meta property="og:image:secure_url" content="https://povixa.dev/og-image.png" />
+	<meta property="og:image" content={ogImageUrl} />
+	<meta property="og:image:secure_url" content={ogImageUrl} />
 	<meta property="og:image:type" content="image/png" />
 	<meta property="og:image:width" content="1146" />
 	<meta property="og:image:height" content="850" />
@@ -91,10 +98,10 @@
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content="@povixa" />
 	<meta name="twitter:creator" content="@povixa" />
-	<meta name="twitter:url" content="https://povixa.dev/sponsor" />
+	<meta name="twitter:url" content={currentUrl} />
 	<meta name="twitter:title" content={sponsorTitle} />
 	<meta name="twitter:description" content={sponsorDesc} />
-	<meta name="twitter:image" content="https://povixa.dev/og-image.png" />
+	<meta name="twitter:image" content={ogImageUrl} />
 	<meta name="twitter:image:alt" content="Povixa — {sponsorTitle}" />
 </svelte:head>
 

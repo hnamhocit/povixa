@@ -212,7 +212,7 @@
 			<div class="mx-2 hidden h-6 w-px bg-border sm:block"></div>
 
 			<a
-				href="https://github.com/povixa/povixa"
+				href="https://github.com/hnamhocit/povixa"
 				target="_blank"
 				rel="noopener noreferrer"
 				class="hidden items-center gap-1.5 rounded-lg border border-border/80 bg-card/80 px-2.5 py-1.5 font-mono text-xs font-medium text-foreground/90 shadow-2xs backdrop-blur-sm transition-all hover:border-primary/50 hover:bg-muted sm:inline-flex"

@@ -15,14 +15,14 @@
 
 	const snippets: Record<'curl' | 'docker' | 'helm', string> = {
 		curl: `# 1. Download & run automated self-host stack in 15 seconds
-curl -fsSL https://get.povixa.dev | bash
+curl -fsSL https://get.povixa.cloud | bash
 
 # 2. Open dashboard locally
 open http://localhost:8080/setup`,
 		docker: `# docker-compose.yml
 services:
   povixa-core:
-    image: ghcr.io/povixa/core:v2.4.0
+    image: ghcr.io/hnamhocit/povixa-core:v2.4.0
     restart: unless-stopped
     ports:
       - "8080:8080"
@@ -35,9 +35,9 @@ services:
 volumes:
   povixa_data:`,
 		helm: `# Kubernetes Helm Quickstart
-helm repo add povixa https://charts.povixa.dev
+helm repo add povixa https://charts.povixa.cloud
 helm repo update
-helm install povixa povixa/povixa-stack \\
+helm install povixa hnamhocit/povixa-stack \\
   --namespace povixa \\
   --create-namespace \\
   --set ingress.enabled=true`
@@ -98,12 +98,12 @@ helm install povixa povixa/povixa-stack \\
 						</div>
 						<div>
 							<a
-								href="https://github.com/povixa/povixa"
+								href="https://github.com/hnamhocit/povixa"
 								target="_blank"
 								rel="noopener noreferrer"
 								class="group inline-flex items-center gap-1 font-mono text-sm font-bold text-foreground hover:text-primary"
 							>
-								<span>povixa/povixa</span>
+								<span>hnamhocit/povixa</span>
 								<IconExternalLink
 									size={12}
 									class="opacity-60 transition-opacity group-hover:opacity-100"
@@ -114,7 +114,7 @@ helm install povixa povixa/povixa-stack \\
 					</div>
 
 					<a
-						href="https://github.com/povixa/povixa"
+						href="https://github.com/hnamhocit/povixa"
 						target="_blank"
 						rel="noopener noreferrer"
 						class="inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-3 py-1.5 font-mono text-xs font-semibold text-foreground shadow-xs transition-colors hover:border-primary/50 hover:bg-muted"

@@ -1,6 +1,6 @@
-# robots.txt for Povixa (https://povixa.dev)
+# robots.txt for Povixa (https://povixa.cloud)
 User-agent: *
 Allow: /
 
 # Sitemap index
-Sitemap: https://povixa.dev/sitemap.xml
+Sitemap: https://povixa.cloud/sitemap.xml

@@ -35,7 +35,7 @@ await app.analytics.track('onboarding.complete', { userId: user.id });`,
 
 import (
 	"context"
-	"github.com/povixa/povixa-go"
+	"github.com/hnamhocit/povixa-go"
 )
 
 func main() {
@@ -244,7 +244,7 @@ curl -X POST https://api.povixa.cloud/v1/auth/introspect \\
 						<span class="text-emerald-300">"context"</span>
 					</div>
 					<div class="pl-4">
-						<span class="text-emerald-300">"github.com/povixa/povixa-go"</span>
+						<span class="text-emerald-300">"github.com/hnamhocit/povixa-go"</span>
 					</div>
 					<div>)</div>
 					<div class="text-zinc-600 select-none">&nbsp;</div>
