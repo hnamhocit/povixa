@@ -109,6 +109,6 @@
 
 <div style="display:none">
 	{#each locales as locale (locale)}
-		<a href={resolve(localizeHref(page.url.pathname, { locale }) as Path)}>{locale}</a>
+		<a href={(resolve as any)(localizeHref(page.url.pathname, { locale }))}>{locale}</a>
 	{/each}
 </div>

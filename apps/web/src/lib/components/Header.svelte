@@ -27,7 +27,8 @@
 			get desc() {
 				return m.module_id_tag();
 			},
-			href: '/id'
+			href: 'https://id.povixa.cloud',
+			external: true
 		},
 		{
 			icon: IconAdjustments,
@@ -102,9 +103,11 @@
 	];
 
 	const navItems = [
+		{ href: 'https://docs.povixa.cloud', label: () => m.nav_docs(), external: true },
 		{ href: '/#pricing', label: () => m.nav_pricing() },
-		{ href: '/#sponsors', label: () => m.nav_sponsors() },
-		{ href: '/#contributors', label: () => m.footer_developers() }
+		{ href: '/blog', label: () => m.nav_blog() },
+		{ href: '/changelog', label: () => m.footer_changelog() },
+		{ href: '/#sponsors', label: () => m.nav_sponsors() }
 	];
 
 	let modulesOpen = $state(false);
@@ -159,6 +162,8 @@
 								{#each modules as module (module.href)}
 									<a
 										href={module.href}
+										target={module.external ? '_blank' : undefined}
+										rel={module.external ? 'noopener noreferrer' : undefined}
 										class="group flex items-start gap-3 rounded-md p-3 transition-colors hover:bg-accent"
 									>
 										<div
@@ -196,9 +201,14 @@
 				{#each navItems as item (item.href)}
 					<a
 						href={item.href}
-						class="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+						target={item.external ? '_blank' : undefined}
+						rel={item.external ? 'noopener noreferrer' : undefined}
+						class="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
 					>
-						{item.label()}
+						<span>{item.label()}</span>
+						{#if item.external}
+							<IconArrowUpRight size={12} class="opacity-70" stroke={2} />
+						{/if}
 					</a>
 				{/each}
 			</nav>
@@ -224,13 +234,17 @@
 			</a>
 
 			<a
-				href="https://id.povixa.cloud/login"
+				href="https://id.povixa.cloud"
+				target="_blank"
+				rel="noreferrer"
 				class="hidden text-sm text-muted-foreground transition-colors hover:text-foreground sm:block"
 			>
 				{m.nav_sign_in()}
 			</a>
 			<a
-				href="https://id.povixa.cloud/register"
+				href="https://id.povixa.cloud"
+				target="_blank"
+				rel="noreferrer"
 				class="hidden h-9 items-center gap-1.5 rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 sm:inline-flex"
 			>
 				{m.nav_get_started()}
@@ -262,6 +276,8 @@
 				{#each modules as module (module.href)}
 					<a
 						href={module.href}
+						target={module.external ? '_blank' : undefined}
+						rel={module.external ? 'noopener noreferrer' : undefined}
 						onclick={() => (mobileOpen = false)}
 						class="flex items-center gap-3 rounded-md px-3 py-2.5 text-sm text-foreground transition-colors hover:bg-accent"
 					>
@@ -285,22 +301,31 @@
 				{#each navItems as item (item.href)}
 					<a
 						href={item.href}
+						target={item.external ? '_blank' : undefined}
+						rel={item.external ? 'noopener noreferrer' : undefined}
 						onclick={() => (mobileOpen = false)}
-						class="block rounded-md px-3 py-2.5 text-sm text-foreground transition-colors hover:bg-accent"
+						class="flex items-center justify-between rounded-md px-3 py-2.5 text-sm text-foreground transition-colors hover:bg-accent"
 					>
-						{item.label()}
+						<span>{item.label()}</span>
+						{#if item.external}
+							<IconArrowUpRight size={14} stroke={2} />
+						{/if}
 					</a>
 				{/each}
 
 				<div class="mt-4 flex flex-col gap-2 border-t border-border pt-4">
 					<a
-						href="https://id.povixa.cloud/login"
+						href="https://id.povixa.cloud"
+						target="_blank"
+						rel="noreferrer"
 						class="flex h-10 items-center justify-center rounded-md border border-border text-sm font-medium text-foreground transition-colors hover:bg-accent"
 					>
 						{m.nav_sign_in()}
 					</a>
 					<a
-						href="https://id.povixa.cloud/register"
+						href="https://id.povixa.cloud"
+						target="_blank"
+						rel="noreferrer"
 						class="flex h-10 items-center justify-center gap-1.5 rounded-md bg-primary text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
 					>
 						{m.nav_get_started()}

@@ -3,11 +3,7 @@
 		IconCoins,
 		IconBrandGithub,
 		IconArrowUpRight,
-		IconHeartHandshake,
-		IconGitPullRequest,
-		IconHeart,
-		IconGitBranch,
-		IconCircleCheck
+		IconGitPullRequest
 	} from '@tabler/icons-svelte-runes';
 	import * as m from '#lib/paraglide/messages.js';
 
@@ -63,126 +59,69 @@
 	];
 </script>
 
-<div
-	class="relative overflow-hidden rounded-2xl border border-border/80 bg-card/60 p-6 backdrop-blur-md md:p-10"
->
-	<!-- Ambient atmospheric background glow -->
+<div class="relative overflow-hidden border-y border-border/70 py-14 md:py-24">
 	<div
-		class="pointer-events-none absolute -top-20 -right-20 h-72 w-72 rounded-full bg-emerald-500/10 blur-3xl"
-	></div>
-	<div
-		class="pointer-events-none absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-primary/10 blur-3xl"
+		class="pointer-events-none absolute inset-0 -z-10 [background-image:linear-gradient(to_right,hsl(var(--border)/.22)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/.22)_1px,transparent_1px)] [mask-image:linear-gradient(to_bottom,transparent,black_18%,black_82%,transparent)] [background-size:32px_32px] opacity-60"
 	></div>
 
-	<!-- Section Header -->
-	<div class="mx-auto max-w-3xl text-center">
-		<div
-			class="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3.5 py-1 font-mono text-xs font-semibold text-emerald-500"
-		>
-			<IconCoins size={15} stroke={2.5} />
-			<span>{m.contributor_badge()}</span>
+	<div class="grid items-center gap-14 lg:grid-cols-[1.15fr_.85fr] lg:gap-20">
+		<div>
+			<div
+				class="inline-flex items-center gap-2 font-mono text-[11px] font-bold tracking-[0.18em] text-emerald-500 uppercase"
+			>
+				<IconCoins size={15} stroke={2.5} />
+				<span>{m.contributor_badge()}</span>
+			</div>
+
+			<h3
+				class="mt-6 max-w-3xl font-sans text-5xl leading-[.94] font-extrabold tracking-[-0.055em] text-foreground sm:text-6xl md:text-7xl"
+			>
+				{m.contributor_title()}
+			</h3>
+			<p class="mt-7 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
+				{m.contributor_desc()}
+			</p>
+			<div class="mt-8 flex flex-wrap items-center gap-5">
+				<a
+					href="/sponsor?type=code"
+					class="inline-flex items-center gap-2 bg-foreground px-5 py-3 font-mono text-xs font-bold text-background transition-opacity hover:opacity-85"
+				>
+					<IconBrandGithub size={16} stroke={2} />
+					<span>{m.contributor_cta_code()}</span>
+				</a>
+				<a
+					href="#contributors-wall"
+					class="font-mono text-xs font-bold text-primary hover:underline"
+				>
+					{m.contributor_cta_wall()}
+				</a>
+			</div>
 		</div>
 
-		<h3
-			class="mt-4 font-sans text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl md:text-4xl"
-		>
-			{m.contributor_title()}
-		</h3>
-
-		<p class="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-			{m.contributor_desc()}
-		</p>
-	</div>
-
-	<!-- 3 Real Impact & Activity Stat Cards -->
-	<div class="mt-10 grid gap-4 sm:grid-cols-3">
-		<div class="rounded-xl border border-emerald-500/30 bg-emerald-500/5 p-5 text-center shadow-xs">
-			<div
-				class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/15 text-emerald-500"
-			>
-				<IconHeartHandshake size={20} stroke={2.5} />
-			</div>
-			<p class="font-sans text-3xl font-extrabold tracking-tight text-emerald-500 sm:text-4xl">
-				{m.contributor_stat_1_val()}
+		<div class="relative border-l-2 border-emerald-500 pl-6 sm:pl-10 lg:pb-3">
+			<p class="font-mono text-[11px] font-bold tracking-[0.18em] text-muted-foreground uppercase">
+				{m.contributor_badge()}
 			</p>
-			<p class="mt-2 text-xs font-semibold text-foreground/90 sm:text-sm">
+			<p
+				class="mt-2 font-sans text-[6.5rem] leading-[.78] font-extrabold tracking-[-0.09em] text-emerald-500 sm:text-[9rem]"
+			>
+				30%
+			</p>
+			<p class="mt-7 max-w-xs text-base leading-relaxed text-foreground/80">
 				{m.contributor_stat_1_lbl()}
 			</p>
-		</div>
-
-		<div class="rounded-xl border border-border/80 bg-background/80 p-5 text-center shadow-xs">
-			<div
-				class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary"
+			<a
+				href="/sponsor?type=code"
+				class="mt-5 inline-flex items-center gap-2 font-mono text-xs font-bold text-primary hover:underline"
 			>
-				<IconGitBranch size={20} stroke={2.5} />
-			</div>
-			<p class="font-sans text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-				{m.contributor_stat_2_val()}
-			</p>
-			<p class="mt-2 text-xs font-semibold text-foreground/90 sm:text-sm">
-				{m.contributor_stat_2_lbl()}
-			</p>
-		</div>
-
-		<div class="rounded-xl border border-border/80 bg-background/80 p-5 text-center shadow-xs">
-			<div
-				class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-violet-500/10 text-violet-500"
-			>
-				<IconCircleCheck size={20} stroke={2.5} />
-			</div>
-			<p class="font-sans text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-				{m.contributor_stat_3_val()}
-			</p>
-			<p class="mt-2 text-xs font-semibold text-foreground/90 sm:text-sm">
-				{m.contributor_stat_3_lbl()}
-			</p>
-		</div>
-	</div>
-
-	<!-- 3 Weighted Impact Rules -->
-	<div class="mt-6 grid gap-3.5 sm:grid-cols-3">
-		<div class="rounded-xl border border-border/70 bg-card/60 p-4 backdrop-blur-sm">
-			<h4 class="flex items-center gap-2 font-sans text-xs font-bold text-foreground">
-				<span
-					class="flex h-5 w-5 items-center justify-center rounded-full bg-primary/15 font-mono text-[10px] font-bold text-primary"
-					>1</span
-				>
-				<span>{m.contributor_rule_1_title()}</span>
-			</h4>
-			<p class="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-				{m.contributor_rule_1_desc()}
-			</p>
-		</div>
-
-		<div class="rounded-xl border border-border/70 bg-card/60 p-4 backdrop-blur-sm">
-			<h4 class="flex items-center gap-2 font-sans text-xs font-bold text-foreground">
-				<span
-					class="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500/15 font-mono text-[10px] font-bold text-emerald-500"
-					>2</span
-				>
-				<span>{m.contributor_rule_2_title()}</span>
-			</h4>
-			<p class="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-				{m.contributor_rule_2_desc()}
-			</p>
-		</div>
-
-		<div class="rounded-xl border border-border/70 bg-card/60 p-4 backdrop-blur-sm">
-			<h4 class="flex items-center gap-2 font-sans text-xs font-bold text-foreground">
-				<span
-					class="flex h-5 w-5 items-center justify-center rounded-full bg-amber-500/15 font-mono text-[10px] font-bold text-amber-500"
-					>3</span
-				>
-				<span>{m.contributor_rule_3_title()}</span>
-			</h4>
-			<p class="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-				{m.contributor_rule_3_desc()}
-			</p>
+				<span>{m.contributor_cta_github()}</span>
+				<IconArrowUpRight size={14} stroke={2.5} />
+			</a>
 		</div>
 	</div>
 
 	<!-- Hall of Gratitude & Contributors Grid -->
-	<div class="mt-12 border-t border-border/60 pt-8">
+	<div id="contributors-wall" class="mt-20 border-t border-border/60 pt-10">
 		<div class="mb-6 flex flex-wrap items-center justify-between gap-3">
 			<div>
 				<h4 class="font-sans text-base font-bold text-foreground">
@@ -234,26 +173,5 @@
 				</a>
 			{/each}
 		</div>
-	</div>
-
-	<!-- Bottom Action CTA: Cả đóng góp mã nguồn lẫn tài trợ đều qua trang cảm ơn! -->
-	<div
-		class="mt-10 flex flex-wrap items-center justify-center gap-4 border-t border-border/60 pt-6"
-	>
-		<a
-			href="/sponsor?type=code"
-			class="inline-flex items-center gap-2 rounded-xl bg-foreground px-5 py-2.5 font-mono text-xs font-bold text-background shadow-sm transition-opacity hover:opacity-90"
-		>
-			<IconBrandGithub size={16} stroke={2} />
-			<span>{m.contributor_cta_code()}</span>
-		</a>
-
-		<a
-			href="/sponsor?type=sponsor"
-			class="inline-flex items-center gap-2 rounded-xl border border-rose-500/40 bg-rose-500/10 px-5 py-2.5 font-mono text-xs font-bold text-rose-500 transition-colors hover:bg-rose-500/20"
-		>
-			<IconHeart size={16} stroke={2.5} />
-			<span>{m.contributor_cta_sponsor()}</span>
-		</a>
 	</div>
 </div>

@@ -1,14 +1,14 @@
 /* Theme (bao gồm tailwindcss, tokens, colors) */
-@import '@povixa/tailwind-theme';
+@import "@povixa/tailwind-theme";
 
 /* Shadcn base + animation */
-@import 'tw-animate-css';
+@import "tw-animate-css";
 
 /* Font — dùng chung cho mọi app */
-@import '@fontsource-variable/plus-jakarta-sans';
-@import '@fontsource-variable/inter';
-@import '@fontsource-variable/lora';
-@import '@fontsource-variable/jetbrains-mono';
+@import "@fontsource-variable/plus-jakarta-sans";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/lora";
+@import "@fontsource-variable/jetbrains-mono";
 
 /* Scan component trong package ui */
 @source './components/**/*.{svelte,ts}';

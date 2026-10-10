@@ -94,7 +94,7 @@
 	"modules_badge": "PLATFORM",
 	"modules_title": "Nine essential modules. One lean SDK.",
 	"modules_desc": "Activate only what you need. Ignore the rest. Zero overhead for services you don't use.",
-	"module_id_name": "Povixa ID",
+	"module_id_name": "Povixa Auth",
 	"module_id_tag": "Identity & Auth",
 	"module_id_desc": "OAuth 2.1, OIDC, Passkeys, RBAC, multi-tenant isolation, and complete session security out of the box.",
 	"module_config_name": "Remote Config",

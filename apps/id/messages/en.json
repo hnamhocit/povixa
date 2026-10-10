@@ -1,4 +1,74 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"hello_world": "Hello, {name} from en!"
+	"nav_docs": "Docs",
+	"nav_platform": "About Povixa",
+	"nav_status": "Status",
+	"nav_help": "Help",
+
+	"theme_toggle": "Theme",
+	"lang_toggle": "Language",
+
+	"hero_badge": "Povixa Account • Fast & Secure Sign-In",
+	"hero_title": "One single account.",
+	"hero_title_highlight": "For everything you build.",
+	"hero_subtitle": "Effortlessly sign in to manage your projects, applications, and resources across the Povixa platform. Fast, intuitive, and completely private.",
+
+	"pillar_1": "Instant one-click social sign-in",
+	"pillar_2": "Complete privacy & account security",
+	"pillar_3": "Seamless sync across all your devices",
+	"pillar_4": "Free to get started anytime",
+
+	"auth_tab_login": "Sign In",
+	"auth_tab_register": "Sign Up",
+
+	"auth_card_title_login": "Welcome back",
+	"auth_card_desc_login": "Sign in to access your Povixa workspace",
+	"auth_card_title_register": "Create an account",
+	"auth_card_desc_register": "Sign up for free in just a few seconds",
+
+	"auth_social_google": "Google",
+	"auth_social_facebook": "Facebook",
+	"auth_social_github": "GitHub",
+	"auth_social_discord": "Discord",
+	"auth_or_email": "Or continue with email",
+
+	"field_name": "Full Name",
+	"field_name_placeholder": "John Doe",
+	"field_email": "Email address",
+	"field_email_placeholder": "you@example.com",
+	"field_password": "Password",
+	"field_password_placeholder": "Enter your password",
+	"field_show_password": "Show password",
+	"field_hide_password": "Hide password",
+	"field_remember_me": "Remember me",
+	"field_forgot_password": "Forgot password?",
+	"field_terms_agree": "I agree to the Terms of Service and Privacy Policy",
+
+	"btn_submit_login": "Sign in",
+	"btn_submit_register": "Create account",
+	"btn_submitting": "Processing...",
+	"btn_passkey": "Sign in with Touch ID / Face ID",
+
+	"password_strength_weak": "Weak password",
+	"password_strength_medium": "Moderate password",
+	"password_strength_strong": "Strong password",
+	"password_strength_hint": "Tip: Use 8+ characters combining letters and numbers",
+
+	"auth_no_account": "Don't have an account?",
+	"auth_have_account": "Already have an account?",
+	"auth_switch_register": "Sign up now",
+	"auth_switch_login": "Sign in",
+
+	"footer_copyright": "© 2026 Povixa. All rights reserved.",
+	"footer_terms": "Terms of Service",
+	"footer_privacy": "Privacy Policy",
+	"footer_security": "Security",
+	"footer_support": "Help Center",
+
+	"feature_sso_title": "One Single Account",
+	"feature_sso_desc": "Log in once to access all Povixa products and tools without the hassle of multiple logins.",
+	"feature_sec_title": "Enterprise Security",
+	"feature_sec_desc": "Your credentials and personal data are strictly encrypted and never shared with third parties.",
+	"feature_speed_title": "Lightning Fast",
+	"feature_speed_desc": "Instant, smooth responses keep you focused on getting work done without interruptions."
 }

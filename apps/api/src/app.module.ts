@@ -4,12 +4,24 @@ import { randomUUID } from 'node:crypto';
 import { ConfigModule } from '@nestjs/config';
 import type { Request } from 'express';
 
+import { DatabaseModule } from './database/database.module.js';
+import { RedisModule } from './redis/redis.module.js';
+import { HealthModule } from './health/health.module.js';
+import { AuthModule } from './auth/auth.module.js';
+import { OrganizationsModule } from './organizations/organizations.module.js';
+import { ProjectsModule } from './projects/projects.module.js';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
+    DatabaseModule,
+    RedisModule,
+    HealthModule,
+    AuthModule,
+    OrganizationsModule,
+    ProjectsModule,
 
     LoggerModule.forRoot({
       pinoHttp: {

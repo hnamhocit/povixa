@@ -1,0 +1,61 @@
+services:
+  postgres:
+    image: postgres:18-alpine
+    container_name: povixa-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_DB: ${DB_NAME:-povixa}
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres} -d ${DB_NAME:-povixa}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - povixa-network
+
+  redis:
+    image: redis:8-alpine
+    container_name: povixa-redis
+    restart: unless-stopped
+    command: >
+      sh -c "if [ -n \"${REDIS_PASSWORD}\" ]; then
+        redis-server --requirepass \"${REDIS_PASSWORD}\" --appendonly yes;
+      else
+        redis-server --appendonly yes;
+      fi"
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: >
+        sh -c "if [ -n \"${REDIS_PASSWORD}\" ]; then
+          redis-cli -a \"${REDIS_PASSWORD}\" ping;
+        else
+          redis-cli ping;
+        fi"
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    networks:
+      - povixa-network
+
+volumes:
+  postgres_data:
+    name: povixa_postgres_data
+  redis_data:
+    name: povixa_redis_data
+
+networks:
+  povixa-network:
+    name: povixa_network
+    driver: bridge

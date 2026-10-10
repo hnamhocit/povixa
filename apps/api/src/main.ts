@@ -1,6 +1,7 @@
 import { NestFactory, Reflector } from '@nestjs/core';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import cookieParser from 'cookie-parser';
 
 import { AppModule } from './app.module.js';
 import { TransformResponseInterceptor } from './common/interceptors/transform-response.interceptor.js';
@@ -10,6 +11,12 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
   const reflector = app.get(Reflector);
+
+  const cookieSecret = configService.get<string>(
+    'COOKIE_SECRET',
+    'pvx_cookie_secret_default',
+  );
+  app.use(cookieParser(cookieSecret));
 
   app.enableShutdownHooks();
 
@@ -69,4 +76,4 @@ async function bootstrap() {
   await app.listen(port);
   console.log(`Server is running on port ${port}`);
 }
-bootstrap();
+void bootstrap();

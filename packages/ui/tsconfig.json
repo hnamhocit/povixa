@@ -1,15 +1,17 @@
 {
-  "extends": "../../tsconfig.base.json",
+  "extends": "../typescript-config/base.json",
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",
+    "module": "preserve",
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "verbatimModuleSyntax": true,
     "noEmit": true,
     "strict": true,
     "paths": {
-      "@povixa/ui/*": ["./src/*"]
+      "@povixa/ui/*": ["./src/*"],
+      "#lib/*": ["./src/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.svelte"],

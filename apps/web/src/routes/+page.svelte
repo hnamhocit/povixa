@@ -10,14 +10,10 @@
 		IconFileText,
 		IconCheck,
 		IconX,
-		IconBuildingSkyscraper,
-		IconUser,
-		IconBriefcase,
 		IconPlus,
 		IconMinus,
 		IconHeart,
 		IconShieldCheck,
-		IconUsers,
 		IconMessageCircle,
 		IconUsersGroup,
 		IconCoin,
@@ -30,10 +26,9 @@
 	import * as m from '#lib/paraglide/messages.js';
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import { page } from '$app/state';
-	import CodeEditor from '#lib/components/CodeEditor.svelte';
+	import AuroraBackground from '#lib/components/AuroraBackground.svelte';
 	import PartnerLogos from '#lib/components/PartnerLogos.svelte';
 	import OpenSourceProof from '#lib/components/OpenSourceProof.svelte';
-	import PoweredByBadge from '#lib/components/PoweredByBadge.svelte';
 	import WallOfLove from '#lib/components/WallOfLove.svelte';
 	import SponsorTiers from '#lib/components/SponsorTiers.svelte';
 	import ContributorPolicy from '#lib/components/ContributorPolicy.svelte';
@@ -53,33 +48,6 @@
 		}
 	}
 
-	// ═══════════ State for Interactive Cockpit ═══════════
-	let cockpitTab = $state<'sdk' | 'console' | 'arch'>('sdk');
-	let sdkLang = $state<'ts' | 'go' | 'py' | 'curl'>('ts');
-
-	// ═══════════ State for Fair-Share Calculator ═══════════
-	let monthlyRevenue = $state(15000);
-
-	let povixaCost = $derived.by(() => {
-		if (monthlyRevenue <= 1000) return 0;
-		if (monthlyRevenue <= 10000) return Math.round(monthlyRevenue * 0.02);
-		const calculated = 200 + Math.round((monthlyRevenue - 10000) * 0.015);
-		return Math.min(499, calculated);
-	});
-
-	let traditionalCost = $derived.by(() => {
-		if (monthlyRevenue <= 1000) return 240;
-		if (monthlyRevenue <= 10000) return Math.round(350 + monthlyRevenue * 0.07);
-		if (monthlyRevenue <= 50000) return Math.round(750 + monthlyRevenue * 0.05);
-		return Math.round(1800 + monthlyRevenue * 0.038);
-	});
-
-	let savingsAmount = $derived(Math.max(0, traditionalCost - povixaCost));
-	let savingsPercent = $derived(
-		traditionalCost > 0 ? Math.round((savingsAmount / traditionalCost) * 100) : 0
-	);
-	let isCapReached = $derived(povixaCost >= 499);
-
 	// ═══════════ 9 modules ═══════════
 	const modules = [
 		{
@@ -93,7 +61,7 @@
 			get desc() {
 				return m.module_id_desc();
 			},
-			href: '/id',
+			href: '/auth',
 			accent: 'from-blue-500/20 to-indigo-500/10'
 		},
 		{
@@ -207,110 +175,6 @@
 			},
 			href: '/billing',
 			accent: 'from-purple-500/20 to-violet-500/10'
-		}
-	];
-
-	// ═══════════ Problem / Solution ═══════════
-	const problems = [
-		{
-			get before() {
-				return m.problem_1_before();
-			},
-			get after() {
-				return m.problem_1_after();
-			}
-		},
-		{
-			get before() {
-				return m.problem_2_before();
-			},
-			get after() {
-				return m.problem_2_after();
-			}
-		},
-		{
-			get before() {
-				return m.problem_3_before();
-			},
-			get after() {
-				return m.problem_3_after();
-			}
-		},
-		{
-			get before() {
-				return m.problem_4_before();
-			},
-			get after() {
-				return m.problem_4_after();
-			}
-		},
-		{
-			get before() {
-				return m.problem_5_before();
-			},
-			get after() {
-				return m.problem_5_after();
-			}
-		},
-		{
-			get before() {
-				return m.problem_6_before();
-			},
-			get after() {
-				return m.problem_6_after();
-			}
-		}
-	];
-
-	// ═══════════ Personas / Use Cases ═══════════
-	const personas = [
-		{
-			icon: IconUser,
-			get name() {
-				return m.persona_1_name();
-			},
-			get title() {
-				return m.persona_1_title();
-			},
-			get bullets() {
-				return [m.persona_1_b1(), m.persona_1_b2(), m.persona_1_b3()];
-			}
-		},
-		{
-			icon: IconUsers,
-			get name() {
-				return m.persona_2_name();
-			},
-			get title() {
-				return m.persona_2_title();
-			},
-			get bullets() {
-				return [m.persona_2_b1(), m.persona_2_b2(), m.persona_2_b3()];
-			}
-		},
-		{
-			icon: IconBriefcase,
-			get name() {
-				return m.persona_3_name();
-			},
-			get title() {
-				return m.persona_3_title();
-			},
-			get bullets() {
-				return [m.persona_3_b1(), m.persona_3_b2(), m.persona_3_b3()];
-			}
-		},
-		{
-			icon: IconBuildingSkyscraper,
-			get name() {
-				return m.persona_4_name();
-			},
-			get title() {
-				return m.persona_4_title();
-			},
-			get bullets() {
-				return [m.persona_4_b1(), m.persona_4_b2(), m.persona_4_b3()];
-			}
 		}
 	];
 
@@ -595,49 +459,11 @@
 </svelte:head>
 
 <!-- ═══════════════ HERO ═══════════════ -->
-<section class="relative overflow-hidden pt-16 pb-24 md:pt-24 md:pb-36">
-	<!-- Atmospheric Multi-layered Tech Background -->
-	<div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[850px] overflow-hidden">
-		<!-- Top Horizon Glow Beams -->
-		<div
-			class="absolute top-0 left-1/2 h-[1px] w-full max-w-6xl -translate-x-1/2 bg-gradient-to-r from-transparent via-primary/60 to-transparent"
-		></div>
-		<div
-			class="absolute top-0 left-1/2 h-[2px] w-2/3 max-w-3xl -translate-x-1/2 bg-gradient-to-r from-transparent via-violet-400 to-transparent blur-[1px]"
-		></div>
+<section class="relative isolate overflow-hidden bg-background pt-16 pb-24 md:pt-24 md:pb-36">
+	<!-- Aurora Borealis Animated Background -->
+	<AuroraBackground class="opacity-100" />
 
-		<!-- Central Radiant Spotlight Mesh -->
-		<div
-			class="absolute -top-[160px] left-1/2 h-[650px] w-[1000px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,oklch(0.65_0.22_265/0.25)_0%,oklch(0.62_0.22_295/0.12)_40%,transparent_70%)] opacity-90 blur-3xl dark:opacity-100"
-		></div>
-
-		<!-- Flanking Ambient Light Cones -->
-		<div
-			class="absolute top-[80px] -left-[100px] h-[500px] w-[600px] rounded-full bg-[radial-gradient(ellipse_at_center,oklch(0.7_0.18_220/0.12)_0%,transparent_70%)] blur-3xl"
-		></div>
-		<div
-			class="absolute top-[100px] -right-[100px] h-[500px] w-[600px] rounded-full bg-[radial-gradient(ellipse_at_center,oklch(0.65_0.25_320/0.12)_0%,transparent_70%)] blur-3xl"
-		></div>
-
-		<!-- Concentric Orbit / Radar Depth Rings -->
-		<div
-			class="absolute -top-[250px] left-1/2 h-[1200px] w-[1200px] -translate-x-1/2 rounded-full border border-primary/10 opacity-70"
-		></div>
-		<div
-			class="absolute -top-[120px] left-1/2 h-[900px] w-[900px] -translate-x-1/2 rounded-full border border-primary/15 opacity-60"
-		></div>
-		<div
-			class="absolute top-[20px] left-1/2 h-[650px] w-[650px] -translate-x-1/2 rounded-full border border-dashed border-primary/20 opacity-50"
-		></div>
-
-		<!-- Blueprint Developer Grid (Vignetted center mask) -->
-		<div
-			class="absolute inset-0 opacity-[0.35] dark:opacity-[0.55]"
-			style="background-image: linear-gradient(to right, oklch(0.55 0.2 265 / 0.12) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.55 0.2 265 / 0.12) 1px, transparent 1px); background-size: 48px 48px; mask-image: radial-gradient(ellipse 85% 70% at 50% 30%, black 20%, transparent 85%); -webkit-mask-image: radial-gradient(ellipse 85% 70% at 50% 30%, black 20%, transparent 85%);"
-		></div>
-	</div>
-
-	<div class="mx-auto max-w-6xl px-6">
+	<div class="relative z-10 mx-auto max-w-6xl px-6">
 		<div class="mx-auto max-w-4xl text-center">
 			<!-- Announcement Badge -->
 			<a
@@ -680,7 +506,9 @@
 			<!-- Hero CTA Buttons -->
 			<div class="mt-10 flex flex-col items-center justify-center gap-3.5 sm:flex-row">
 				<a
-					href="https://id.povixa.cloud/register"
+					href="https://id.povixa.cloud"
+					target="_blank"
+					rel="noreferrer"
 					class="group inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-primary px-7 text-sm font-semibold text-primary-foreground shadow-md shadow-primary/20 transition-all hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/30"
 				>
 					{m.hero_cta_primary()}
@@ -739,313 +567,52 @@
 				{/each}
 			</div>
 		</div>
-
-		<!-- ═══════════ INTERACTIVE DEVELOPER COCKPIT ═══════════ -->
-		<div class="relative mx-auto mt-14 max-w-4xl">
-			<!-- Corner Tech Crosshairs (+) -->
-			<div
-				class="pointer-events-none absolute -top-3 -left-3 font-mono text-sm text-primary/50 select-none"
-			>
-				+
-			</div>
-			<div
-				class="pointer-events-none absolute -top-3 -right-3 font-mono text-sm text-primary/50 select-none"
-			>
-				+
-			</div>
-			<div
-				class="pointer-events-none absolute -bottom-3 -left-3 font-mono text-sm text-primary/50 select-none"
-			>
-				+
-			</div>
-			<div
-				class="pointer-events-none absolute -right-3 -bottom-3 font-mono text-sm text-primary/50 select-none"
-			>
-				+
-			</div>
-
-			<div
-				class="overflow-hidden rounded-xl border border-border/80 bg-card/90 shadow-2xl backdrop-blur-md"
-			>
-				<!-- Window Header Bar -->
-				<div
-					class="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-muted/30 px-4 py-3"
-				>
-					<div class="flex items-center gap-2">
-						<div class="flex gap-1.5">
-							<div class="h-3 w-3 rounded-full bg-rose-500/80"></div>
-							<div class="h-3 w-3 rounded-full bg-amber-500/80"></div>
-							<div class="h-3 w-3 rounded-full bg-emerald-500/80"></div>
-						</div>
-						<span class="ml-2 font-mono text-xs text-muted-foreground/70">
-							{m.cockpit_url()}
-						</span>
-					</div>
-
-					<!-- Interactive Cockpit Mode Tabs -->
-					<div class="flex items-center rounded-lg border border-border/60 bg-background/60 p-0.5">
-						<button
-							type="button"
-							onclick={() => (cockpitTab = 'sdk')}
-							class="rounded-md px-3 py-1 text-xs font-medium transition-all {cockpitTab === 'sdk'
-								? 'bg-primary text-primary-foreground shadow-sm'
-								: 'text-muted-foreground hover:text-foreground'}"
-						>
-							{m.cockpit_tab_sdk()}
-						</button>
-						<button
-							type="button"
-							onclick={() => (cockpitTab = 'console')}
-							class="rounded-md px-3 py-1 text-xs font-medium transition-all {cockpitTab ===
-							'console'
-								? 'bg-primary text-primary-foreground shadow-sm'
-								: 'text-muted-foreground hover:text-foreground'}"
-						>
-							{m.cockpit_tab_console()}
-						</button>
-						<button
-							type="button"
-							onclick={() => (cockpitTab = 'arch')}
-							class="rounded-md px-3 py-1 text-xs font-medium transition-all {cockpitTab === 'arch'
-								? 'bg-primary text-primary-foreground shadow-sm'
-								: 'text-muted-foreground hover:text-foreground'}"
-						>
-							{m.cockpit_tab_arch()}
-						</button>
-					</div>
-
-					<!-- Edge Ping Metric -->
-					<div class="hidden items-center gap-1.5 font-mono text-[11px] text-emerald-500 sm:flex">
-						<span class="h-2 w-2 animate-pulse rounded-full bg-emerald-500"></span>
-						<span>11.4ms edge ping</span>
-					</div>
-				</div>
-
-				<!-- Tab 1: Unified SDK View with Rich Syntax Highlighting -->
-				{#if cockpitTab === 'sdk'}
-					<div class="p-4 sm:p-6">
-						<CodeEditor bind:lang={sdkLang} />
-					</div>
-				{/if}
-
-				<!-- Tab 2: Live Console Telemetry -->
-				{#if cockpitTab === 'console'}
-					<div class="p-6">
-						<div class="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-							<div class="rounded-lg border border-border bg-background/60 p-3.5">
-								<p class="text-[11px] font-medium text-muted-foreground">
-									{m.cockpit_latency()}
-								</p>
-								<p class="mt-1 font-mono text-lg font-bold text-foreground">11.8 ms</p>
-								<span class="text-[10px] text-emerald-500">99.99% percentile</span>
-							</div>
-
-							<div class="rounded-lg border border-border bg-background/60 p-3.5">
-								<p class="text-[11px] font-medium text-muted-foreground">{m.cockpit_uptime()}</p>
-								<p class="mt-1 font-mono text-lg font-bold text-foreground">100.0%</p>
-								<span class="text-[10px] text-emerald-500">{m.cockpit_status_operational()}</span>
-							</div>
-
-							<div class="rounded-lg border border-border bg-background/60 p-3.5">
-								<p class="text-[11px] font-medium text-muted-foreground">
-									{m.cockpit_active_keys()}
-								</p>
-								<p class="mt-1 font-mono text-lg font-bold text-foreground">18,490</p>
-								<span class="text-[10px] text-primary">All tenant verified</span>
-							</div>
-
-							<div class="rounded-lg border border-border bg-background/60 p-3.5">
-								<p class="text-[11px] font-medium text-muted-foreground">
-									{m.cockpit_saved_stack()}
-								</p>
-								<p class="mt-1 font-mono text-lg font-bold text-emerald-500">85%+</p>
-								<span class="text-[10px] text-muted-foreground">Guaranteed capped</span>
-							</div>
-						</div>
-
-						<!-- Real-time Event Stream Simulation -->
-						<div class="rounded-lg border border-border bg-background/60 p-4">
-							<div class="mb-3 flex items-center justify-between">
-								<span class="font-mono text-xs font-semibold text-muted-foreground">
-									{m.cockpit_live_stream()}
-								</span>
-								<span class="flex items-center gap-1.5 text-[11px] text-emerald-500">
-									<span class="h-1.5 w-1.5 animate-ping rounded-full bg-emerald-500"></span>
-									Streaming
-								</span>
-							</div>
-
-							<div class="space-y-2 font-mono text-xs">
-								<div
-									class="flex items-center justify-between rounded bg-muted/30 px-3 py-1.5 text-muted-foreground"
-								>
-									<span class="text-foreground">⚡ {m.cockpit_event_auth()}</span>
-									<span class="text-[10px] text-muted-foreground">tenant: acme_prod • 2ms</span>
-								</div>
-								<div
-									class="flex items-center justify-between rounded bg-muted/30 px-3 py-1.5 text-muted-foreground"
-								>
-									<span class="text-primary">⚙️ {m.cockpit_event_flag()}</span>
-									<span class="text-[10px] text-muted-foreground">eval: true • 0.8ms</span>
-								</div>
-								<div
-									class="flex items-center justify-between rounded bg-muted/30 px-3 py-1.5 text-muted-foreground"
-								>
-									<span class="text-amber-500">🔔 {m.cockpit_event_push()}</span>
-									<span class="text-[10px] text-muted-foreground">channel: APNs • 14ms</span>
-								</div>
-								<div
-									class="flex items-center justify-between rounded bg-muted/30 px-3 py-1.5 text-muted-foreground"
-								>
-									<span class="text-emerald-500">💳 {m.cockpit_event_bill()}</span>
-									<span class="text-[10px] text-muted-foreground">tier: free • fee: $0</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				{/if}
-
-				<!-- Tab 3: Architecture Diagram -->
-				{#if cockpitTab === 'arch'}
-					<div class="p-6">
-						<div
-							class="flex flex-col items-center justify-center gap-6 rounded-lg border border-dashed border-border bg-background/40 px-4 py-8 md:flex-row"
-						>
-							<div
-								class="flex flex-col items-center rounded-lg border border-border bg-card p-4 text-center shadow-sm"
-							>
-								<div
-									class="flex h-10 w-10 items-center justify-center rounded-md bg-primary/10 text-primary"
-								>
-									<IconServer size={20} stroke={2} />
-								</div>
-								<p class="mt-2 text-xs font-bold text-foreground">Your App Client</p>
-								<p class="text-[10px] text-muted-foreground">Web • Mobile • Backend</p>
-							</div>
-
-							<IconArrowRight size={20} class="text-primary" stroke={2.5} />
-
-							<div
-								class="flex flex-col items-center rounded-lg border border-primary/40 bg-primary/5 p-4 text-center shadow-sm"
-							>
-								<div
-									class="flex h-10 w-10 items-center justify-center rounded-md bg-primary text-primary-foreground"
-								>
-									<IconBolt size={20} stroke={2} />
-								</div>
-								<p class="mt-2 text-xs font-bold text-foreground">Povixa Unified Engine</p>
-								<p class="text-[10px] text-muted-foreground">9 Modules • Edge Gateway</p>
-							</div>
-
-							<IconArrowRight size={20} class="text-primary" stroke={2.5} />
-
-							<div
-								class="flex flex-col items-center rounded-lg border border-border bg-card p-4 text-center shadow-sm"
-							>
-								<div
-									class="flex h-10 w-10 items-center justify-center rounded-md bg-emerald-500/10 text-emerald-500"
-								>
-									<IconShieldCheck size={20} stroke={2} />
-								</div>
-								<p class="mt-2 text-xs font-bold text-foreground">Your Sovereign Data</p>
-								<p class="text-[10px] text-muted-foreground">Cloud or Self-Hosted Metal</p>
-							</div>
-						</div>
-					</div>
-				{/if}
-			</div>
-		</div>
 	</div>
 </section>
 
 <!-- ═══════════════ METRICS & PROOF BAR ═══════════════ -->
 <section class="border-y border-border/70 bg-muted/20 backdrop-blur-sm">
 	<div class="mx-auto max-w-6xl px-6 py-12">
-		<p class="text-center font-mono text-[11px] font-semibold tracking-wider text-muted-foreground">
+		<p
+			class="text-center font-mono text-xs font-semibold tracking-[0.2em] text-muted-foreground uppercase"
+		>
 			{m.proof_heading()}
 		</p>
 
 		<!-- Partner / Builder Tech SVG Logos -->
-		<div class="mt-8">
+		<div class="mt-10">
 			<PartnerLogos />
 		</div>
 
-		<!-- 4 High Impact Stat Badges -->
-		<div class="mt-12 grid grid-cols-2 gap-4 border-t border-border/50 pt-10 lg:grid-cols-4">
+		<!-- Decorative proof line -->
+		<div
+			class="mt-10 grid grid-cols-2 gap-6 border-t border-border/40 pt-8 opacity-45 lg:grid-cols-4"
+		>
 			<div class="text-center">
-				<p class="font-sans text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+				<p class="font-sans text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
 					{m.metric_stat_1_val()}
 				</p>
 				<p class="mt-1 text-xs text-muted-foreground">{m.metric_stat_1_lbl()}</p>
 			</div>
 			<div class="text-center">
-				<p class="font-sans text-3xl font-extrabold tracking-tight text-primary sm:text-4xl">
+				<p class="font-sans text-2xl font-bold tracking-tight text-primary sm:text-3xl">
 					{m.metric_stat_2_val()}
 				</p>
 				<p class="mt-1 text-xs text-muted-foreground">{m.metric_stat_2_lbl()}</p>
 			</div>
 			<div class="text-center">
-				<p class="font-sans text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+				<p class="font-sans text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
 					{m.metric_stat_3_val()}
 				</p>
 				<p class="mt-1 text-xs text-muted-foreground">{m.metric_stat_3_lbl()}</p>
 			</div>
 			<div class="text-center">
-				<p class="font-sans text-3xl font-extrabold tracking-tight text-emerald-500 sm:text-4xl">
+				<p class="font-sans text-2xl font-bold tracking-tight text-emerald-500 sm:text-3xl">
 					{m.metric_stat_4_val()}
 				</p>
 				<p class="mt-1 text-xs text-muted-foreground">{m.metric_stat_4_lbl()}</p>
 			</div>
 		</div>
-	</div>
-</section>
-
-<!-- ═══════════════ THE PROBLEM / THE SAAS TAX ═══════════════ -->
-<section class="mx-auto max-w-6xl px-6 py-24 md:py-32">
-	<div class="mx-auto max-w-2xl text-center">
-		<span
-			class="inline-block rounded-full border border-primary/20 bg-primary/10 px-3 py-1 font-mono text-xs font-semibold text-primary"
-		>
-			{m.problem_badge()}
-		</span>
-		<h2 class="mt-4 font-sans text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-			{m.problem_title()}
-		</h2>
-		<p class="mt-4 text-base leading-relaxed text-muted-foreground">
-			{m.problem_desc()}
-		</p>
-	</div>
-
-	<div class="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-		{#each problems as p, idx (idx)}
-			<div
-				class="group relative overflow-hidden rounded-xl border border-border bg-card p-5 shadow-sm transition-all hover:border-primary/50 hover:shadow-md"
-			>
-				<div class="flex items-start gap-3">
-					<div
-						class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-destructive/10 text-destructive"
-					>
-						<IconX size={14} stroke={2.5} />
-					</div>
-					<p class="text-xs text-muted-foreground line-through decoration-destructive/40">
-						{p.before}
-					</p>
-				</div>
-
-				<div class="mt-4 border-t border-border/60 pt-3">
-					<div class="flex items-start gap-3">
-						<div
-							class="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-500"
-						>
-							<IconCheck size={14} stroke={2.5} />
-						</div>
-						<p class="text-sm font-semibold text-foreground">
-							{p.after}
-						</p>
-					</div>
-				</div>
-			</div>
-		{/each}
 	</div>
 </section>
 
@@ -1122,13 +689,6 @@
 	</div>
 </section>
 
-<!-- ═══════════════ THE COMMUNITY PACT & POWERED BY POVIXA BADGE ═══════════════ -->
-<section id="community-pact" class="border-t border-border/70 bg-muted/20 py-24 md:py-32">
-	<div class="mx-auto max-w-6xl px-6">
-		<PoweredByBadge />
-	</div>
-</section>
-
 <!-- ═══════════════ PHILOSOPHY & FAIR-SHARE CALCULATOR ═══════════════ -->
 <section id="pricing" class="border-t border-border/70 py-24 md:py-32">
 	<div class="mx-auto max-w-6xl px-6">
@@ -1197,132 +757,6 @@
 			</div>
 		</div>
 
-		<!-- ═══════════ INTERACTIVE FAIR-SHARE SIMULATOR ═══════════ -->
-		<div class="mx-auto mt-16 max-w-4xl">
-			<div
-				class="relative overflow-hidden rounded-2xl border border-primary/30 bg-gradient-to-b from-card via-card to-background p-6 shadow-xl sm:p-10"
-			>
-				<div
-					class="pointer-events-none absolute -top-24 left-1/2 h-48 w-96 -translate-x-1/2 bg-primary/15 blur-3xl"
-				></div>
-
-				<div class="relative text-center">
-					<h3 class="font-sans text-xl font-bold tracking-tight text-foreground sm:text-2xl">
-						{m.calc_title()}
-					</h3>
-					<p class="mx-auto mt-2 max-w-xl text-xs text-muted-foreground sm:text-sm">
-						{m.calc_desc()}
-					</p>
-				</div>
-
-				<!-- Simulator Slider -->
-				<div class="relative mt-10 rounded-xl border border-border bg-muted/30 p-6">
-					<div class="flex items-center justify-between">
-						<label for="rev-slider" class="text-xs font-semibold text-foreground sm:text-sm">
-							{m.calc_revenue_label()}
-						</label>
-						<span class="font-mono text-xl font-black text-primary sm:text-2xl">
-							${monthlyRevenue.toLocaleString()} / mo
-						</span>
-					</div>
-
-					<input
-						id="rev-slider"
-						type="range"
-						min="0"
-						max="100000"
-						step="1000"
-						bind:value={monthlyRevenue}
-						class="mt-4 h-2.5 w-full cursor-pointer appearance-none rounded-lg bg-border accent-primary"
-					/>
-
-					<div class="mt-2 flex justify-between font-mono text-[10px] text-muted-foreground">
-						<span>$0 (Free MVP)</span>
-						<span>$25,000</span>
-						<span>$50,000</span>
-						<span>$100,000+ (Hyper-Scale)</span>
-					</div>
-				</div>
-
-				<!-- Comparison Output Grid -->
-				<div class="mt-8 grid gap-4 sm:grid-cols-2">
-					<!-- Povixa Cost Card -->
-					<div
-						class="rounded-xl border-2 border-primary/60 bg-primary/5 p-6 shadow-sm transition-all"
-					>
-						<div class="flex items-center justify-between">
-							<span class="text-xs font-bold text-primary uppercase">
-								{m.calc_povixa_cost_label()}
-							</span>
-							{#if isCapReached}
-								<span
-									class="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-bold text-emerald-500"
-								>
-									{m.calc_povixa_capped()}
-								</span>
-							{/if}
-						</div>
-						<div class="mt-3 flex items-baseline gap-1">
-							<span class="font-sans text-4xl font-extrabold text-foreground">
-								${povixaCost}
-							</span>
-							<span class="text-xs text-muted-foreground">/ month</span>
-						</div>
-						<p class="mt-2 text-xs text-muted-foreground">
-							{#if povixaCost === 0}
-								100% Free! You pay zero until you start making money.
-							{:else if isCapReached}
-								Hard cap guaranteed. Even at $1M revenue, your bill never exceeds $499.
-							{:else}
-								Transparent percentage share. Full 9 modules included.
-							{/if}
-						</p>
-					</div>
-
-					<!-- Traditional SaaS Stack Cost Card -->
-					<div class="rounded-xl border border-border bg-card p-6 shadow-sm">
-						<span class="text-xs font-bold text-muted-foreground uppercase">
-							{m.calc_traditional_cost_label()}
-						</span>
-						<div class="mt-3 flex items-baseline gap-1">
-							<span class="font-sans text-4xl font-extrabold text-destructive/80">
-								${traditionalCost}
-							</span>
-							<span class="text-xs text-muted-foreground">/ month</span>
-						</div>
-						<p class="mt-2 text-xs text-muted-foreground">
-							Stitched across Auth0, LaunchDarkly, SendGrid, Mixpanel & S3.
-						</p>
-					</div>
-				</div>
-
-				<!-- Net Savings Bar -->
-				<div
-					class="mt-6 flex flex-col items-center justify-between gap-3 rounded-xl border border-emerald-500/30 bg-emerald-500/5 px-6 py-4 sm:flex-row"
-				>
-					<div class="flex items-center gap-2">
-						<span
-							class="flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500 text-white"
-						>
-							<IconCheck size={16} stroke={3} />
-						</span>
-						<span class="text-sm font-semibold text-foreground">
-							{m.calc_savings_label()}
-						</span>
-					</div>
-					<div class="text-center sm:text-right">
-						<span class="font-sans text-2xl font-black text-emerald-500">
-							${savingsAmount.toLocaleString()} / mo ({savingsPercent}% saved)
-						</span>
-					</div>
-				</div>
-
-				<p class="mt-4 text-center text-[11px] text-muted-foreground">
-					{m.calc_note()}
-				</p>
-			</div>
-		</div>
-
 		<!-- ═══════════ PRICING CARDS ═══════════ -->
 		<div class="mt-20 grid gap-6 lg:grid-cols-3">
 			{#each pricingPlans as plan (plan.name)}
@@ -1359,7 +793,9 @@
 					</ul>
 
 					<a
-						href="https://id.povixa.cloud/register"
+						href="https://id.povixa.cloud"
+						target="_blank"
+						rel="noreferrer"
 						class="mt-8 inline-flex h-11 items-center justify-center rounded-lg text-xs font-bold transition-all {plan.highlight
 							? 'bg-primary text-primary-foreground shadow-md hover:bg-primary/90'
 							: 'border border-border bg-background text-foreground hover:bg-accent'}"
@@ -1377,54 +813,6 @@
 			<p class="text-xs leading-relaxed text-muted-foreground sm:text-sm">
 				<span class="font-bold text-foreground">⚖️ {m.pricing_guarantee()}</span>
 			</p>
-		</div>
-	</div>
-</section>
-
-<!-- ═══════════════ PERSONAS / FOR EVERY SCALE ═══════════════ -->
-<section class="border-t border-border/70 bg-muted/20 py-24 md:py-32">
-	<div class="mx-auto max-w-6xl px-6">
-		<div class="mx-auto max-w-2xl text-center">
-			<span
-				class="inline-block rounded-full border border-primary/20 bg-primary/10 px-3 py-1 font-mono text-xs font-semibold text-primary"
-			>
-				{m.personas_badge()}
-			</span>
-			<h2 class="mt-4 font-sans text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-				{m.personas_title()}
-			</h2>
-			<p class="mt-4 text-base text-muted-foreground">
-				{m.personas_desc()}
-			</p>
-		</div>
-
-		<div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-			{#each personas as p (p.name)}
-				<div
-					class="flex flex-col rounded-xl border border-border bg-card p-6 shadow-sm transition-all hover:border-primary/40"
-				>
-					<div
-						class="flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 text-primary"
-					>
-						<p.icon size={22} stroke={1.8} />
-					</div>
-					<p
-						class="mt-4 font-mono text-[11px] font-semibold tracking-wider text-muted-foreground uppercase"
-					>
-						{p.name}
-					</p>
-					<h3 class="mt-1 font-sans text-base font-bold text-foreground">{p.title}</h3>
-
-					<ul class="mt-5 flex-1 space-y-2.5 border-t border-border/60 pt-4">
-						{#each p.bullets as b, bIdx (bIdx)}
-							<li class="flex items-start gap-2 text-xs">
-								<IconCheck size={14} class="mt-0.5 shrink-0 text-primary" stroke={2.5} />
-								<span class="text-muted-foreground">{b}</span>
-							</li>
-						{/each}
-					</ul>
-				</div>
-			{/each}
 		</div>
 	</div>
 </section>
@@ -1547,7 +935,9 @@
 
 				<div class="mt-8 flex flex-col items-center justify-center gap-3.5 sm:flex-row">
 					<a
-						href="https://id.povixa.cloud/register"
+						href="https://id.povixa.cloud"
+						target="_blank"
+						rel="noreferrer"
 						class="group inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-primary px-7 text-sm font-semibold text-primary-foreground shadow-md transition-all hover:bg-primary/90"
 					>
 						{m.cta_btn_primary()}

@@ -1,4 +1,74 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"hello_world": "Hello, {name} from vi!"
+	"nav_docs": "Tài liệu",
+	"nav_platform": "Về Povixa",
+	"nav_status": "Trạng thái",
+	"nav_help": "Trợ giúp",
+
+	"theme_toggle": "Giao diện",
+	"lang_toggle": "Ngôn ngữ",
+
+	"hero_badge": "Tài khoản Povixa • Đăng nhập nhanh & an toàn",
+	"hero_title": "Một tài khoản duy nhất.",
+	"hero_title_highlight": "Cho mọi dịch vụ của bạn.",
+	"hero_subtitle": "Đăng nhập dễ dàng để quản lý dự án, ứng dụng và dữ liệu trên toàn bộ nền tảng Povixa. Nhanh chóng, an toàn và hoàn toàn bảo mật.",
+
+	"pillar_1": "Đăng nhập nhanh 1 chạm qua mạng xã hội",
+	"pillar_2": "Bảo vệ thông tin cá nhân tuyệt đối",
+	"pillar_3": "Đồng bộ liền mạch trên mọi thiết bị",
+	"pillar_4": "Hoàn toàn miễn phí sử dụng",
+
+	"auth_tab_login": "Đăng nhập",
+	"auth_tab_register": "Tạo tài khoản",
+
+	"auth_card_title_login": "Chào mừng bạn trở lại",
+	"auth_card_desc_login": "Đăng nhập để tiếp tục vào không gian làm việc của bạn",
+	"auth_card_title_register": "Tạo tài khoản mới",
+	"auth_card_desc_register": "Đăng ký miễn phí chỉ trong vài giây",
+
+	"auth_social_google": "Google",
+	"auth_social_facebook": "Facebook",
+	"auth_social_github": "GitHub",
+	"auth_social_discord": "Discord",
+	"auth_or_email": "Hoặc tiếp tục bằng email",
+
+	"field_name": "Họ và tên",
+	"field_name_placeholder": "Nguyễn Văn A",
+	"field_email": "Địa chỉ email",
+	"field_email_placeholder": "ban@example.com",
+	"field_password": "Mật khẩu",
+	"field_password_placeholder": "Nhập mật khẩu của bạn",
+	"field_show_password": "Hiện mật khẩu",
+	"field_hide_password": "Ẩn mật khẩu",
+	"field_remember_me": "Ghi nhớ đăng nhập",
+	"field_forgot_password": "Quên mật khẩu?",
+	"field_terms_agree": "Tôi đồng ý với Điều khoản dịch vụ và Chính sách bảo mật",
+
+	"btn_submit_login": "Đăng nhập",
+	"btn_submit_register": "Tạo tài khoản",
+	"btn_submitting": "Đang xử lý...",
+	"btn_passkey": "Đăng nhập bằng vân tay / Face ID",
+
+	"password_strength_weak": "Mật khẩu yếu",
+	"password_strength_medium": "Mật khẩu trung bình",
+	"password_strength_strong": "Mật khẩu mạnh",
+	"password_strength_hint": "Gợi ý: Dùng từ 8 ký tự trở lên kết hợp chữ hoa, chữ số",
+
+	"auth_no_account": "Bạn chưa có tài khoản?",
+	"auth_have_account": "Bạn đã có tài khoản?",
+	"auth_switch_register": "Đăng ký ngay",
+	"auth_switch_login": "Đăng nhập ngay",
+
+	"footer_copyright": "© 2026 Povixa. Bảo lưu mọi quyền.",
+	"footer_terms": "Điều khoản sử dụng",
+	"footer_privacy": "Chính sách bảo mật",
+	"footer_security": "Bảo mật",
+	"footer_support": "Trung tâm hỗ trợ",
+
+	"feature_sso_title": "Một tài khoản duy nhất",
+	"feature_sso_desc": "Chỉ cần đăng nhập một lần để sử dụng tất cả sản phẩm của Povixa mà không cần chuyển đổi phức tạp.",
+	"feature_sec_title": "Bảo mật cao cấp",
+	"feature_sec_desc": "Mọi thông tin của bạn đều được mã hóa an toàn, không bao giờ chia sẻ cho bên thứ ba.",
+	"feature_speed_title": "Tốc độ nhanh chóng",
+	"feature_speed_desc": "Hệ thống phản hồi tức thì, mượt mà giúp bạn truy cập công việc ngay lập tức không gián đoạn."
 }
