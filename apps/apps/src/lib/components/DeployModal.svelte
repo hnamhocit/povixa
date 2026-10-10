@@ -2,8 +2,15 @@
 	import { IconX, IconBrandGithub, IconRocket, IconGitBranch } from '@tabler/icons-svelte-runes';
 	import * as m from '#lib/paraglide/messages.js';
 
-	let { open = $bindable(false), onDeploy = (appData: any) => {} } = $props<{
+	let {
+		open = $bindable(false),
+		initialRepo = '',
+		initialName = '',
+		onDeploy = (appData: any) => {}
+	} = $props<{
 		open: boolean;
+		initialRepo?: string;
+		initialName?: string;
 		onDeploy?: (appData: any) => void;
 	}>();
 
@@ -12,13 +19,20 @@
 	let branch = $state('main');
 	let environment = $state<'Production' | 'Staging' | 'Preview'>('Production');
 
+	$effect(() => {
+		if (open) {
+			if (initialRepo) repoUrl = initialRepo;
+			if (initialName) appName = initialName;
+		}
+	});
+
 	function handleDeploy() {
 		if (!appName.trim()) {
 			appName = repoUrl ? repoUrl.split('/').pop()?.replace('.git', '') || 'my-app' : 'my-new-app';
 		}
 		onDeploy({
 			name: appName.trim(),
-			repoUrl: repoUrl.trim() || 'hnamhocit/povixa-starter',
+			repoUrl: repoUrl.trim() || 'povixa/saas-starter-nextjs',
 			branch: branch.trim() || 'main',
 			environment
 		});
@@ -42,9 +56,9 @@
 						<div class="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10 text-primary">
 							<IconRocket size={16} stroke={2.5} />
 						</div>
-						<h3 class="font-bold text-base text-foreground">{m.modal_deploy_title()}</h3>
+						<h3 class="font-bold text-base text-foreground">Triển Khai & Clone Mẫu Mã Nguồn</h3>
 					</div>
-					<p class="text-xs text-muted-foreground">{m.modal_deploy_desc()}</p>
+					<p class="text-xs text-muted-foreground">Khởi tạo project độc lập trên Povixa Console và kết nối GitHub repository</p>
 				</div>
 				<button
 					type="button"
@@ -61,13 +75,13 @@
 				<div>
 					<label for="deploy-repo" class="block font-semibold text-foreground mb-1.5 flex items-center gap-1.5">
 						<IconBrandGithub size={14} />
-						<span>{m.modal_repo_label()}</span>
+						<span>GitHub Repository URL</span>
 					</label>
 					<input
 						id="deploy-repo"
 						type="text"
 						bind:value={repoUrl}
-						placeholder={m.modal_repo_placeholder()}
+						placeholder="https://github.com/povixa/saas-starter-nextjs"
 						class="w-full rounded-xl border border-border/80 bg-secondary/50 px-3.5 py-2.5 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none font-mono"
 					/>
 				</div>
@@ -75,13 +89,13 @@
 				<!-- App Name -->
 				<div>
 					<label for="deploy-app-name" class="block font-semibold text-foreground mb-1.5">
-						{m.modal_app_name_label()}
+						Tên Dự Án (Project Name)
 					</label>
 					<input
 						id="deploy-app-name"
 						type="text"
 						bind:value={appName}
-						placeholder="e.g. acme-landing-v2"
+						placeholder="Ví dụ: my-saas-portal"
 						class="w-full rounded-xl border border-border/80 bg-secondary/50 px-3.5 py-2.5 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
 					/>
 				</div>
@@ -91,7 +105,7 @@
 					<div>
 						<label for="deploy-branch" class="block font-semibold text-foreground mb-1.5 flex items-center gap-1">
 							<IconGitBranch size={13} />
-							<span>{m.modal_branch_label()}</span>
+							<span>Branch</span>
 						</label>
 						<input
 							id="deploy-branch"
@@ -104,7 +118,7 @@
 
 					<!-- Environment -->
 					<div>
-						<label for="deploy-env" class="block font-semibold text-foreground mb-1.5">Target Environment</label>
+						<label for="deploy-env" class="block font-semibold text-foreground mb-1.5">Môi Trường</label>
 						<select
 							id="deploy-env"
 							bind:value={environment}
@@ -125,7 +139,7 @@
 					onclick={() => (open = false)}
 					class="rounded-xl border border-border px-4 py-2 text-xs font-semibold text-foreground hover:bg-accent"
 				>
-					{m.modal_btn_cancel()}
+					Hủy
 				</button>
 				<button
 					type="button"
@@ -133,7 +147,7 @@
 					class="inline-flex items-center gap-1.5 rounded-xl bg-primary px-5 py-2 text-xs font-semibold text-primary-foreground shadow-md shadow-primary/20 hover:bg-primary/90"
 				>
 					<IconRocket size={14} />
-					<span>{m.modal_btn_submit()}</span>
+					<span>Khởi Tạo & Deploy Ngay</span>
 				</button>
 			</div>
 		</div>

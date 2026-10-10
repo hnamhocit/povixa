@@ -1,49 +1,75 @@
 <script lang="ts">
 	import { Footer, type FooterColumn, type FooterLink, type SocialLink } from '@povixa/ui';
-	import * as m from '#lib/paraglide/messages.js';
+	import { getLocale } from '#lib/paraglide/runtime.js';
+
+	const isEn = $derived(getLocale() === 'en');
 
 	const columns: FooterColumn[] = $derived([
 		{
-			title: 'Hệ sinh thái',
+			title: isEn ? 'Products' : 'Sản phẩm',
 			links: [
-				{ href: 'https://povixa.cloud', label: 'Povixa Cloud', external: true },
-				{ href: '/#features', label: 'Tính năng tài khoản' },
-				{ href: 'https://docs.povixa.cloud', label: m.nav_docs(), external: true },
-				{ href: 'https://povixa.cloud/status', label: m.nav_status(), external: true }
+				{ href: 'http://localhost:5173', label: 'Developer Console', external: true },
+				{ href: 'http://localhost:5175', label: 'Applications Hub', external: true },
+				{ href: 'https://povixa.cloud/#modules', label: isEn ? 'All Modules' : 'Tất cả Modules' },
+				{ href: 'https://povixa.cloud/status', label: isEn ? 'System Status' : 'Trạng thái hệ thống' }
 			]
 		},
 		{
-			title: 'Bảo mật & Trợ giúp',
+			title: isEn ? 'Core Infrastructure' : 'Hạ tầng cốt lõi',
 			links: [
-				{ href: 'https://povixa.cloud/legal/privacy', label: m.footer_privacy(), external: true },
-				{ href: 'https://povixa.cloud/legal/terms', label: m.footer_terms(), external: true },
-				{ href: 'https://discord.gg/povixa', label: m.footer_support(), external: true }
+				{ href: '/', label: 'Povixa Auth (SSO)' },
+				{ href: 'http://localhost:5173/config', label: 'Remote Config' },
+				{ href: 'http://localhost:5173/notifications', label: 'Notifications' },
+				{ href: 'http://localhost:5173/storage', label: 'Object Storage' },
+				{ href: 'http://localhost:5173/observability', label: 'Observability' }
+			]
+		},
+		{
+			title: isEn ? 'Developers' : 'Nhà phát triển',
+			links: [
+				{ href: 'https://docs.povixa.com', label: isEn ? 'Documentation' : 'Tài liệu hướng dẫn', external: true },
+				{ href: 'http://localhost:5173/api-keys', label: 'API Keys & SDKs' },
+				{ href: 'https://github.com/povixa', label: isEn ? 'Open Source GitHub' : 'GitHub Nguồn Mở', external: true }
+			]
+		},
+		{
+			title: isEn ? 'About Povixa' : 'Về Povixa',
+			links: [
+				{ href: 'https://povixa.cloud/about', label: isEn ? 'About Us' : 'Giới thiệu' },
+				{ href: 'https://povixa.cloud/blog', label: isEn ? 'Blog & News' : 'Blog & Tin tức' },
+				{ href: 'https://povixa.cloud/manifesto', label: isEn ? '$0 Freedom Commitment' : 'Cam kết $0 Tự Do' },
+				{ href: 'https://povixa.cloud/contact', label: isEn ? 'Support & Contact' : 'Liên hệ trợ giúp' }
 			]
 		}
 	]);
 
 	const legalLinks: FooterLink[] = $derived([
-		{ href: 'https://povixa.cloud/legal/terms', label: m.footer_terms(), external: true },
-		{ href: 'https://povixa.cloud/legal/privacy', label: m.footer_privacy(), external: true }
+		{ href: '/terms', label: isEn ? 'Terms of Service' : 'Điều khoản dịch vụ' },
+		{ href: '/privacy', label: isEn ? 'Privacy Policy' : 'Chính sách quyền riêng tư' },
+		{ href: 'https://povixa.cloud/legal/dpa', label: 'DPA' },
+		{ href: 'https://povixa.cloud/legal/cookies', label: isEn ? 'Cookie Policy' : 'Chính sách Cookie' }
 	]);
 
 	const socials: SocialLink[] = [
-		{ href: 'https://github.com/hnamhocit/povixa', label: 'GitHub', icon: 'github' },
+		{ href: 'https://github.com/povixa', label: 'GitHub', icon: 'github' },
+		{ href: 'https://x.com/povixa', label: 'X', icon: 'x' },
 		{ href: 'https://discord.gg/povixa', label: 'Discord', icon: 'discord' }
 	];
+
+	const currentYear = new Date().getFullYear();
 </script>
 
 <Footer
-	class="bg-white dark:bg-card"
+	class="bg-white dark:bg-neutral-950 border-t border-neutral-200 dark:border-neutral-800 shadow-[0_-4px_24px_rgba(0,0,0,0.02)]"
 	brandName="Povixa"
-	brandBadge="ID"
+	brandBadge="AUTH"
 	brandHref="/"
-	brandDescription="Tài khoản định danh an toàn cho toàn bộ hệ sinh thái Povixa. Quản lý công việc, ứng dụng và dữ liệu tập trung trên một nền tảng duy nhất."
+	brandDescription={isEn ? 'The unified control plane for modern cloud applications.' : 'Nền tảng kiểm soát hợp nhất cho các ứng dụng đám mây hiện đại.'}
 	{columns}
 	{legalLinks}
 	{socials}
-	statusText={m.nav_status() + ' • Hoạt động bình thường'}
+	statusText={isEn ? '100% Operational' : 'Hệ thống hoạt động 100%'}
 	statusHref="https://povixa.cloud/status"
-	copyright={m.footer_copyright()}
-	madeWithText="Phát triển vì cộng đồng người dùng Povixa"
+	copyright={isEn ? `© ${currentYear} Povixa Cloud Ecosystem. All rights reserved.` : `© ${currentYear} Povixa Cloud Ecosystem. Bảo lưu mọi quyền.`}
+	madeWithText={isEn ? 'Built for developer freedom worldwide' : 'Phát triển vì cộng đồng lập trình viên Việt Nam & Quốc tế'}
 />

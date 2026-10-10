@@ -1,8 +1,8 @@
 /* packages/tailwind-theme/src/tokens.css */
 
 @theme inline {
-  --font-sans: 'Plus Jakarta Sans Variable', 'Inter Variable', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-display: 'Plus Jakarta Sans Variable', 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Be Vietnam Pro', 'Inter Variable', 'Plus Jakarta Sans Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Be Vietnam Pro', 'Inter Variable', 'Plus Jakarta Sans Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-serif: 'Lora Variable', ui-serif, Georgia, serif;
   --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
 

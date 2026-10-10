@@ -1,79 +1,99 @@
 <script lang="ts">
-	import {
-		IconFingerprint,
-		IconShieldCheck,
-		IconDashboard,
-		IconRocket,
-		IconServer,
-		IconBook2
-	} from '@tabler/icons-svelte-runes';
 	import AuthCard from '#lib/components/AuthCard.svelte';
-	import * as m from '#lib/paraglide/messages.js';
+	import ThemeToggle from '#lib/components/ThemeToggle.svelte';
+	import LanguageSwitcher from '#lib/components/LanguageSwitcher.svelte';
+	import { IconArrowRight } from '@tabler/icons-svelte-runes';
+	import { getLocale } from '#lib/paraglide/runtime.js';
 </script>
 
 <svelte:head>
-	<title>Povixa SSO — Cổng Xác Thực Tập Trung</title>
+	<title>{getLocale() === 'en' ? 'Povixa Auth — Unified Ecosystem Authentication' : 'Povixa Auth — Cổng Xác Thực Tập Trung Hệ Sinh Thái'}</title>
 </svelte:head>
 
-<section class="min-h-[calc(100vh-4rem)] flex flex-col justify-center py-10 px-4 sm:px-6 lg:px-8 bg-background">
-	<div class="mx-auto w-full max-w-md space-y-6">
-		<!-- SSO Branding Top -->
-		<div class="text-center space-y-2">
-			<div class="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-3.5 py-1 text-xs font-bold text-primary">
-				<IconShieldCheck size={14} stroke={2.5} />
-				<span>POVIXA SSO GATEWAY</span>
+<!-- Main Screen Section with Split Layout -->
+<section class="relative min-h-screen flex flex-col justify-center bg-background text-foreground overflow-hidden">
+	<!-- Top Left: Authentic Povixa 3-Layer Brand Mark -->
+	<div class="absolute top-6 left-6 sm:top-8 sm:left-10 z-30">
+		<a href="https://povixa.cloud" class="flex items-center gap-2.5 group">
+			<!-- Official Povixa Isometric 3-Layer Logo -->
+			<div
+				class="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-cyan-500 text-white shadow-md shadow-blue-500/25 transition-transform group-hover:scale-105"
+			>
+				<svg
+					viewBox="0 0 24 24"
+					class="size-5"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2.3"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<path d="M12 2L2 7l10 5 10-5-10-5z" />
+					<path d="M2 17l10 5 10-5" />
+					<path d="M2 12l10 5 10-5" />
+				</svg>
 			</div>
-			<h1 class="text-2xl font-bold tracking-tight text-foreground sm:text-3xl font-sans">
-				Cổng Xác Thực Tập Trung
-			</h1>
-			<p class="text-xs text-muted-foreground max-w-sm mx-auto leading-relaxed">
-				Một phiên đăng nhập duy nhất cho toàn bộ hệ sinh thái (Console, Apps, Admin, Docs).
-			</p>
-		</div>
+			<div class="flex items-center gap-2">
+				<span class="font-bold text-xl tracking-tight text-foreground font-sans">POVIXA</span>
+				<span class="rounded-md bg-blue-500/10 border border-blue-500/20 px-1.5 py-0.5 text-[10px] font-bold text-blue-600 dark:text-blue-400 font-mono">
+					AUTH
+				</span>
+			</div>
+		</a>
+	</div>
 
-		<!-- Main Auth Card -->
-		<AuthCard />
+	<!-- Top Right: Language & Theme Switcher -->
+	<div class="absolute top-6 right-6 sm:top-8 sm:right-10 z-30 flex items-center gap-2.5">
+		<LanguageSwitcher />
+		<ThemeToggle />
+	</div>
 
-		<!-- Ecosystem Apps Switcher Footer -->
-		<div class="pt-4 border-t border-border/50 text-center space-y-3">
-			<p class="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
-				Các dịch vụ trong hệ sinh thái
-			</p>
-			<div class="flex flex-wrap items-center justify-center gap-2 text-xs">
-				<a
-					href="http://localhost:5173"
-					class="inline-flex items-center gap-1.5 rounded-lg border border-border/60 bg-card/60 px-2.5 py-1 text-muted-foreground hover:text-foreground hover:bg-accent hover:border-border transition-colors"
-				>
-					<IconDashboard size={13} class="text-primary" />
-					<span>Console</span>
-				</a>
-				<a
-					href="http://localhost:5175"
-					class="inline-flex items-center gap-1.5 rounded-lg border border-border/60 bg-card/60 px-2.5 py-1 text-muted-foreground hover:text-foreground hover:bg-accent hover:border-border transition-colors"
-				>
-					<IconRocket size={13} class="text-cyan-500" />
-					<span>Apps Hub</span>
-				</a>
-				<a
-					href="http://localhost:5176"
-					class="inline-flex items-center gap-1.5 rounded-lg border border-border/60 bg-card/60 px-2.5 py-1 text-muted-foreground hover:text-foreground hover:bg-accent hover:border-border transition-colors"
-				>
-					<IconServer size={13} class="text-red-500" />
-					<span>Admin Portal</span>
-				</a>
-				<a
-					href="https://docs.povixa.com"
-					target="_blank"
-					class="inline-flex items-center gap-1.5 rounded-lg border border-border/60 bg-card/60 px-2.5 py-1 text-muted-foreground hover:text-foreground hover:bg-accent hover:border-border transition-colors"
-				>
-					<IconBook2 size={13} class="text-emerald-500" />
-					<span>Docs</span>
-				</a>
+	<!-- Main Two-Column Viewport -->
+	<div class="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-20 lg:py-16 min-h-screen flex items-center">
+		<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 w-full items-center">
+			<!-- LEFT COLUMN: Headline + Auth Card + Secondary Action -->
+			<div class="lg:col-span-6 xl:col-span-5 flex flex-col items-center justify-center text-center">
+				<!-- Povixa Headline (Font Sans) -->
+				<h1 class="font-sans text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold tracking-tight text-neutral-900 dark:text-neutral-100 leading-[1.15]">
+					{getLocale() === 'en' ? 'Build without boundaries' : 'Vận hành không giới hạn'}
+				</h1>
+				<p class="mt-3 text-sm sm:text-base text-neutral-600 dark:text-neutral-400 font-normal max-w-md">
+					{getLocale() === 'en'
+						? 'One single account for Developer Console, Applications Hub, and the entire Povixa cloud ecosystem.'
+						: 'Một tài khoản duy nhất cho Developer Console, Applications Hub và toàn bộ hệ sinh thái đám mây Povixa.'}
+				</p>
+
+				<!-- Auth Card -->
+				<div class="mt-8 w-full max-w-[400px]">
+					<AuthCard />
+				</div>
+
+				<!-- Secondary Action Button -->
+				<div class="mt-6 flex justify-center">
+					<a
+						href="http://localhost:5173"
+						class="inline-flex items-center gap-2 rounded-xl border border-neutral-200/90 dark:border-neutral-800 bg-card px-4 py-2 text-xs font-medium text-neutral-700 dark:text-neutral-300 hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors shadow-2xs group"
+					>
+						<span>{getLocale() === 'en' ? 'Explore Developer Console' : 'Khám phá Developer Console'}</span>
+						<IconArrowRight size={13} class="transition-transform group-hover:translate-x-0.5" />
+					</a>
+				</div>
 			</div>
 
-			<p class="text-[10px] text-muted-foreground font-mono">
-				Bảo mật với OAuth 2.1 • OIDC • FIDO2 WebAuthn Passkeys
-			</p>
+			<!-- RIGHT COLUMN: High-Tech Povixa Cloud Visual -->
+			<div class="hidden lg:flex lg:col-span-6 xl:col-span-7 items-center justify-center pl-4">
+				<div
+					class="relative w-full max-w-[620px] h-[720px] max-h-[85vh] rounded-[2.25rem] overflow-hidden shadow-2xl border border-neutral-200/80 dark:border-neutral-800 bg-neutral-950 flex items-center justify-center group"
+				>
+					<img
+						src="/povixa-auth-visual.png"
+						alt="Povixa Cloud Security & Architecture"
+						class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+					/>
+					<!-- Subtle Dark Vignette & Gradient Overlay -->
+					<div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-neutral-950/40 via-transparent to-neutral-950/20"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>

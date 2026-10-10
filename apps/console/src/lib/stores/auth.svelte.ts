@@ -7,7 +7,7 @@ export interface UserSession {
 
 class AuthStore {
 	user = $state<UserSession | null>(null);
-	loading = $state(true);
+	loading = $state(false);
 	initialized = $state(false);
 
 	init(appName: 'console' | 'apps' | 'admin', ssoGatewayUrl = 'http://localhost:5174') {
@@ -50,12 +50,17 @@ class AuthStore {
 			console.error('Error verifying auth session:', err);
 		}
 
-		// 3. No authenticated session found -> Auto-redirect immediately to SSO Gateway
-		this.loading = true;
+		// 3. User is not logged in: Keep UI accessible for inspection, do NOT block with redirect
 		this.user = null;
+		this.loading = false;
+		this.initialized = true;
+	}
+
+	redirectToLogin(appName: 'console' | 'apps' | 'admin', ssoGatewayUrl = 'http://localhost:5174') {
+		if (typeof window === 'undefined') return;
 		const currentUrl = window.location.href;
 		const gatewayUrl = `${ssoGatewayUrl}?app=${appName}&redirect_uri=${encodeURIComponent(currentUrl)}`;
-		window.location.replace(gatewayUrl);
+		window.location.assign(gatewayUrl);
 	}
 
 	signOut(appName: 'console' | 'apps' | 'admin', ssoGatewayUrl = 'http://localhost:5174') {
@@ -67,7 +72,7 @@ class AuthStore {
 		}
 		this.user = null;
 		const gatewayLogout = `${ssoGatewayUrl}?app=${appName}&action=logout&redirect_uri=${encodeURIComponent(window.location.origin)}`;
-		window.location.replace(gatewayLogout);
+		window.location.assign(gatewayLogout);
 	}
 }
 

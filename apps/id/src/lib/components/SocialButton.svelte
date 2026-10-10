@@ -7,11 +7,13 @@
 		provider,
 		label,
 		loading = false,
+		size = 'lg',
 		onclick
 	}: {
 		provider: Provider;
 		label: string;
 		loading?: boolean;
+		size?: 'lg' | 'sm';
 		onclick?: (provider: Provider) => void;
 	} = $props();
 
@@ -25,7 +27,7 @@
 	type="button"
 	onclick={handleClick}
 	disabled={loading}
-	class="group relative flex h-11 w-full items-center justify-center gap-2.5 rounded-xl border border-border/80 bg-card/80 px-4 text-sm font-medium text-foreground transition-all duration-200 hover:border-primary/50 hover:bg-accent/70 hover:shadow-sm focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:outline-none active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
+	class="group relative flex w-full items-center justify-center transition-all duration-150 border border-neutral-200/90 hover:border-neutral-300 bg-white hover:bg-neutral-50/80 dark:border-neutral-700 dark:bg-neutral-800/80 dark:hover:bg-neutral-800 text-neutral-800 dark:text-neutral-200 shadow-xs focus-visible:ring-2 focus-visible:ring-ring/40 focus-visible:outline-none active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 {size === 'sm' ? 'h-9 rounded-lg gap-2 px-3 text-xs' : 'h-11 sm:h-12 rounded-xl gap-3 px-4 text-sm font-medium'}"
 	aria-label={label}
 >
 	{#if loading}

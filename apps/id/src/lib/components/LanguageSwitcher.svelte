@@ -12,6 +12,10 @@
 
 	function selectLang(code: 'en' | 'vi') {
 		setLocale(code);
+		if (typeof document !== 'undefined') {
+			document.cookie = `PARAGLIDE_LOCALE=${code}; path=/; max-age=31536000; SameSite=Lax`;
+			document.documentElement.lang = code;
+		}
 		open = false;
 		if (typeof window !== 'undefined') {
 			window.location.reload();

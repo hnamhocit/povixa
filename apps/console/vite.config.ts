@@ -25,6 +25,9 @@ export default defineConfig({
 			emitTsDeclarations: true
 		})
 	],
+	server: {
+		port: 5173
+	},
 	test: {
 		expect: { requireAssertions: true },
 		projects: [

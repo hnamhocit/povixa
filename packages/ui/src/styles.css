@@ -5,6 +5,11 @@
 @import "tw-animate-css";
 
 /* Font — dùng chung cho mọi app */
+@import "@fontsource/be-vietnam-pro/vietnamese.css";
+@import "@fontsource/be-vietnam-pro/400.css";
+@import "@fontsource/be-vietnam-pro/500.css";
+@import "@fontsource/be-vietnam-pro/600.css";
+@import "@fontsource/be-vietnam-pro/700.css";
 @import "@fontsource-variable/plus-jakarta-sans";
 @import "@fontsource-variable/inter";
 @import "@fontsource-variable/lora";

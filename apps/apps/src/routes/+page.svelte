@@ -3,282 +3,426 @@
 		IconSearch,
 		IconFilter,
 		IconPlus,
-		IconBrandGithub,
 		IconRocket,
-		IconServer,
-		IconRoute,
-		IconShieldCheck,
-		IconTrendingUp,
-		IconActivity
+		IconSparkles,
+		IconFlame,
+		IconX,
+		IconChevronDown,
+		IconCheck
 	} from '@tabler/icons-svelte-runes';
-	import AppCard, { type AppItem } from '#lib/components/AppCard.svelte';
-	import TemplatesShowcase from '#lib/components/TemplatesShowcase.svelte';
+	import AppCard from '#lib/components/AppCard.svelte';
+	import SpotlightRow from '#lib/components/SpotlightRow.svelte';
 	import DeployModal from '#lib/components/DeployModal.svelte';
-	import * as m from '#lib/paraglide/messages.js';
+	import SubmitAppModal from '#lib/components/SubmitAppModal.svelte';
+	import { initialApps, type AppItem } from '#lib/data/appsData.js';
+	import { DropdownMenu } from '@povixa/ui';
 
 	let searchQuery = $state('');
-	let envFilter = $state<'All' | 'Production' | 'Staging' | 'Preview'>('All');
+	let pillFilter = $state<'all' | 'template' | 'showcase' | 'featured'>('all');
+	let useCaseFilter = $state<string>('All');
+	let techStackFilter = $state<string>('All');
+	let sortBy = $state<'popular' | 'recent' | 'cloned'>('popular');
+
+	const sortLabels: Record<string, string> = {
+		popular: 'Phổ biến nhất',
+		recent: 'Mới cập nhật',
+		cloned: 'Được clone nhiều'
+	};
+
+	let apps = $state<AppItem[]>(initialApps);
+
 	let deployModalOpen = $state(false);
+	let selectedTemplate = $state<AppItem | null>(null);
+	let submitModalOpen = $state(false);
 
-	let apps = $state<AppItem[]>([
-		{
-			id: 'app-1',
-			name: 'storefront-web',
-			framework: 'SvelteKit',
-			url: 'https://storefront.povixa.app',
-			gitRepo: 'povixa/ecommerce-storefront',
-			branch: 'main',
-			commit: 'f5569c7',
-			commitMsg: 'optimize edge caching & SSR bundles',
-			status: 'Healthy',
-			environment: 'Production',
-			region: 'sin1 (Singapore)',
-			deployedTime: '12m ago',
-			reqCount: '1.4M req/mo'
-		},
-		{
-			id: 'app-2',
-			name: 'nest-api-gateway',
-			framework: 'NestJS',
-			url: 'https://api-gateway.povixa.app',
-			gitRepo: 'povixa/backend-nest-api',
-			branch: 'main',
-			commit: '9cc357e',
-			commitMsg: 'prepare backend distributed tracing',
-			status: 'Healthy',
-			environment: 'Production',
-			region: 'iad1 (US-East)',
-			deployedTime: '1h ago',
-			reqCount: '8.2M req/mo'
-		},
-		{
-			id: 'app-3',
-			name: 'developer-portal',
-			framework: 'Next.js',
-			url: 'https://portal.povixa.app',
-			gitRepo: 'povixa/developer-portal',
-			branch: 'feat/v2-theme',
-			commit: 'bca9cb8',
-			commitMsg: 'implement modern dark/light mode',
-			status: 'Healthy',
-			environment: 'Preview',
-			region: 'fra1 (Frankfurt)',
-			deployedTime: '4h ago',
-			reqCount: '420k req/mo'
-		},
-		{
-			id: 'app-4',
-			name: 'telemetry-stream-worker',
-			framework: 'Go Service',
-			url: 'https://stream.povixa.app',
-			gitRepo: 'povixa/telemetry-go-worker',
-			branch: 'main',
-			commit: '6a96402',
-			commitMsg: 'sub-ms ingestion pipeline optimization',
-			status: 'Building',
-			environment: 'Production',
-			region: 'iad1 (US-East)',
-			deployedTime: 'Just now',
-			reqCount: '18.9M req/mo'
-		},
-		{
-			id: 'app-5',
-			name: 'mobile-bff-service',
-			framework: 'NestJS',
-			url: 'https://mobile-bff.povixa.app',
-			gitRepo: 'povixa/mobile-backend',
-			branch: 'staging',
-			commit: 'd460f9f',
-			commitMsg: 'initial commit from create-turbo',
-			status: 'Healthy',
-			environment: 'Staging',
-			region: 'sin1 (Singapore)',
-			deployedTime: '1d ago',
-			reqCount: '920k req/mo'
-		},
-		{
-			id: 'app-6',
-			name: 'documentation-hub',
-			framework: 'SvelteKit',
-			url: 'https://docs.povixa.app',
-			gitRepo: 'povixa/docs-portal',
-			branch: 'main',
-			commit: 'c1893de',
-			commitMsg: 'add interactive api references',
-			status: 'Healthy',
-			environment: 'Production',
-			region: 'iad1 (US-East)',
-			deployedTime: '2d ago',
-			reqCount: '650k req/mo'
+	let searchInputEl = $state<HTMLInputElement | null>(null);
+
+	const trendingTags = [
+		'#nextjs',
+		'#sveltekit',
+		'#saas',
+		'#ai',
+		'#ecommerce'
+	];
+
+	function handleKeydown(e: KeyboardEvent) {
+		if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+			e.preventDefault();
+			searchInputEl?.focus();
 		}
-	]);
+	}
 
-	const filteredApps = $derived(
-		apps.filter((app) => {
-			const matchesEnv = envFilter === 'All' || app.environment === envFilter;
-			const matchesSearch =
-				searchQuery.trim() === '' ||
-				app.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-				app.gitRepo.toLowerCase().includes(searchQuery.toLowerCase()) ||
-				app.branch.toLowerCase().includes(searchQuery.toLowerCase()) ||
-				app.framework.toLowerCase().includes(searchQuery.toLowerCase());
-			return matchesEnv && matchesSearch;
-		})
+	function handleDeploy(template: AppItem) {
+		selectedTemplate = template;
+		deployModalOpen = true;
+	}
+
+	function handleToggleLike(appId: string) {
+		const target = apps.find((a) => a.id === appId);
+		if (!target) return;
+		if (target.isLiked) {
+			target.isLiked = false;
+			target.likesCount -= 1;
+		} else {
+			target.isLiked = true;
+			target.likesCount += 1;
+		}
+	}
+
+	function handleNewAppSubmitted(newApp: AppItem) {
+		apps.unshift(newApp);
+	}
+
+	function clearFilters() {
+		searchQuery = '';
+		pillFilter = 'all';
+		useCaseFilter = 'All';
+		techStackFilter = 'All';
+		sortBy = 'popular';
+	}
+
+	// Spotlight apps (featured starters and showcases)
+	const spotlightApps = $derived(
+		apps.filter((a) => a.spotlight).slice(0, 4)
 	);
 
-	function handleNewDeploy(appData: any) {
-		apps.unshift({
-			id: `app-${Date.now()}`,
-			name: appData.name,
-			framework: 'SvelteKit',
-			url: `https://${appData.name}.povixa.app`,
-			gitRepo: appData.repoUrl,
-			branch: appData.branch,
-			commit: 'a1b2c3d',
-			commitMsg: 'initial deployment triggered',
-			status: 'Deploying',
-			environment: appData.environment,
-			region: 'iad1 (US-East)',
-			deployedTime: 'Just now',
-			reqCount: '0 req/mo'
-		});
-	}
+	// Filtered apps for main grid
+	const filteredApps = $derived.by(() => {
+		let result = apps.filter((app) => {
+			// Pill filter
+			if (pillFilter === 'template' && app.type !== 'template') return false;
+			if (pillFilter === 'showcase' && app.type !== 'showcase') return false;
+			if (pillFilter === 'featured' && !app.featured) return false;
 
-	function handleTemplateDeploy(tplTitle: string) {
-		const slug = tplTitle.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-').slice(0, 20);
-		apps.unshift({
-			id: `app-${Date.now()}`,
-			name: slug,
-			framework: tplTitle.includes('Nest') ? 'NestJS' : tplTitle.includes('Next') ? 'Next.js' : tplTitle.includes('Go') ? 'Go Service' : 'SvelteKit',
-			url: `https://${slug}.povixa.app`,
-			gitRepo: `povixa-templates/${slug}`,
-			branch: 'main',
-			commit: '88e910a',
-			commitMsg: `blueprint deployed from ${tplTitle}`,
-			status: 'Deploying',
-			environment: 'Production',
-			region: 'iad1 (US-East)',
-			deployedTime: 'Just now',
-			reqCount: '0 req/mo'
+			// UseCase filter
+			if (useCaseFilter !== 'All' && app.useCase !== useCaseFilter) return false;
+
+			// Tech Stack filter
+			if (techStackFilter !== 'All' && app.framework !== techStackFilter) return false;
+
+			// Search Query
+			if (searchQuery.trim() !== '') {
+				const q = searchQuery.toLowerCase().replace(/^#/, '');
+				const inTitle = app.title.toLowerCase().includes(q);
+				const inDesc = app.description.toLowerCase().includes(q);
+				const inAuthor = app.author.username.toLowerCase().includes(q) || app.author.name.toLowerCase().includes(q);
+				const inTags = app.tags.some((t) => t.toLowerCase().includes(q));
+				const inFramework = app.framework.toLowerCase().includes(q);
+				if (!inTitle && !inDesc && !inAuthor && !inTags && !inFramework) {
+					return false;
+				}
+			}
+
+			return true;
 		});
-	}
+
+		// Sort
+		if (sortBy === 'popular') {
+			result.sort((a, b) => b.likesCount - a.likesCount);
+		} else if (sortBy === 'recent') {
+			result.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+		} else if (sortBy === 'cloned') {
+			result.sort((a, b) => (b.clonesCount || 0) - (a.clonesCount || 0));
+		}
+
+		return result;
+	});
 </script>
 
-<div class="space-y-10 lg:space-y-12">
-	<!-- Spacious Page Header with Live Metric Chips -->
-	<div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between border-b border-border/50 pb-8">
-		<div class="space-y-2 max-w-2xl">
-			<div class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-				<IconActivity size={14} class="animate-pulse" />
-				<span>Mạng Lưới Anycast Edge Toàn Cầu</span>
+<svelte:window onkeydown={handleKeydown} />
+
+<div class="space-y-16 lg:space-y-24 animate-in fade-in duration-200">
+	<!-- 1. HERO SECTION (Refined, Balanced, Cohesive) -->
+	<section class="py-2 sm:py-4 lg:py-6 text-center space-y-6">
+		<div class="max-w-3xl mx-auto space-y-3">
+			<!-- Top Pill -->
+			<div class="inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+				<IconSparkles size={13} />
+				<span>Kho Ứng Dụng & Mã Nguồn Mẫu Povixa</span>
 			</div>
-			<h1 class="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl font-sans">
-				{m.section_apps_title()}
+
+			<!-- Main Title -->
+			<h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground font-sans">
+				Explore What Developers Build with Povixa
 			</h1>
-			<p class="text-sm text-muted-foreground leading-relaxed">
-				{m.section_apps_desc()}
+
+			<!-- Subtitle -->
+			<p class="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
+				Mã nguồn mẫu sẵn sàng clone (Boilerplates) và các sản phẩm SaaS, E-Commerce thực tế từ cộng đồng lập trình viên.
 			</p>
 		</div>
 
-		<!-- Action & Lightweight Metric Summary -->
-		<div class="flex flex-col sm:flex-row items-start sm:items-center gap-3">
-			<div class="flex flex-wrap items-center gap-2 rounded-xl border border-border/50 bg-secondary/30 p-1.5 text-xs text-muted-foreground">
-				<span class="inline-flex items-center gap-1.5 px-2 py-0.5 font-medium text-foreground">
-					<span class="h-2 w-2 rounded-full bg-emerald-500"></span>
-					<strong>6</strong> Đang chạy
-				</span>
-				<span>•</span>
-				<span class="px-1.5"><strong>142</strong> Deploys</span>
-				<span>•</span>
-				<span class="px-1.5"><strong>428.5 GB</strong> Bandwidth</span>
-			</div>
+		<!-- Unified Search & Action Toolbar -->
+		<div class="max-w-2xl mx-auto w-full space-y-3">
+			<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5">
+				<!-- Search Bar Input -->
+				<div class="relative flex-1 flex h-12 items-center rounded-xl border border-border/80 bg-card shadow-xs transition-all hover:border-primary/40 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20">
+					<IconSearch size={18} class="absolute left-3.5 text-muted-foreground shrink-0 pointer-events-none" />
+					<input
+						bind:this={searchInputEl}
+						type="text"
+						bind:value={searchQuery}
+						placeholder="Tìm theo tên app, tech stack, tác giả (@handle)..."
+						class="w-full h-full bg-transparent pl-10 pr-20 text-xs sm:text-sm text-foreground placeholder:text-muted-foreground/80 focus:outline-none font-medium"
+					/>
+					<div class="absolute right-2.5 flex items-center gap-1.5">
+						{#if searchQuery}
+							<button
+								type="button"
+								onclick={() => (searchQuery = '')}
+								class="rounded p-1 text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+								title="Xóa tìm kiếm"
+							>
+								<IconX size={15} />
+							</button>
+						{/if}
+						<kbd class="hidden sm:inline-flex items-center gap-0.5 rounded border border-border bg-secondary/50 px-1.5 py-0.5 text-[11px] font-mono text-muted-foreground shadow-2xs">
+							⌘K
+						</kbd>
+					</div>
+				</div>
 
-			<button
-				type="button"
-				onclick={() => (deployModalOpen = true)}
-				class="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-xs font-semibold text-primary-foreground shadow-md shadow-primary/20 transition-all hover:bg-primary/90 hover:scale-[1.02]"
-			>
-				<IconPlus size={16} stroke={2.5} />
-				<span>{m.btn_deploy_app()}</span>
-			</button>
-		</div>
-	</div>
-
-	<!-- Applications Management Section -->
-	<div class="space-y-6">
-		<!-- Search & Filter Controls -->
-		<div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-			<!-- Search Input -->
-			<div class="relative flex-1 max-w-md">
-				<IconSearch size={16} class="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted-foreground" />
-				<input
-					type="text"
-					bind:value={searchQuery}
-					placeholder={m.search_placeholder()}
-					class="w-full rounded-xl border border-border/60 bg-secondary/30 pl-10 pr-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:bg-background focus:outline-none transition-colors"
-				/>
-			</div>
-
-			<!-- Environment Tabs -->
-			<div class="flex items-center gap-1 rounded-xl border border-border/50 bg-secondary/30 p-1 text-xs">
+				<!-- Submit App Action Button (Integrated Beside Search) -->
 				<button
 					type="button"
-					onclick={() => (envFilter = 'All')}
-					class="rounded-lg px-3 py-1.5 font-medium transition-all {envFilter === 'All'
-						? 'bg-background text-foreground font-semibold shadow-xs'
-						: 'text-muted-foreground hover:text-foreground'}"
+					onclick={() => (submitModalOpen = true)}
+					class="h-12 shrink-0 inline-flex items-center justify-center gap-1.5 rounded-xl bg-primary px-4.5 text-xs sm:text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition-all shadow-xs active:scale-[0.98]"
 				>
-					{m.filter_all()}
-				</button>
-				<button
-					type="button"
-					onclick={() => (envFilter = 'Production')}
-					class="rounded-lg px-3 py-1.5 font-medium transition-all {envFilter === 'Production'
-						? 'bg-background text-foreground font-semibold shadow-xs'
-						: 'text-muted-foreground hover:text-foreground'}"
-				>
-					{m.filter_prod()}
-				</button>
-				<button
-					type="button"
-					onclick={() => (envFilter = 'Staging')}
-					class="rounded-lg px-3 py-1.5 font-medium transition-all {envFilter === 'Staging'
-						? 'bg-background text-foreground font-semibold shadow-xs'
-						: 'text-muted-foreground hover:text-foreground'}"
-				>
-					{m.filter_staging()}
-				</button>
-				<button
-					type="button"
-					onclick={() => (envFilter = 'Preview')}
-					class="rounded-lg px-3 py-1.5 font-medium transition-all {envFilter === 'Preview'
-						? 'bg-background text-foreground font-semibold shadow-xs'
-						: 'text-muted-foreground hover:text-foreground'}"
-				>
-					{m.filter_preview()}
+					<IconPlus size={16} stroke={2.5} />
+					<span>Gửi Ứng Dụng</span>
 				</button>
 			</div>
-		</div>
 
-		<!-- Application Cards Grid -->
-		{#if filteredApps.length === 0}
-			<div class="rounded-2xl border border-dashed border-border p-12 text-center text-muted-foreground">
-				<p class="text-sm">Không tìm thấy ứng dụng nào khớp với bộ lọc.</p>
-			</div>
-		{:else}
-			<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-				{#each filteredApps as app (app.id)}
-					<AppCard {app} />
+			<!-- Trending Tags (Single Row, Never Wraps) -->
+			<div class="flex flex-wrap items-center justify-center gap-1.5 text-xs text-muted-foreground">
+				<span class="font-medium text-muted-foreground/80">Thịnh hành:</span>
+				{#each trendingTags as tag}
+					<button
+						type="button"
+						onclick={() => (searchQuery = tag.replace('#', ''))}
+						class="rounded-md bg-secondary/50 hover:bg-secondary px-2 py-0.5 text-xs text-foreground/80 hover:text-primary transition-colors font-medium"
+					>
+						{tag}
+					</button>
 				{/each}
 			</div>
+		</div>
+
+		<!-- Segmented Control Tabs (Unified, Never Wraps, Premium Aesthetic) -->
+		<div class="pt-2 flex justify-center">
+			<div class="inline-flex items-center rounded-2xl bg-secondary/40 p-1 border border-border/60 shadow-2xs gap-1">
+				<button
+					type="button"
+					onclick={() => (pillFilter = 'all')}
+					class="rounded-xl px-3.5 sm:px-4 py-2 text-xs sm:text-sm font-semibold transition-all {pillFilter === 'all'
+						? 'bg-card text-foreground shadow-xs border border-border/40'
+						: 'text-muted-foreground hover:text-foreground'}"
+				>
+					Tất Cả <span class="text-xs opacity-60">({apps.length})</span>
+				</button>
+
+				<button
+					type="button"
+					onclick={() => (pillFilter = 'template')}
+					class="inline-flex items-center gap-1.5 rounded-xl px-3.5 sm:px-4 py-2 text-xs sm:text-sm font-semibold transition-all {pillFilter === 'template'
+						? 'bg-card text-foreground shadow-xs border border-border/40'
+						: 'text-muted-foreground hover:text-foreground'}"
+				>
+					<IconRocket size={14} class="text-indigo-500" />
+					<span>Starters</span>
+					<span class="text-xs opacity-60">({apps.filter((a) => a.type === 'template').length})</span>
+				</button>
+
+				<button
+					type="button"
+					onclick={() => (pillFilter = 'showcase')}
+					class="inline-flex items-center gap-1.5 rounded-xl px-3.5 sm:px-4 py-2 text-xs sm:text-sm font-semibold transition-all {pillFilter === 'showcase'
+						? 'bg-card text-foreground shadow-xs border border-border/40'
+						: 'text-muted-foreground hover:text-foreground'}"
+				>
+					<IconSparkles size={14} class="text-amber-500" />
+					<span>Showcase</span>
+					<span class="text-xs opacity-60">({apps.filter((a) => a.type === 'showcase').length})</span>
+				</button>
+
+				<button
+					type="button"
+					onclick={() => (pillFilter = 'featured')}
+					class="inline-flex items-center gap-1.5 rounded-xl px-3.5 sm:px-4 py-2 text-xs sm:text-sm font-semibold transition-all {pillFilter === 'featured'
+						? 'bg-card text-foreground shadow-xs border border-border/40'
+						: 'text-muted-foreground hover:text-foreground'}"
+				>
+					<IconFlame size={14} class="text-rose-500" />
+					<span>Nổi Bật</span>
+					<span class="text-xs opacity-60">({apps.filter((a) => a.featured).length})</span>
+				</button>
+			</div>
+		</div>
+	</section>
+
+	<!-- 2. SPOTLIGHT / FEATURED ROW (Flat & Airy) -->
+	{#if (pillFilter === 'all' || pillFilter === 'featured') && !searchQuery}
+		<SpotlightRow
+			{spotlightApps}
+			onDeploy={handleDeploy}
+		/>
+	{/if}
+
+	<!-- 3. MAIN FILTER BAR & GRID -->
+	<section class="space-y-5">
+		<!-- Use-Case Tabs & Controls Toolbar -->
+		<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 border-b border-border/50 pb-3">
+			<!-- Horizontal Use-Case Tabs -->
+			<div class="flex items-center gap-1 overflow-x-auto pb-1 text-xs no-scrollbar">
+				{#each ['All', 'SaaS & Dashboards', 'E-Commerce & Retail', 'AI & Automation', 'Developer Tools', 'Community & Social'] as uc}
+					<button
+						type="button"
+						onclick={() => (useCaseFilter = uc)}
+						class="rounded-lg px-3 py-1.5 font-semibold whitespace-nowrap transition-colors {useCaseFilter === uc
+							? 'bg-primary text-primary-foreground font-bold'
+							: 'text-muted-foreground hover:bg-secondary hover:text-foreground'}"
+					>
+						{uc === 'All' ? 'Tất Cả Danh Mục' : uc}
+					</button>
+				{/each}
+			</div>
+
+			<!-- Dropdowns: Tech Stack & Sort (shadcn DropdownMenu) -->
+			<div class="flex items-center gap-2.5 shrink-0 text-xs">
+				<!-- Tech Stack Dropdown -->
+				<DropdownMenu.Root>
+					<DropdownMenu.Trigger
+						class="inline-flex items-center gap-2 rounded-xl border border-border/80 bg-card px-3 py-2 text-xs font-medium text-foreground hover:bg-secondary/60 transition-colors shadow-2xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary cursor-pointer"
+					>
+						<span class="text-muted-foreground">Stack:</span>
+						<span class="font-semibold text-foreground">{techStackFilter === 'All' ? 'Tất cả' : techStackFilter}</span>
+						<IconChevronDown size={13} class="opacity-60 shrink-0" />
+					</DropdownMenu.Trigger>
+					<DropdownMenu.Content align="end" class="w-40 p-1">
+						<DropdownMenu.Item
+							onclick={() => (techStackFilter = 'All')}
+							class="flex items-center justify-between text-xs cursor-pointer py-1.5 px-2.5 rounded-lg {techStackFilter === 'All' ? 'bg-secondary font-semibold text-primary' : ''}"
+						>
+							<span>Tất cả</span>
+							{#if techStackFilter === 'All'}
+								<IconCheck size={14} class="text-primary" />
+							{/if}
+						</DropdownMenu.Item>
+						{#each ['Next.js', 'SvelteKit', 'NestJS', 'Go Fiber', 'Flutter'] as item}
+							<DropdownMenu.Item
+								onclick={() => (techStackFilter = item)}
+								class="flex items-center justify-between text-xs cursor-pointer py-1.5 px-2.5 rounded-lg {techStackFilter === item ? 'bg-secondary font-semibold text-primary' : ''}"
+							>
+								<span>{item}</span>
+								{#if techStackFilter === item}
+									<IconCheck size={14} class="text-primary" />
+								{/if}
+							</DropdownMenu.Item>
+						{/each}
+					</DropdownMenu.Content>
+				</DropdownMenu.Root>
+
+				<!-- Sort Dropdown -->
+				<DropdownMenu.Root>
+					<DropdownMenu.Trigger
+						class="inline-flex items-center gap-2 rounded-xl border border-border/80 bg-card px-3 py-2 text-xs font-medium text-foreground hover:bg-secondary/60 transition-colors shadow-2xs focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary cursor-pointer"
+					>
+						<span class="text-muted-foreground">Sắp xếp:</span>
+						<span class="font-semibold text-foreground">{sortLabels[sortBy]}</span>
+						<IconChevronDown size={13} class="opacity-60 shrink-0" />
+					</DropdownMenu.Trigger>
+					<DropdownMenu.Content align="end" class="w-44 p-1">
+						{#each [
+							{ id: 'popular', label: 'Phổ biến nhất' },
+							{ id: 'recent', label: 'Mới cập nhật' },
+							{ id: 'cloned', label: 'Được clone nhiều' }
+						] as item}
+							<DropdownMenu.Item
+								onclick={() => (sortBy = item.id as any)}
+								class="flex items-center justify-between text-xs cursor-pointer py-1.5 px-2.5 rounded-lg {sortBy === item.id ? 'bg-secondary font-semibold text-primary' : ''}"
+							>
+								<span>{item.label}</span>
+								{#if sortBy === item.id}
+									<IconCheck size={14} class="text-primary" />
+								{/if}
+							</DropdownMenu.Item>
+						{/each}
+					</DropdownMenu.Content>
+				</DropdownMenu.Root>
+			</div>
+		</div>
+
+		<!-- Result Counter & Clear Filter -->
+		<div class="flex items-center justify-between text-xs text-muted-foreground">
+			<div>
+				Hiển thị <strong class="text-foreground font-bold">{filteredApps.length}</strong> ứng dụng
+				{#if useCaseFilter !== 'All'}
+					trong <span class="text-primary font-medium">{useCaseFilter}</span>
+				{/if}
+				{#if techStackFilter !== 'All'}
+					với <span class="text-primary font-medium">{techStackFilter}</span>
+				{/if}
+			</div>
+
+			{#if searchQuery || useCaseFilter !== 'All' || techStackFilter !== 'All' || pillFilter !== 'all'}
+				<button
+					type="button"
+					onclick={clearFilters}
+					class="text-primary hover:underline font-medium inline-flex items-center gap-1"
+				>
+					<IconX size={12} />
+					<span>Xóa bộ lọc</span>
+				</button>
+			{/if}
+		</div>
+
+		<!-- Clean Cards Grid (3 columns on lg/xl for optimal breathing room) -->
+		{#if filteredApps.length > 0}
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+				{#each filteredApps as app (app.id)}
+					<AppCard
+						{app}
+						onDeploy={handleDeploy}
+						onToggleLike={handleToggleLike}
+					/>
+				{/each}
+			</div>
+		{:else}
+			<!-- Flat Empty State -->
+			<div class="rounded-2xl border border-dashed border-border/80 bg-secondary/10 p-10 text-center space-y-3">
+				<div class="flex h-12 w-12 items-center justify-center rounded-xl bg-secondary mx-auto text-muted-foreground">
+					<IconSearch size={22} />
+				</div>
+				<div class="space-y-1">
+					<h3 class="text-sm font-bold text-foreground">Không tìm thấy ứng dụng phù hợp</h3>
+					<p class="text-xs text-muted-foreground max-w-sm mx-auto">
+						Không có ứng dụng nào khớp với từ khóa "{searchQuery}". Hãy thử tìm kiếm bằng từ khóa khác.
+					</p>
+				</div>
+				<button
+					type="button"
+					onclick={clearFilters}
+					class="inline-flex items-center gap-1 rounded-xl bg-primary px-3.5 py-1.5 text-xs font-semibold text-primary-foreground hover:bg-primary/90"
+				>
+					<span>Xóa Bộ Lọc</span>
+				</button>
+			</div>
 		{/if}
-	</div>
-
-	<!-- 1-Click Blueprints Showcase -->
-	<div class="pt-6 border-t border-border/50">
-		<TemplatesShowcase onDeployTemplate={handleTemplateDeploy} />
-	</div>
-
-	<!-- Local Deploy Modal -->
-	<DeployModal bind:open={deployModalOpen} onDeploy={handleNewDeploy} />
+	</section>
 </div>
+
+<!-- Modal Deploy / Clone Template -->
+<DeployModal
+	bind:open={deployModalOpen}
+	initialRepo={selectedTemplate?.repoUrl || ''}
+	initialName={selectedTemplate?.title || ''}
+	onDeploy={(data) => {
+		alert(`Đã khởi tạo quy trình Clone & Deploy dự án "${data.name}" lên Povixa Console!`);
+	}}
+/>
+
+<!-- Modal Submit App / Showcase -->
+<SubmitAppModal
+	bind:open={submitModalOpen}
+	onSubmit={handleNewAppSubmitted}
+/>

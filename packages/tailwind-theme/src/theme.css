@@ -2,12 +2,12 @@
 
 :root {
   /* ═══════════ Base ═══════════ */
-  --background: oklch(0.988 0.005 265);
+  --background: #FAF9F5;
   --foreground: oklch(0.15 0.01 265);
 
-  --card: oklch(1 0 0);
+  --card: #FFFFFF;
   --card-foreground: oklch(0.15 0.01 265);
-  --popover: oklch(1 0 0);
+  --popover: #FFFFFF;
   --popover-foreground: oklch(0.15 0.01 265);
 
   /* ═══════════ Primary — indigo ═══════════ */

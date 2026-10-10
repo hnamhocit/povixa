@@ -18,6 +18,7 @@
 
 	export interface FooterProps {
 		class?: string;
+		containerClass?: string;
 		brandName?: string;
 		brandBadge?: string;
 		brandHref?: string;
@@ -37,6 +38,7 @@
 
 	let {
 		class: className = '',
+		containerClass = '',
 		brandName = 'Povixa',
 		brandBadge = '',
 		brandHref = '/',
@@ -103,7 +105,7 @@
 </script>
 
 <footer class={cn('border-t border-border/60 bg-background/50 backdrop-blur-xs', className)}>
-	<div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+	<div class={cn('mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8', containerClass)}>
 		<div class="grid gap-12 lg:grid-cols-[1.6fr_repeat(4,1fr)]">
 			<!-- Brand column -->
 			<div class="space-y-4">
