@@ -35,6 +35,7 @@
 	<meta property="og:image" content="/og-image.png" />
 	<meta property="og:type" content="website" />
 	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:image" content="/og-image.png" />
 	<meta name="robots" content="index, follow" />
 </svelte:head>
 

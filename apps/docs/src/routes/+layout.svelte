@@ -20,6 +20,7 @@
 
 <svelte:head>
 	<link rel="icon" type="image/svg+xml" href={favicon} />
+	<link rel="icon" href="/favicon.svg" />
 	<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
 	<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#090d16" />
 	<title>Povixa Documentation — Kiến Trúc & Tài Liệu Kỹ Thuật</title>
@@ -27,6 +28,22 @@
 		name="description"
 		content="Tài liệu kỹ thuật chính thức của Povixa Platform — Nền tảng điều khiển ứng dụng thống nhất, tự vận hành và mã nguồn mở."
 	/>
+	<meta property="og:title" content="Povixa Documentation — Kiến Trúc & Tài Liệu Kỹ Thuật" />
+	<meta
+		property="og:description"
+		content="Tài liệu kỹ thuật chính thức của Povixa Platform — Nền tảng điều khiển ứng dụng thống nhất, tự vận hành và mã nguồn mở."
+	/>
+	<meta property="og:type" content="website" />
+	<meta property="og:image" content="/og-image.png" />
+	<meta property="og:image:width" content="1146" />
+	<meta property="og:image:height" content="850" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Povixa Documentation — Kiến Trúc & Tài Liệu Kỹ Thuật" />
+	<meta
+		name="twitter:description"
+		content="Tài liệu kỹ thuật chính thức của Povixa Platform — Nền tảng điều khiển ứng dụng thống nhất, tự vận hành và mã nguồn mở."
+	/>
+	<meta name="twitter:image" content="/og-image.png" />
 </svelte:head>
 
 <ModeWatcher />

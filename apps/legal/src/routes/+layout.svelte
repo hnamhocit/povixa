@@ -22,6 +22,7 @@
 
 <svelte:head>
 	<link rel="icon" type="image/svg+xml" href={favicon} />
+	<link rel="icon" href="/favicon.svg" />
 	<meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
 	<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#090d16" />
 	<title>{m.legal_title()} — Povixa Trust &amp; Compliance</title>
@@ -30,9 +31,13 @@
 	<meta property="og:title" content="{m.legal_title()} — Povixa" />
 	<meta property="og:description" content={m.legal_desc()} />
 	<meta property="og:type" content="website" />
-	<meta name="twitter:card" content="summary" />
+	<meta property="og:image" content="/og-image.png" />
+	<meta property="og:image:width" content="1146" />
+	<meta property="og:image:height" content="850" />
+	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:title" content="{m.legal_title()} — Povixa" />
 	<meta name="twitter:description" content={m.legal_desc()} />
+	<meta name="twitter:image" content="/og-image.png" />
 </svelte:head>
 
 <ModeWatcher />
