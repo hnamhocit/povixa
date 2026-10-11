@@ -104,7 +104,7 @@
 	}: FooterProps = $props();
 </script>
 
-<footer class={cn('border-t border-border/60 bg-background/50 backdrop-blur-xs', className)}>
+<footer class={cn('border-t border-border/50 bg-white dark:bg-card', className)}>
 	<div class={cn('mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8', containerClass)}>
 		<div class="grid gap-12 lg:grid-cols-[1.6fr_repeat(4,1fr)]">
 			<!-- Brand column -->
@@ -133,7 +133,7 @@
 						</span>
 						{#if brandBadge}
 							<span
-								class="rounded-md border border-primary/30 bg-primary/10 px-1.5 py-0.5 text-[10px] font-semibold tracking-wide text-primary"
+								class="rounded-md bg-primary/10 px-1.5 py-0.5 text-[10px] font-semibold tracking-wide text-primary"
 							>
 								{brandBadge}
 							</span>
@@ -153,7 +153,7 @@
 							target="_blank"
 							rel="noopener noreferrer"
 							aria-label={s.label}
-							class="flex size-9 items-center justify-center rounded-lg border border-border/80 bg-card/60 text-muted-foreground transition-all duration-200 hover:border-primary/50 hover:bg-accent hover:text-foreground active:scale-95"
+							class="flex size-9 items-center justify-center rounded-lg bg-muted/40 text-muted-foreground transition-all duration-200 hover:bg-muted/80 hover:text-foreground active:scale-95"
 						>
 							{#if s.icon === 'github'}
 								<svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -225,7 +225,7 @@
 
 		<!-- Legal links row -->
 		{#if legalLinks.length > 0}
-			<div class="mt-12 flex flex-wrap items-center gap-x-6 gap-y-2.5 border-t border-border/60 pt-6">
+			<div class="mt-12 flex flex-wrap items-center gap-x-6 gap-y-2.5 border-t border-border/20 pt-6">
 				{#each legalLinks as link (link.href)}
 					<a
 						href={link.href}

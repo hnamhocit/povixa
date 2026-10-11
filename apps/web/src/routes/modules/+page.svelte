@@ -22,7 +22,7 @@
 			icon: IconFingerprint,
 			href: '/auth',
 			status: 'Sẵn sàng',
-			badgeColor: 'border-emerald-500/30 bg-emerald-500/10 text-emerald-500'
+			badgeColor: 'bg-emerald-500/10 text-emerald-500'
 		},
 		{
 			id: 'config',
@@ -32,7 +32,7 @@
 			icon: IconAdjustments,
 			href: '/config',
 			status: 'Đang phát triển',
-			badgeColor: 'border-indigo-500/30 bg-indigo-500/10 text-indigo-400'
+			badgeColor: 'bg-indigo-500/10 text-indigo-400'
 		},
 		{
 			id: 'notifications',
@@ -42,7 +42,7 @@
 			icon: IconBell,
 			href: '/notifications',
 			status: 'Đang phát triển',
-			badgeColor: 'border-indigo-500/30 bg-indigo-500/10 text-indigo-400'
+			badgeColor: 'bg-indigo-500/10 text-indigo-400'
 		},
 		{
 			id: 'analytics',
@@ -52,7 +52,7 @@
 			icon: IconChartHistogram,
 			href: '/analytics',
 			status: 'Đang phát triển',
-			badgeColor: 'border-indigo-500/30 bg-indigo-500/10 text-indigo-400'
+			badgeColor: 'bg-indigo-500/10 text-indigo-400'
 		},
 		{
 			id: 'storage',
@@ -62,7 +62,7 @@
 			icon: IconDatabase,
 			href: '/storage',
 			status: 'Đang phát triển',
-			badgeColor: 'border-indigo-500/30 bg-indigo-500/10 text-indigo-400'
+			badgeColor: 'bg-indigo-500/10 text-indigo-400'
 		},
 		{
 			id: 'observability',
@@ -72,7 +72,7 @@
 			icon: IconEye,
 			href: '/observability',
 			status: 'Kế hoạch',
-			badgeColor: 'border-amber-500/30 bg-amber-500/10 text-amber-500'
+			badgeColor: 'bg-amber-500/10 text-amber-500'
 		},
 		{
 			id: 'legal',
@@ -80,9 +80,10 @@
 			desc: m.module_legal_desc(),
 			tag: m.module_legal_tag(),
 			icon: IconFileText,
-			href: '/legal',
+			href: 'https://legal.povixa.cloud',
+			external: true,
 			status: 'Sẵn sàng',
-			badgeColor: 'border-emerald-500/30 bg-emerald-500/10 text-emerald-500'
+			badgeColor: 'bg-emerald-500/10 text-emerald-500'
 		},
 		{
 			id: 'support',
@@ -92,7 +93,7 @@
 			icon: IconMessageCircle,
 			href: '/support',
 			status: 'Sẵn sàng',
-			badgeColor: 'border-emerald-500/30 bg-emerald-500/10 text-emerald-500'
+			badgeColor: 'bg-emerald-500/10 text-emerald-500'
 		}
 	];
 </script>
@@ -101,10 +102,10 @@
 	<title>{m.nav_modules()} — Povixa Platform</title>
 </svelte:head>
 
-<section class="mx-auto max-w-6xl px-6 py-16 sm:py-24">
+<section class="mx-auto max-w-[1400px] px-6 sm:px-8 lg:px-12 py-16 sm:py-24">
 	<div class="text-center">
 		<div
-			class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3.5 py-1 text-xs font-semibold text-primary backdrop-blur-sm"
+			class="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3.5 py-1 text-xs font-semibold text-primary backdrop-blur-sm"
 		>
 			<IconSparkles size={14} />
 			<span>Hệ thống Mô-đun Thống nhất</span>
@@ -122,17 +123,17 @@
 			{@const Icon = mod.icon}
 			<a
 				href={mod.href}
-				class="group relative flex flex-col justify-between rounded-3xl border border-border/80 bg-card/50 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:bg-card hover:shadow-lg"
+				class="group relative flex flex-col justify-between rounded-2xl border border-border/40 bg-card p-6 shadow-xs backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-border/80 hover:shadow-md"
 			>
 				<div>
 					<div class="flex items-center justify-between">
 						<div
-							class="flex size-12 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-transform group-hover:scale-110"
+							class="flex size-12 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-transform group-hover:scale-105"
 						>
 							<Icon size={24} stroke={1.75} />
 						</div>
 						<span
-							class="rounded-full border px-2.5 py-0.5 text-[11px] font-semibold {mod.badgeColor}"
+							class="rounded-full px-2.5 py-0.5 text-[11px] font-semibold {mod.badgeColor}"
 						>
 							{mod.status}
 						</span>

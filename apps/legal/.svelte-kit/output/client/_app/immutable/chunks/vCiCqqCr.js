@@ -1,0 +1,1 @@
+import{n as e,r as t}from"./DjWsquke.js";import{t as n}from"./DtvHRD56.js";var r=new Set([`$$slots`,`$$events`,`$$legacy`,`children`]);function i(i,a){let o=e(a,r),s=[[`path`,{d:`M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0`}],[`path`,{d:`M12 7v5l3 3`}]];n(i,t({type:`outline`,name:`clock`},()=>o,{get iconNode(){return s},get children(){return a.children}}))}export{i as t};

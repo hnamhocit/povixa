@@ -56,6 +56,7 @@
 	const orgScript = $derived(
 		`<script type="application/ld+json">${JSON.stringify(orgWebsiteSchema)}<` + '/script>'
 	);
+	const isError = $derived(Boolean(page.error) || (page.status != null && page.status >= 400));
 </script>
 
 <svelte:head>
@@ -99,12 +100,16 @@
 		></div>
 	</div>
 
-	<Header />
-	<main class="flex-1">
+	{#if !isError}
+		<Header />
+	{/if}
+	<main class="flex-1 {isError ? 'flex min-h-screen flex-col items-center justify-center' : ''}">
 		{@render children()}
 	</main>
-	<Footer />
-	<ScrollToTop />
+	{#if !isError}
+		<Footer />
+		<ScrollToTop />
+	{/if}
 </div>
 
 <div style="display:none">

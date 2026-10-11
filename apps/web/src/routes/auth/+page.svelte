@@ -33,7 +33,7 @@
 				>
 			</a>
 			<nav class="hidden items-center gap-8 text-xs font-medium text-muted-foreground sm:flex">
-				<a href="/docs" class="hover:text-primary">Tài liệu</a>
+				<a href="https://docs.povixa.cloud" class="hover:text-primary">Tài liệu</a>
 				<a href="/status" class="flex items-center gap-1.5 hover:text-primary"
 					><span class="size-1.5 rounded-full bg-emerald-400"></span>Trạng thái</a
 				>

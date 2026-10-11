@@ -1,0 +1,1 @@
+import{n as e}from"./BMtMtNPk.js";var t=()=>`Effective Date: October 11, 2026 • Version 2.4`,n=()=>`Ngày có hiệu lực: 11 Tháng 10, 2026 • Phiên bản 2.4`,r=((r={},i={})=>(i.locale??e())===`vi`?n(r):t(r));export{r as t};

@@ -1,312 +1,19 @@
 <script lang="ts">
 	import {
 		IconArrowRight,
-		IconArrowUpRight,
-		IconFingerprint,
-		IconAdjustments,
-		IconBell,
-		IconChartHistogram,
-		IconDatabase,
-		IconFileText,
-		IconCheck,
-		IconX,
-		IconPlus,
-		IconMinus,
-		IconHeart,
-		IconShieldCheck,
-		IconMessageCircle,
-		IconUsersGroup,
-		IconCoin,
-		IconEye,
-		IconServer,
-		IconBolt,
-		IconBrandGithub,
-		IconCopy
+		IconBook
 	} from '@tabler/icons-svelte-runes';
 	import * as m from '#lib/paraglide/messages.js';
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import { page } from '$app/state';
 	import AuroraBackground from '#lib/components/AuroraBackground.svelte';
 	import PartnerLogos from '#lib/components/PartnerLogos.svelte';
+	import BentoGrid from '#lib/components/BentoGrid.svelte';
+	import ModulesGrid from '#lib/components/ModulesGrid.svelte';
+	import PlatformArchitecture from '#lib/components/PlatformArchitecture.svelte';
 	import OpenSourceProof from '#lib/components/OpenSourceProof.svelte';
 	import WallOfLove from '#lib/components/WallOfLove.svelte';
 	import SponsorTiers from '#lib/components/SponsorTiers.svelte';
-	import ContributorPolicy from '#lib/components/ContributorPolicy.svelte';
-
-	// ═══════════ Hero Quickstart Copy ═══════════
-	let heroCommandCopied = $state(false);
-
-	async function copyHeroQuickstart() {
-		try {
-			await navigator.clipboard.writeText('curl -fsSL https://get.povixa.cloud | bash');
-			heroCommandCopied = true;
-			setTimeout(() => {
-				heroCommandCopied = false;
-			}, 2000);
-		} catch (err) {
-			console.error('Failed to copy', err);
-		}
-	}
-
-	// ═══════════ 9 modules ═══════════
-	const modules = [
-		{
-			icon: IconFingerprint,
-			get name() {
-				return m.module_id_name();
-			},
-			get tag() {
-				return m.module_id_tag();
-			},
-			get desc() {
-				return m.module_id_desc();
-			},
-			href: '/auth',
-			accent: 'from-blue-500/20 to-indigo-500/10'
-		},
-		{
-			icon: IconAdjustments,
-			get name() {
-				return m.module_config_name();
-			},
-			get tag() {
-				return m.module_config_tag();
-			},
-			get desc() {
-				return m.module_config_desc();
-			},
-			href: '/config',
-			accent: 'from-violet-500/20 to-purple-500/10'
-		},
-		{
-			icon: IconBell,
-			get name() {
-				return m.module_notify_name();
-			},
-			get tag() {
-				return m.module_notify_tag();
-			},
-			get desc() {
-				return m.module_notify_desc();
-			},
-			href: '/notifications',
-			accent: 'from-amber-500/20 to-orange-500/10'
-		},
-		{
-			icon: IconChartHistogram,
-			get name() {
-				return m.module_analytics_name();
-			},
-			get tag() {
-				return m.module_analytics_tag();
-			},
-			get desc() {
-				return m.module_analytics_desc();
-			},
-			href: '/analytics',
-			accent: 'from-emerald-500/20 to-teal-500/10'
-		},
-		{
-			icon: IconDatabase,
-			get name() {
-				return m.module_storage_name();
-			},
-			get tag() {
-				return m.module_storage_tag();
-			},
-			get desc() {
-				return m.module_storage_desc();
-			},
-			href: '/storage',
-			accent: 'from-cyan-500/20 to-blue-500/10'
-		},
-		{
-			icon: IconFileText,
-			get name() {
-				return m.module_legal_name();
-			},
-			get tag() {
-				return m.module_legal_tag();
-			},
-			get desc() {
-				return m.module_legal_desc();
-			},
-			href: '/legal',
-			accent: 'from-rose-500/20 to-pink-500/10'
-		},
-		{
-			icon: IconMessageCircle,
-			get name() {
-				return m.module_support_name();
-			},
-			get tag() {
-				return m.module_support_tag();
-			},
-			get desc() {
-				return m.module_support_desc();
-			},
-			href: '/support',
-			accent: 'from-indigo-500/20 to-sky-500/10'
-		},
-		{
-			icon: IconEye,
-			get name() {
-				return m.module_obs_name();
-			},
-			get tag() {
-				return m.module_obs_tag();
-			},
-			get desc() {
-				return m.module_obs_desc();
-			},
-			href: '/observability',
-			accent: 'from-teal-500/20 to-emerald-500/10'
-		},
-		{
-			icon: IconCoin,
-			get name() {
-				return m.module_billing_name();
-			},
-			get tag() {
-				return m.module_billing_tag();
-			},
-			get desc() {
-				return m.module_billing_desc();
-			},
-			href: '/billing',
-			accent: 'from-purple-500/20 to-violet-500/10'
-		}
-	];
-
-	// ═══════════ Pricing Plans ═══════════
-	const pricingPlans = [
-		{
-			get name() {
-				return m.plan_free_name();
-			},
-			get price() {
-				return m.plan_free_price();
-			},
-			get period() {
-				return m.plan_free_period();
-			},
-			get desc() {
-				return m.plan_free_desc();
-			},
-			get features() {
-				return [m.plan_free_f1(), m.plan_free_f2(), m.plan_free_f3(), m.plan_free_f4()];
-			},
-			get cta() {
-				return m.plan_free_cta();
-			},
-			highlight: false
-		},
-		{
-			get name() {
-				return m.plan_pro_name();
-			},
-			get price() {
-				return m.plan_pro_price();
-			},
-			get period() {
-				return m.plan_pro_period();
-			},
-			get desc() {
-				return m.plan_pro_desc();
-			},
-			get tag() {
-				return m.plan_pro_tag();
-			},
-			get features() {
-				return [
-					m.plan_pro_f1(),
-					m.plan_pro_f2(),
-					m.plan_pro_f3(),
-					m.plan_pro_f4(),
-					m.plan_pro_f5()
-				];
-			},
-			get cta() {
-				return m.plan_pro_cta();
-			},
-			highlight: true
-		},
-		{
-			get name() {
-				return m.plan_partner_name();
-			},
-			get price() {
-				return m.plan_partner_price();
-			},
-			get period() {
-				return m.plan_partner_period();
-			},
-			get desc() {
-				return m.plan_partner_desc();
-			},
-			get features() {
-				return [m.plan_partner_f1(), m.plan_partner_f2(), m.plan_partner_f3(), m.plan_partner_f4()];
-			},
-			get cta() {
-				return m.plan_partner_cta();
-			},
-			highlight: false
-		}
-	];
-
-	// ═══════════ FAQ ═══════════
-	const faqs = [
-		{
-			get q() {
-				return m.faq_q1();
-			},
-			get a() {
-				return m.faq_a1();
-			}
-		},
-		{
-			get q() {
-				return m.faq_q2();
-			},
-			get a() {
-				return m.faq_a2();
-			}
-		},
-		{
-			get q() {
-				return m.faq_q3();
-			},
-			get a() {
-				return m.faq_a3();
-			}
-		},
-		{
-			get q() {
-				return m.faq_q4();
-			},
-			get a() {
-				return m.faq_a4();
-			}
-		},
-		{
-			get q() {
-				return m.faq_q5();
-			},
-			get a() {
-				return m.faq_a5();
-			}
-		},
-		{
-			get q() {
-				return m.faq_q6();
-			},
-			get a() {
-				return m.faq_a6();
-			}
-		}
-	];
-
-	let openFaq = $state<number | null>(0);
 
 	const pageTitle = $derived(`${m.hero_title_1()} ${m.hero_title_highlight()} — Povixa`);
 	const pageDesc = $derived(m.hero_desc());
@@ -326,11 +33,9 @@
 		applicationCategory: 'DeveloperApplication',
 		operatingSystem: 'Linux, macOS, Windows, Docker, Kubernetes',
 		offers: {
-			'@type': 'AggregateOffer',
-			priceCurrency: 'USD',
-			lowPrice: '0',
-			highPrice: '499',
-			offerCount: '3'
+			'@type': 'Offer',
+			price: '0',
+			priceCurrency: 'USD'
 		},
 		image: ogImageUrl,
 		downloadUrl: 'https://github.com/hnamhocit/povixa',
@@ -345,66 +50,8 @@
 		]
 	});
 
-	const faqSchema = $derived({
-		'@context': 'https://schema.org',
-		'@type': 'FAQPage',
-		mainEntity: [
-			{
-				'@type': 'Question',
-				name: m.faq_q1(),
-				acceptedAnswer: {
-					'@type': 'Answer',
-					text: m.faq_a1()
-				}
-			},
-			{
-				'@type': 'Question',
-				name: m.faq_q2(),
-				acceptedAnswer: {
-					'@type': 'Answer',
-					text: m.faq_a2()
-				}
-			},
-			{
-				'@type': 'Question',
-				name: m.faq_q3(),
-				acceptedAnswer: {
-					'@type': 'Answer',
-					text: m.faq_a3()
-				}
-			},
-			{
-				'@type': 'Question',
-				name: m.faq_q4(),
-				acceptedAnswer: {
-					'@type': 'Answer',
-					text: m.faq_a4()
-				}
-			},
-			{
-				'@type': 'Question',
-				name: m.faq_q5(),
-				acceptedAnswer: {
-					'@type': 'Answer',
-					text: m.faq_a5()
-				}
-			},
-			{
-				'@type': 'Question',
-				name: m.faq_q6(),
-				acceptedAnswer: {
-					'@type': 'Answer',
-					text: m.faq_a6()
-				}
-			}
-		]
-	});
-
 	const softwareScript = $derived(
 		`<script type="application/ld+json">${JSON.stringify(softwareSchema)}<` + '/script>'
-	);
-	const faqScript = $derived(
-		`<script type="application/ld+json">${JSON.stringify(faqSchema)}<` + '/script>'
 	);
 </script>
 
@@ -454,36 +101,18 @@
 	<!-- Rich Snippets JSON-LD -->
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 	{@html softwareScript}
-	<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-	{@html faqScript}
 </svelte:head>
 
-<!-- ═══════════════ HERO ═══════════════ -->
-<section class="relative isolate overflow-hidden bg-background pt-16 pb-24 md:pt-24 md:pb-36">
+<!-- ═══════════════ HERO (FULL-SCREEN VIEWPORT) ═══════════════ -->
+<section
+	class="relative isolate flex min-h-[calc(100vh-4rem)] flex-col justify-between overflow-hidden bg-background pt-14 pb-10 sm:pt-20 sm:pb-14"
+>
 	<!-- Aurora Borealis Animated Background -->
 	<AuroraBackground class="opacity-100" />
 
-	<div class="relative z-10 mx-auto max-w-6xl px-6">
+	<!-- Hero Main Core (Centered) -->
+	<div class="relative z-10 mx-auto my-auto w-full max-w-[1400px] px-6 sm:px-8 lg:px-12">
 		<div class="mx-auto max-w-4xl text-center">
-			<!-- Announcement Badge -->
-			<a
-				href="/changelog"
-				class="group mb-8 inline-flex items-center gap-2.5 rounded-full border border-border/80 bg-card/80 px-3.5 py-1.5 text-xs font-medium text-muted-foreground shadow-sm backdrop-blur-sm transition-all hover:border-primary/50 hover:text-foreground"
-			>
-				<span class="relative flex h-2 w-2">
-					<span
-						class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"
-					></span>
-					<span class="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
-				</span>
-				<span>{m.hero_announcement()}</span>
-				<IconArrowUpRight
-					size={13}
-					stroke={2}
-					class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-				/>
-			</a>
-
 			<!-- Hero Title -->
 			<h1
 				class="font-sans text-4xl font-extrabold tracking-[-0.035em] text-foreground sm:text-6xl md:text-7xl lg:text-7xl"
@@ -504,7 +133,7 @@
 			</p>
 
 			<!-- Hero CTA Buttons -->
-			<div class="mt-10 flex flex-col items-center justify-center gap-3.5 sm:flex-row">
+			<div class="mt-8 flex flex-col items-center justify-center gap-3.5 sm:flex-row">
 				<a
 					href="https://id.povixa.cloud"
 					target="_blank"
@@ -519,310 +148,89 @@
 					/>
 				</a>
 				<a
-					href="https://github.com/hnamhocit/povixa"
+					href="https://docs.povixa.cloud"
 					target="_blank"
-					rel="noopener noreferrer"
-					class="group inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-border bg-card/80 px-6 text-sm font-semibold text-foreground backdrop-blur-sm transition-all hover:border-primary/50 hover:bg-muted"
+					rel="noreferrer"
+					class="group inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-border bg-card/80 px-6 text-sm font-semibold text-foreground backdrop-blur-sm shadow-xs transition-all hover:border-primary/50 hover:bg-muted"
 				>
-					<IconBrandGithub size={18} stroke={2} />
-					<span>{m.hero_cta_github()}</span>
+					<IconBook size={18} stroke={2} />
+					<span>{m.nav_docs()}</span>
 				</a>
 			</div>
+		</div>
+	</div>
 
-			<!-- Hero Quickstart Command Runner -->
-			<div
-				class="mt-4 flex flex-wrap items-center justify-center gap-2 font-mono text-xs text-muted-foreground"
+	<!-- Enterprise Partners -->
+	<div class="relative z-10 mx-auto mt-10 w-full max-w-[1400px] px-6 sm:px-8 lg:px-12">
+		<div class="pt-4 sm:pt-6">
+			<p
+				class="text-center font-mono text-[11px] font-semibold tracking-[0.2em] text-muted-foreground uppercase"
 			>
-				<span class="text-[11px]">{m.hero_quickstart_label()}</span>
-				<button
-					type="button"
-					onclick={copyHeroQuickstart}
-					class="group inline-flex items-center gap-2 rounded-lg border border-border/80 bg-card/90 px-3 py-1.5 text-[11px] text-foreground shadow-xs transition-all hover:border-primary/50"
-					title="Copy install command"
-				>
-					<span class="font-bold text-primary">$</span>
-					<span>curl -fsSL https://get.povixa.cloud | bash</span>
-					{#if heroCommandCopied}
-						<IconCheck size={12} class="text-emerald-500" stroke={3} />
-					{:else}
-						<IconCopy size={12} class="opacity-60 transition-opacity group-hover:opacity-100" />
-					{/if}
-				</button>
-			</div>
-
-			<!-- Sub-guarantee Pill -->
-			<p class="mt-4 text-xs font-medium text-muted-foreground/80">
-				{m.hero_badge_guarantee()}
+				{m.proof_heading()}
 			</p>
 
-			<!-- Supported Ecosystem Framework Badges (Decor) -->
-			<div class="mt-10 flex flex-wrap items-center justify-center gap-2">
-				<span class="text-xs font-medium text-muted-foreground">Compatible with:</span>
-				{#each ['SvelteKit', 'Next.js', 'Nuxt', 'Go', 'FastAPI', 'React Native', 'Flutter', 'Docker'] as tech (tech)}
-					<span
-						class="inline-flex items-center rounded-md border border-border/70 bg-card/70 px-2.5 py-1 font-mono text-[11px] font-medium text-foreground/80 shadow-xs backdrop-blur-sm transition-colors hover:border-primary/50 hover:text-foreground"
-					>
-						{tech}
-					</span>
-				{/each}
+			<!-- Real Enterprise SVG Logos -->
+			<div class="mt-6 sm:mt-8">
+				<PartnerLogos />
 			</div>
 		</div>
 	</div>
 </section>
 
-<!-- ═══════════════ METRICS & PROOF BAR ═══════════════ -->
-<section class="border-y border-border/70 bg-muted/20 backdrop-blur-sm">
-	<div class="mx-auto max-w-6xl px-6 py-12">
-		<p
-			class="text-center font-mono text-xs font-semibold tracking-[0.2em] text-muted-foreground uppercase"
-		>
-			{m.proof_heading()}
-		</p>
-
-		<!-- Partner / Builder Tech SVG Logos -->
-		<div class="mt-10">
-			<PartnerLogos />
+<!-- ═══════════════ PLATFORM CAPABILITIES (DUCKDB-STYLE BENTO GRID) ═══════════════ -->
+<section id="capabilities" class="py-24 md:py-32">
+	<div class="mx-auto max-w-[1400px] px-6 sm:px-8 lg:px-12">
+		<div class="mx-auto max-w-3xl text-center mb-16">
+			<span
+				class="inline-block rounded-full bg-primary/10 px-3 py-1 font-mono text-xs font-semibold text-primary"
+			>
+				{m.bento_badge()}
+			</span>
+			<h2 class="mt-4 font-sans text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
+				{m.bento_title()}
+			</h2>
 		</div>
 
-		<!-- Decorative proof line -->
-		<div
-			class="mt-10 grid grid-cols-2 gap-6 border-t border-border/40 pt-8 opacity-45 lg:grid-cols-4"
-		>
-			<div class="text-center">
-				<p class="font-sans text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-					{m.metric_stat_1_val()}
-				</p>
-				<p class="mt-1 text-xs text-muted-foreground">{m.metric_stat_1_lbl()}</p>
-			</div>
-			<div class="text-center">
-				<p class="font-sans text-2xl font-bold tracking-tight text-primary sm:text-3xl">
-					{m.metric_stat_2_val()}
-				</p>
-				<p class="mt-1 text-xs text-muted-foreground">{m.metric_stat_2_lbl()}</p>
-			</div>
-			<div class="text-center">
-				<p class="font-sans text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-					{m.metric_stat_3_val()}
-				</p>
-				<p class="mt-1 text-xs text-muted-foreground">{m.metric_stat_3_lbl()}</p>
-			</div>
-			<div class="text-center">
-				<p class="font-sans text-2xl font-bold tracking-tight text-emerald-500 sm:text-3xl">
-					{m.metric_stat_4_val()}
-				</p>
-				<p class="mt-1 text-xs text-muted-foreground">{m.metric_stat_4_lbl()}</p>
-			</div>
-		</div>
+		<!-- 6 Bento Cards with high-density technical widgets -->
+		<BentoGrid />
+	</div>
+</section>
+
+<!-- ═══════════════ UNIFIED ARCHITECTURE & FLOW (WORKS WITH YOUR STACK) ═══════════════ -->
+<section id="architecture" class="py-24 md:py-32">
+	<div class="mx-auto max-w-[1400px] px-6 sm:px-8 lg:px-12">
+		<PlatformArchitecture />
 	</div>
 </section>
 
 <!-- ═══════════════ 9 CORE MODULES SHOWCASE ═══════════════ -->
-<section id="modules" class="border-t border-border/70 bg-muted/20 py-24 md:py-32">
-	<div class="mx-auto max-w-6xl px-6">
-		<div class="mx-auto max-w-2xl text-center">
+<section id="modules" class="py-24 md:py-32">
+	<div class="mx-auto max-w-[1400px] px-6 sm:px-8 lg:px-12">
+		<div class="mx-auto max-w-3xl text-center mb-16">
 			<span
-				class="inline-block rounded-full border border-primary/20 bg-primary/10 px-3 py-1 font-mono text-xs font-semibold text-primary"
+				class="inline-block rounded-full bg-primary/10 px-3 py-1 font-mono text-xs font-semibold text-primary"
 			>
 				{m.modules_badge()}
 			</span>
-			<h2 class="mt-4 font-sans text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+			<h2 class="mt-4 font-sans text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
 				{m.modules_title()}
 			</h2>
-			<p class="mt-4 text-base text-muted-foreground">
+			<p class="mt-4 text-base text-muted-foreground max-w-2xl mx-auto">
 				{m.modules_desc()}
 			</p>
 		</div>
 
-		<div class="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-			{#each modules as mod (mod.href)}
-				<a
-					href={mod.href}
-					class="group relative flex flex-col justify-between overflow-hidden rounded-xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/50 hover:shadow-lg"
-				>
-					<!-- Corner ambient highlight -->
-					<div
-						class="pointer-events-none absolute -top-12 -right-12 h-28 w-28 rounded-full bg-gradient-to-br {mod.accent} opacity-50 blur-xl transition-opacity group-hover:opacity-100"
-					></div>
-
-					<div>
-						<div class="flex items-center justify-between">
-							<div
-								class="flex h-11 w-11 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground"
-							>
-								<mod.icon size={22} stroke={1.8} />
-							</div>
-							<span
-								class="font-mono text-[11px] font-semibold tracking-wider text-muted-foreground uppercase"
-							>
-								{mod.tag}
-							</span>
-						</div>
-
-						<h3
-							class="mt-4 font-sans text-lg font-bold tracking-tight text-foreground transition-colors group-hover:text-primary"
-						>
-							{mod.name}
-						</h3>
-						<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
-							{mod.desc}
-						</p>
-					</div>
-
-					<div class="mt-6 flex items-center gap-1.5 text-xs font-semibold text-primary">
-						<span>Explore module</span>
-						<IconArrowUpRight
-							size={14}
-							stroke={2.5}
-							class="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-						/>
-					</div>
-				</a>
-			{/each}
-		</div>
-	</div>
-</section>
-
-<!-- ═══════════════ TRUE OPEN SOURCE & SELF-HOST SHOWCASE ═══════════════ -->
-<section id="self-host" class="border-t border-border/70 py-24 md:py-32">
-	<div class="mx-auto max-w-6xl px-6">
-		<OpenSourceProof />
-	</div>
-</section>
-
-<!-- ═══════════════ PHILOSOPHY & FAIR-SHARE CALCULATOR ═══════════════ -->
-<section id="pricing" class="border-t border-border/70 py-24 md:py-32">
-	<div class="mx-auto max-w-6xl px-6">
-		<div class="mx-auto max-w-3xl text-center">
-			<span
-				class="inline-block rounded-full border border-primary/20 bg-primary/10 px-3 py-1 font-mono text-xs font-semibold text-primary"
-			>
-				{m.pricing_badge()}
-			</span>
-			<h2 class="mt-4 font-sans text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-				{m.pricing_title()}
-			</h2>
-			<p class="mt-4 text-base text-muted-foreground">
-				{m.pricing_desc()}
-			</p>
-		</div>
-
-		<!-- 3 Core Philosophy Pillars -->
-		<div class="mx-auto mt-14 grid max-w-4xl gap-6 sm:grid-cols-3">
-			<div
-				class="flex flex-col items-center rounded-xl border border-border bg-card p-6 text-center shadow-sm"
-			>
-				<div
-					class="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary"
-				>
-					<IconHeart size={22} stroke={2} />
-				</div>
-				<h3 class="mt-4 font-sans text-base font-bold text-foreground">
-					{m.principle_1_title()}
-				</h3>
-				<p class="mt-2 text-xs leading-relaxed text-muted-foreground">
-					{m.principle_1_desc()}
-				</p>
-			</div>
-
-			<div
-				class="flex flex-col items-center rounded-xl border border-border bg-card p-6 text-center shadow-sm"
-			>
-				<div
-					class="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-500"
-				>
-					<IconCoin size={22} stroke={2} />
-				</div>
-				<h3 class="mt-4 font-sans text-base font-bold text-foreground">
-					{m.principle_2_title()}
-				</h3>
-				<p class="mt-2 text-xs leading-relaxed text-muted-foreground">
-					{m.principle_2_desc()}
-				</p>
-			</div>
-
-			<div
-				class="flex flex-col items-center rounded-xl border border-border bg-card p-6 text-center shadow-sm"
-			>
-				<div
-					class="flex h-12 w-12 items-center justify-center rounded-full bg-violet-500/10 text-violet-500"
-				>
-					<IconUsersGroup size={22} stroke={2} />
-				</div>
-				<h3 class="mt-4 font-sans text-base font-bold text-foreground">
-					{m.principle_3_title()}
-				</h3>
-				<p class="mt-2 text-xs leading-relaxed text-muted-foreground">
-					{m.principle_3_desc()}
-				</p>
-			</div>
-		</div>
-
-		<!-- ═══════════ PRICING CARDS ═══════════ -->
-		<div class="mt-20 grid gap-6 lg:grid-cols-3">
-			{#each pricingPlans as plan (plan.name)}
-				<div
-					class="relative flex flex-col rounded-2xl border bg-card p-8 shadow-sm transition-all {plan.highlight
-						? 'border-primary shadow-xl shadow-primary/10'
-						: 'border-border'}"
-				>
-					{#if plan.highlight}
-						<span
-							class="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3.5 py-1 text-[10px] font-bold tracking-wider text-primary-foreground uppercase shadow-md"
-						>
-							{plan.tag}
-						</span>
-					{/if}
-
-					<div>
-						<h3 class="font-sans text-xl font-bold text-foreground">{plan.name}</h3>
-						<p class="mt-2 text-xs leading-relaxed text-muted-foreground">{plan.desc}</p>
-					</div>
-
-					<div class="mt-6 flex items-baseline gap-1.5 border-t border-border/60 pt-6">
-						<span class="font-sans text-4xl font-extrabold text-foreground">{plan.price}</span>
-						<span class="text-xs text-muted-foreground">/ {plan.period}</span>
-					</div>
-
-					<ul class="mt-6 flex-1 space-y-3">
-						{#each plan.features as f, fIdx (fIdx)}
-							<li class="flex items-start gap-2.5 text-xs text-foreground/90">
-								<IconCheck size={16} class="mt-0.5 shrink-0 text-primary" stroke={2.5} />
-								<span>{f}</span>
-							</li>
-						{/each}
-					</ul>
-
-					<a
-						href="https://id.povixa.cloud"
-						target="_blank"
-						rel="noreferrer"
-						class="mt-8 inline-flex h-11 items-center justify-center rounded-lg text-xs font-bold transition-all {plan.highlight
-							? 'bg-primary text-primary-foreground shadow-md hover:bg-primary/90'
-							: 'border border-border bg-background text-foreground hover:bg-accent'}"
-					>
-						{plan.cta}
-					</a>
-				</div>
-			{/each}
-		</div>
-
-		<!-- Fairness Guarantee Banner -->
-		<div
-			class="mx-auto mt-12 max-w-3xl rounded-xl border border-primary/20 bg-primary/5 p-6 text-center shadow-sm"
-		>
-			<p class="text-xs leading-relaxed text-muted-foreground sm:text-sm">
-				<span class="font-bold text-foreground">⚖️ {m.pricing_guarantee()}</span>
-			</p>
-		</div>
+		<!-- 3-Layer Architectural Stack Matrix with Live Micro-Widgets & Unified SDK Bridge -->
+		<ModulesGrid />
 	</div>
 </section>
 
 <!-- ═══════════════ TESTIMONIALS (WALL OF LOVE) ═══════════════ -->
-<section class="border-t border-border/70 py-24 md:py-32">
-	<div class="mx-auto max-w-6xl px-6">
+<section id="testimonials" class="py-24 md:py-32">
+	<div class="mx-auto max-w-[1400px] px-6 sm:px-8 lg:px-12">
 		<div class="mx-auto mb-16 max-w-2xl text-center">
 			<span
-				class="inline-block rounded-full border border-primary/20 bg-primary/10 px-3 py-1 font-mono text-xs font-semibold text-primary"
+				class="inline-block rounded-full bg-primary/10 px-3 py-1 font-mono text-xs font-semibold text-primary"
 			>
 				{m.testimonials_badge()}
 			</span>
@@ -836,11 +244,11 @@
 </section>
 
 <!-- ═══════════════ SPONSORS & BACKERS (TIERED) ═══════════════ -->
-<section id="sponsors" class="border-t border-border/70 bg-muted/20 py-24 md:py-32">
-	<div class="mx-auto max-w-6xl px-6">
+<section id="sponsors" class="py-24 md:py-32">
+	<div class="mx-auto max-w-[1400px] px-6 sm:px-8 lg:px-12">
 		<div class="mx-auto mb-16 max-w-3xl text-center">
 			<span
-				class="inline-block rounded-full border border-primary/20 bg-primary/10 px-3 py-1 font-mono text-xs font-semibold text-primary"
+				class="inline-block rounded-full bg-primary/10 px-3 py-1 font-mono text-xs font-semibold text-primary"
 			>
 				{m.sponsors_badge()}
 			</span>
@@ -856,105 +264,43 @@
 	</div>
 </section>
 
-<!-- ═══════════════ CONTRIBUTORS & OPEN FINANCIALS ═══════════════ -->
-<section id="contributors" class="border-t border-border/70 py-24 md:py-32">
-	<div class="mx-auto max-w-6xl px-6">
-		<ContributorPolicy />
+<!-- ═══════════════ TRUE OPEN SOURCE & SELF-HOST SHOWCASE ═══════════════ -->
+<section id="self-host" class="py-24 md:py-32">
+	<div class="mx-auto max-w-[1400px] px-6 sm:px-8 lg:px-12">
+		<OpenSourceProof />
 	</div>
 </section>
 
-<!-- ═══════════════ FAQ ═══════════════ -->
-<section class="border-t border-border/70 py-24 md:py-32">
-	<div class="mx-auto max-w-3xl px-6">
-		<div class="text-center">
-			<span
-				class="inline-block rounded-full border border-primary/20 bg-primary/10 px-3 py-1 font-mono text-xs font-semibold text-primary"
-			>
-				{m.faq_badge()}
-			</span>
-			<h2 class="mt-4 font-sans text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-				{m.faq_title()}
-			</h2>
-		</div>
-
-		<div class="mt-12 divide-y divide-border rounded-xl border border-border bg-card shadow-sm">
-			{#each faqs as faq, i (i)}
-				<div>
-					<button
-						type="button"
-						onclick={() => (openFaq = openFaq === i ? null : i)}
-						class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition-colors hover:bg-accent/30"
-					>
-						<span class="font-sans text-sm font-bold text-foreground">{faq.q}</span>
-						<span class="shrink-0 text-muted-foreground">
-							{#if openFaq === i}
-								<IconMinus size={18} stroke={2.5} class="text-primary" />
-							{:else}
-								<IconPlus size={18} stroke={2.5} />
-							{/if}
-						</span>
-					</button>
-					{#if openFaq === i}
-						<div class="px-6 pb-5">
-							<p class="text-xs leading-relaxed text-muted-foreground sm:text-sm">
-								{faq.a}
-							</p>
-						</div>
-					{/if}
-				</div>
-			{/each}
-		</div>
-	</div>
-</section>
-
-<!-- ═══════════════ FINAL HIGH IMPACT CTA ═══════════════ -->
-<section class="border-t border-border/70 bg-muted/20 py-24 md:py-32">
-	<div class="mx-auto max-w-5xl px-6">
-		<div
-			class="relative overflow-hidden rounded-3xl border border-primary/30 bg-card p-10 text-center shadow-2xl sm:p-16"
+<!-- ═══════════════ FINAL CLOSING CTA ("Build in a weekend, scale to millions") ═══════════════ -->
+<section class="border-t border-border/60 bg-white dark:bg-card py-24 md:py-32 text-center">
+	<div class="mx-auto max-w-4xl px-6 sm:px-8">
+		<h2
+			class="font-sans text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl md:text-5xl"
 		>
-			<!-- Ambient center glow -->
-			<div
-				class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,oklch(0.65_0.22_265/0.18),transparent_65%)]"
-			></div>
+			{m.oss_banner_title()}
+		</h2>
 
-			<div class="relative">
-				<span
-					class="inline-block rounded-full border border-primary/20 bg-primary/10 px-3 py-1 font-mono text-xs font-semibold text-primary"
-				>
-					{m.cta_badge()}
-				</span>
-				<h2
-					class="mt-4 font-sans text-3xl font-extrabold tracking-tight text-foreground sm:text-5xl"
-				>
-					{m.cta_title()}
-				</h2>
-				<p class="mx-auto mt-4 max-w-lg text-sm text-muted-foreground sm:text-base">
-					{m.cta_desc()}
-				</p>
+		<div class="mt-8 flex flex-col items-center justify-center gap-3.5 sm:flex-row">
+			<a
+				href="https://id.povixa.cloud"
+				target="_blank"
+				rel="noreferrer"
+				class="group inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-[#3ECF8E] px-7 text-sm font-bold text-black shadow-md shadow-emerald-500/20 transition-all hover:bg-[#34B27B] hover:shadow-lg hover:shadow-emerald-500/30"
+			>
+				<span>{m.oss_banner_cta_start()}</span>
+				<IconArrowRight
+					size={16}
+					stroke={2.5}
+					class="transition-transform group-hover:translate-x-1"
+				/>
+			</a>
 
-				<div class="mt-8 flex flex-col items-center justify-center gap-3.5 sm:flex-row">
-					<a
-						href="https://id.povixa.cloud"
-						target="_blank"
-						rel="noreferrer"
-						class="group inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-primary px-7 text-sm font-semibold text-primary-foreground shadow-md transition-all hover:bg-primary/90"
-					>
-						{m.cta_btn_primary()}
-						<IconArrowRight
-							size={16}
-							stroke={2.5}
-							class="transition-transform group-hover:translate-x-1"
-						/>
-					</a>
-					<a
-						href="/contact"
-						class="inline-flex h-12 items-center justify-center rounded-lg border border-border bg-background px-6 text-sm font-semibold text-foreground transition-colors hover:bg-accent"
-					>
-						{m.cta_btn_secondary()}
-					</a>
-				</div>
-			</div>
+			<a
+				href="mailto:enterprise@povixa.cloud"
+				class="inline-flex h-12 items-center justify-center rounded-lg border border-border bg-card px-7 text-sm font-semibold text-foreground shadow-xs transition-all hover:border-primary/50 hover:bg-muted"
+			>
+				<span>{m.oss_banner_cta_demo()}</span>
+			</a>
 		</div>
 	</div>
 </section>

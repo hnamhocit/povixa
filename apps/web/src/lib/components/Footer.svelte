@@ -7,7 +7,6 @@
 			title: m.footer_product(),
 			links: [
 				{ href: '/#modules', label: m.footer_all_modules() },
-				{ href: '/#pricing', label: m.nav_pricing() },
 				{ href: '/changelog', label: m.footer_changelog() },
 				{ href: '/roadmap', label: m.footer_roadmap() },
 				{ href: '/status', label: m.footer_status() }
@@ -27,6 +26,7 @@
 			title: m.footer_developers(),
 			links: [
 				{ href: 'https://docs.povixa.cloud', label: m.footer_documentation(), external: true },
+				{ href: '/support', label: m.footer_support() },
 				{ href: '/api', label: m.footer_api() },
 				{ href: '/sdks', label: m.footer_sdks() },
 				{ href: '/cli', label: m.footer_cli() },
@@ -46,11 +46,11 @@
 	]);
 
 	const legalLinks: FooterLink[] = $derived([
-		{ href: '/legal/terms', label: m.footer_terms() },
-		{ href: '/legal/privacy', label: m.footer_privacy() },
-		{ href: '/legal/dpa', label: m.footer_dpa() },
-		{ href: '/legal/cookies', label: m.footer_cookies() },
-		{ href: '/legal/subprocessors', label: m.footer_subprocessors() }
+		{ href: 'https://legal.povixa.cloud/terms', label: m.footer_terms(), external: true },
+		{ href: 'https://legal.povixa.cloud/privacy', label: m.footer_privacy(), external: true },
+		{ href: 'https://legal.povixa.cloud/dpa', label: m.footer_dpa(), external: true },
+		{ href: 'https://legal.povixa.cloud/cookies', label: m.footer_cookies(), external: true },
+		{ href: 'https://legal.povixa.cloud/subprocessors', label: m.footer_subprocessors(), external: true }
 	]);
 
 	const socials: SocialLink[] = [
@@ -73,4 +73,6 @@
 	statusHref="/status"
 	copyright={m.footer_copyright({ year: String(currentYear) })}
 	madeWithText={m.footer_made_with()}
+	class="bg-white dark:bg-card"
+	containerClass="max-w-[1400px] px-6 sm:px-8 lg:px-12"
 />

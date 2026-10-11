@@ -15,6 +15,12 @@
 		"test:unit": "vitest",
 		"test": "npm run test:unit -- --run"
 	},
+	"dependencies": {
+		"@fontsource-variable/plus-jakarta-sans": "^5.3.0",
+		"@povixa/ui": "workspace:*",
+		"@tabler/icons-svelte-runes": "^3.49.0",
+		"mode-watcher": "^1.1.0"
+	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
 		"@inlang/paraglide-js": "^2.18.2",

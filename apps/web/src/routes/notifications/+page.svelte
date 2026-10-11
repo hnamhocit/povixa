@@ -37,7 +37,7 @@
 		]}
 		backHref="/modules"
 		backLabel="Xem tất cả modules"
-		secondaryActionHref="/docs"
+		secondaryActionHref="https://docs.povixa.cloud"
 		secondaryActionLabel="Đọc tài liệu"
 	/>
 </section>

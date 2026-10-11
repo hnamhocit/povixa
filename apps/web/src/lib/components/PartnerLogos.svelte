@@ -1,112 +1,112 @@
 <script lang="ts">
-	// High-fidelity, iconic developer ecosystem partners with official brand colors
+	// High-profile enterprise & fast-growing tech companies
 	const partners = [
 		{
-			name: 'TypeScript',
-			tagline: 'Type-Safe JavaScript',
+			name: 'Mozilla',
+			tagline: 'The Open Web Foundation',
 			svg: `
-				<svg viewBox="0 0 136 36" class="h-9 w-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<rect x="2" y="4" width="28" height="28" rx="6" fill="#3178C6" />
-					<path d="M11 14h10m-5 0v12" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" />
-					<path d="M22 17.5c-.8-.7-1.8-1-2.8-1-1.4 0-2.2.8-2.2 1.8 0 1.2.9 1.6 2.3 2 1.7.5 3.2 1.2 3.2 3 0 1.6-1.3 2.7-3.2 2.7-1.3 0-2.6-.5-3.3-1.4" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
-					<text x="38" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="14" fill="currentColor" letter-spacing="-0.02em">TypeScript</text>
+				<svg viewBox="0 0 120 32" class="h-7 w-auto" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+					<g transform="translate(0, 2)">
+						<path d="M4 6h4.5l4 8.5L16.5 6H21v16h-3.8v-9.5l-4.7 9.5h-1L6.8 12.5V22H3V6h1z" />
+						<path d="M26 14c0-4.5 3.2-8 8-8s8 3.5 8 8-3.2 8-8 8-8-3.5-8-8zm12.2 0c0-2.5-1.8-4.5-4.2-4.5s-4.2 2-4.2 4.5 1.8 4.5 4.2 4.5 4.2-2 4.2-4.5z" />
+						<path d="M46 22v-3l7-7.5H46V8h12v3l-7 7.5h7.5V22H46z" />
+						<rect x="62" y="10" width="3" height="3" rx="0.5" />
+						<rect x="62" y="17" width="3" height="3" rx="0.5" />
+						<path d="M70 22l4.5-14h3L73 22h-3zm8 0l4.5-14h3L81 22h-3z" />
+						<path d="M91 6h4.5l5.5 16h-4l-1.3-4.2H91L89.7 22H86L91 6zm4 8.8l-1.8-6-1.8 6h3.6z" />
+					</g>
 				</svg>
 			`
 		},
 		{
-			name: 'Svelte',
-			tagline: 'Cybernetically Enhanced Web Apps',
+			name: 'PwC',
+			tagline: 'Global Enterprise Advisory',
 			svg: `
-				<svg viewBox="0 0 110 36" class="h-9 w-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<svg viewBox="0 0 100 32" class="h-7 w-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<g transform="translate(0, 4)">
+						<rect x="0" y="8" width="7" height="7" fill="#E0301E" />
+						<rect x="7" y="1" width="7" height="7" fill="#EB8C00" />
+						<rect x="7" y="8" width="7" height="7" fill="#DC143C" />
+						<rect x="7" y="15" width="7" height="7" fill="#FFB600" />
+						<rect x="14" y="8" width="7" height="7" fill="#B30006" />
+					</g>
+					<text x="30" y="22" font-family="Georgia, serif" font-weight="700" font-size="20" fill="currentColor" letter-spacing="-0.03em">pwc</text>
+				</svg>
+			`
+		},
+		{
+			name: 'Resend',
+			tagline: 'Email for Developers',
+			svg: `
+				<svg viewBox="0 0 105 32" class="h-7 w-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<g transform="translate(0, 4)">
+						<rect x="1" y="2" width="20" height="20" rx="4" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="2" />
+						<path d="M6 12h10M11 7v10" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+					</g>
+					<text x="29" y="21" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="16" fill="currentColor" letter-spacing="-0.03em">Resend</text>
+				</svg>
+			`
+		},
+		{
+			name: 'Vercel',
+			tagline: 'Frontend Cloud Infrastructure',
+			svg: `
+				<svg viewBox="0 0 105 32" class="h-7 w-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M12 5L24 25H0L12 5Z" fill="currentColor" />
+					<text x="32" y="22" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="16" fill="currentColor" letter-spacing="-0.03em">Vercel</text>
+				</svg>
+			`
+		},
+		{
+			name: 'Shopify',
+			tagline: 'Global Commerce Platform',
+			svg: `
+				<svg viewBox="0 0 115 32" class="h-7 w-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<g transform="translate(2, 4)">
-						<path d="M21.7 6.4c-2.4-3.6-7-4.8-10.7-3-1.4.7-2.6 1.8-3.4 3.2L3.1 14c-1.8 3.1-1.3 7.1 1.2 9.6 2.9 2.9 7.6 3.4 11 .9l4.5-3.3c.7-.5 1.7-.4 2.2.3.5.7.4 1.7-.3 2.2l-4.5 3.3c-4.8 3.5-11.4 2.7-15.3-1.7-3.5-3.8-4-9.6-1.1-14l4.5-7.4C7.7 1.8 10.6.1 13.9 0c3.7-.1 7.2 1.7 9.3 4.8 2.2 3.3 2.2 7.7 0 11l-4.5 7.4c-.6.9-1.8 1.2-2.7.6-.9-.6-1.2-1.8-.6-2.7l4.5-7.4c1.5-2.2 1.4-5.2.1-7.3z" fill="#FF3E00" />
-						<path d="M7.4 14.8c-.5-.7-.4-1.7.3-2.2l4.5-3.3c4.8-3.5 11.4-2.7 15.3 1.7 3.5 3.8 4 9.6 1.1 14l-4.5 7.4c-2.3 3.8-6.6 5.8-11 5-3.7-.7-6.8-3.3-8.1-6.8-.4-1.1-.3-2.2.3-3.1.6-.9 1.8-1.2 2.7-.6.9.6 1.2 1.8.6 2.7-.1.2-.2.4-.2.6.9 2.5 3.1 4.3 5.8 4.7 3.1.5 6.2-.9 7.8-3.6l4.5-7.4c1.8-3.1 1.3-7.1-1.2-9.6-2.9-2.9-7.6-3.4-11-.9l-4.5 3.3c-.7.5-1.7.4-2.2-.3z" fill="#FF3E00" />
+						<path d="M17.5 4.5c-.1-.6-.7-.9-1.2-.7L13.5 4.8c-.3-.8-1-1.4-2-1.4h-.2C9.5 3.4 8.7 4 8.2 4.7l-2 .7c-.7.3-.9.9-.8 1.5l1.8 12.3c.1.8.8 1.2 1.4 1.2h9.5c.7 0 1.3-.6 1.4-1.3l1.4-12.5-4.4-2.1zm-6.5.2c.3-.5.8-.8 1.4-.8.6 0 1 .3 1.3.8l-2.7.8v-.8zm2 7.4c-.4.3-.8.3-1.4.3-1 0-1.4-.6-1.4-1.2 0-.9.8-1.4 2-1.6l.8-.2v2.7zm0-3.5l-1.1.3c-1.8.4-2.8 1.3-2.8 2.6 0 1.3 1 2.1 2.4 2.1.7 0 1.2-.2 1.5-.4v2.4l1.9-.5V8.6z" fill="#95BF47" />
 					</g>
-					<text x="36" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="14" fill="currentColor" letter-spacing="-0.02em">Svelte</text>
+					<text x="29" y="22" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="16" fill="currentColor" letter-spacing="-0.03em">Shopify</text>
 				</svg>
 			`
 		},
 		{
-			name: 'Golang',
-			tagline: 'High Performance Backend',
+			name: 'Linear',
+			tagline: 'Issue Tracking for Modern Teams',
 			svg: `
-				<svg viewBox="0 0 108 36" class="h-9 w-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<g transform="translate(2, 4)">
-						<rect width="28" height="28" rx="6" fill="#00ADD8" />
-						<path d="M12 9h-2c-2.5 0-4 1.8-4 4s1.5 4 4 4c2.2 0 3.8-1.5 3.8-3.5H10v-2h6v2c0 3.2-2.5 5.5-6 5.5-3.6 0-6-2.7-6-6s2.4-6 6-6c2.5 0 4.6 1.3 5.5 3.2L14 11l-2-2z" fill="#FFFFFF" />
-						<path d="M19 9c-2.8 0-4.8 2-4.8 4.5s2 4.5 4.8 4.5 4.8-2 4.8-4.5S21.8 9 19 9zm0 7c-1.6 0-2.8-1.1-2.8-2.5s1.2-2.5 2.8-2.5 2.8 1.1 2.8 2.5-1.2 2.5-2.8 2.5z" fill="#FFFFFF" />
+				<svg viewBox="0 0 105 32" class="h-7 w-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<g transform="translate(2, 5)">
+						<circle cx="11" cy="11" r="10" stroke="currentColor" stroke-width="2"/>
+						<path d="M4 15L15 4M8 19L19 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
 					</g>
-					<text x="38" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="14" fill="currentColor" letter-spacing="-0.02em">Golang</text>
+					<text x="31" y="22" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="16" fill="currentColor" letter-spacing="-0.03em">Linear</text>
 				</svg>
 			`
 		},
 		{
-			name: 'PostgreSQL',
-			tagline: 'Reliable Relational Database',
+			name: 'Raycast',
+			tagline: 'Productivity Platform',
 			svg: `
-				<svg viewBox="0 0 142 36" class="h-9 w-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<g transform="translate(2, 4)">
-						<rect width="28" height="28" rx="6" fill="#336791" />
-						<path d="M14 6c-4.2 0-7 2.8-7 6.5 0 2.5 1.3 4.5 3.3 5.5v3.5c0 1.2 1 2.2 2.2 2.2h3c1.2 0 2.2-1 2.2-2.2v-3.5c2-1 3.3-3 3.3-5.5 0-3.7-2.8-6.5-7-6.5zm-2.5 5.5a1.2 1.2 0 1 1 0-2.4 1.2 1.2 0 0 1 0 2.4zm5 0a1.2 1.2 0 1 1 0-2.4 1.2 1.2 0 0 1 0 2.4z" fill="#FFFFFF" />
+				<svg viewBox="0 0 110 32" class="h-7 w-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<g transform="translate(2, 5)">
+						<rect width="21" height="21" rx="5" fill="#FF6363" />
+						<path d="M6 15l4.5-4.5 4.5 4.5M10.5 10.5v6M15 6l-9 9" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 					</g>
-					<text x="38" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="14" fill="currentColor" letter-spacing="-0.02em">PostgreSQL</text>
+					<text x="31" y="22" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="16" fill="currentColor" letter-spacing="-0.03em">Raycast</text>
 				</svg>
 			`
 		},
 		{
-			name: 'Redis',
-			tagline: 'In-Memory Cache & Queues',
+			name: 'Retool',
+			tagline: 'Fast Internal Tools Builder',
 			svg: `
-				<svg viewBox="0 0 108 36" class="h-9 w-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<g transform="translate(2, 4)">
-						<rect width="28" height="28" rx="6" fill="#DC382D" />
-						<path d="M7 11l7-4 7 4-7 4-7-4zm0 6l7 4 7-4m-14 5l7 4 7-4" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+				<svg viewBox="0 0 105 32" class="h-7 w-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<g transform="translate(2, 5)">
+						<rect x="0" y="0" width="8.5" height="8.5" rx="2" fill="#3D5AFE"/>
+						<rect x="11.5" y="0" width="8.5" height="8.5" rx="2" fill="#3D5AFE" fill-opacity="0.4"/>
+						<rect x="0" y="11.5" width="8.5" height="8.5" rx="2" fill="#3D5AFE" fill-opacity="0.4"/>
+						<rect x="11.5" y="11.5" width="8.5" height="8.5" rx="2" fill="#3D5AFE"/>
 					</g>
-					<text x="38" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="14" fill="currentColor" letter-spacing="-0.02em">Redis</text>
-				</svg>
-			`
-		},
-		{
-			name: 'Docker',
-			tagline: 'Self-Host Container Standard',
-			svg: `
-				<svg viewBox="0 0 118 36" class="h-9 w-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<g transform="translate(2, 4)">
-						<rect width="28" height="28" rx="6" fill="#2496ED" />
-						<rect x="7" y="12" width="3.5" height="3" fill="#FFFFFF" rx="0.5" />
-						<rect x="11.5" y="12" width="3.5" height="3" fill="#FFFFFF" rx="0.5" />
-						<rect x="16" y="12" width="3.5" height="3" fill="#FFFFFF" rx="0.5" />
-						<rect x="11.5" y="8" width="3.5" height="3" fill="#FFFFFF" rx="0.5" />
-						<rect x="16" y="8" width="3.5" height="3" fill="#FFFFFF" rx="0.5" />
-						<path d="M5 16.5c1 3.5 4.5 5.5 9 5.5 6 0 9.5-3 10-6.5-1.5-.2-3 .5-4 0-.5-.8-.5-1.5-1-2-4 0-5.5 2-8 2-2 0-4-.5-6 1z" fill="#FFFFFF" />
-					</g>
-					<text x="38" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="14" fill="currentColor" letter-spacing="-0.02em">Docker</text>
-				</svg>
-			`
-		},
-		{
-			name: 'Cloudflare',
-			tagline: 'Edge CDN & Security',
-			svg: `
-				<svg viewBox="0 0 135 36" class="h-9 w-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<g transform="translate(2, 6)">
-						<path d="M18.8 8.4c-.6-3.2-3.4-5.6-6.8-5.6-3 0-5.6 1.9-6.5 4.7A6.8 6.8 0 0 0 0 14.1c0 3.7 3 6.8 6.8 6.8h12.5c2.9 0 5.2-2.3 5.2-5.2 0-2.7-2.1-5-4.8-5.3-.3-.7-.6-1.4-.9-2z" fill="#F38020" />
-						<path d="M19.5 14.2c-.2 0-.4 0-.6.1.1-.3.2-.7.2-1.1 0-1.7-1.4-3.1-3.1-3.1-.7 0-1.4.2-1.9.6-.5-1.3-1.8-2.2-3.3-2.2-1.9 0-3.5 1.5-3.5 3.4 0 .3 0 .5.1.8-.8-.6-1.8-.9-2.9-.9-2.7 0-4.8 2.2-4.8 4.8 0 .4.1.8.2 1.1-.8.2-1.4.9-1.4 1.8 0 1 .8 1.8 1.8 1.8h19.2c1.7 0 3-1.3 3-3 0-1.7-1.3-3.1-3-3.1z" fill="#FAAD3F" />
-					</g>
-					<text x="36" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="14" fill="currentColor" letter-spacing="-0.02em">Cloudflare</text>
-				</svg>
-			`
-		},
-		{
-			name: 'Supabase',
-			tagline: 'Backend-as-a-Service Engine',
-			svg: `
-				<svg viewBox="0 0 132 36" class="h-9 w-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<g transform="translate(2, 4)">
-						<rect width="28" height="28" rx="6" fill="#1E293B" />
-						<path d="M15.5 5.5l-8 10.5h6.5l-2.5 7 8-10.5H13l2.5-7z" fill="#3ECF8E" />
-					</g>
-					<text x="38" y="23" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="14" fill="currentColor" letter-spacing="-0.02em">Supabase</text>
+					<text x="30" y="22" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="16" fill="currentColor" letter-spacing="-0.02em">Retool</text>
 				</svg>
 			`
 		}
@@ -122,7 +122,7 @@
 			title="{partner.name} - {partner.tagline}"
 		>
 			<div
-				class="flex items-center justify-center opacity-80 transition-all duration-300 ease-out group-hover:-translate-y-0.5 group-hover:scale-105 group-hover:opacity-100"
+				class="flex items-center justify-center text-muted-foreground/70 transition-all duration-300 ease-out group-hover:-translate-y-0.5 group-hover:text-foreground group-hover:scale-105"
 			>
 				<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 				{@html partner.svg}

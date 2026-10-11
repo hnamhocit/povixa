@@ -1,0 +1,21 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"legal_brand": "Povixa Legal",
+	"legal_title": "Legal Center & Trust Architecture",
+	"legal_desc": "Transparent terms of service, privacy disclosures, data processing agreements, and security compliance standards.",
+	"search_legal": "Search legal terms & clauses (⌘K)...",
+	"tab_overview": "Legal Hub Overview",
+	"tab_terms": "Terms of Service",
+	"tab_privacy": "Privacy Policy",
+	"tab_dpa": "Data Processing (DPA)",
+	"tab_cookies": "Cookie Policy",
+	"tab_subprocessors": "Subprocessors",
+	"tab_sla": "SLA Guarantee",
+	"tab_licenses": "Open Source Licenses",
+	"effective_date": "Effective Date: October 11, 2026 • Version 2.4",
+	"btn_print": "Print Document",
+	"btn_download_pdf": "Download PDF Copy",
+	"btn_contact_legal": "Contact Legal Office",
+	"lang_switch": "Switch language",
+	"theme_toggle": "Toggle theme"
+}

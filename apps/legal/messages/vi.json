@@ -1,0 +1,21 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"legal_brand": "Pháp lý Povixa",
+	"legal_title": "Trung tâm Pháp lý & Cam kết Minh bạch",
+	"legal_desc": "Điều khoản dịch vụ minh bạch, cam kết bảo vệ quyền riêng tư, thoả thuận xử lý dữ liệu và tiêu chuẩn tuân thủ an toàn thông tin.",
+	"search_legal": "Tìm kiếm điều khoản pháp lý (⌘K)...",
+	"tab_overview": "Tổng quan Pháp lý",
+	"tab_terms": "Điều khoản Dịch vụ",
+	"tab_privacy": "Chính sách Quyền riêng tư",
+	"tab_dpa": "Thoả thuận Xử lý Dữ liệu (DPA)",
+	"tab_cookies": "Chính sách Cookie",
+	"tab_subprocessors": "Danh sách Bên Xử lý Phụ",
+	"tab_sla": "Cam kết Mức Dịch vụ (SLA)",
+	"tab_licenses": "Giấy phép Mã nguồn Mở",
+	"effective_date": "Ngày có hiệu lực: 11 Tháng 10, 2026 • Phiên bản 2.4",
+	"btn_print": "In Văn bản",
+	"btn_download_pdf": "Tải Bản PDF",
+	"btn_contact_legal": "Liên hệ Ban Pháp chế",
+	"lang_switch": "Đổi ngôn ngữ",
+	"theme_toggle": "Chuyển giao diện"
+}

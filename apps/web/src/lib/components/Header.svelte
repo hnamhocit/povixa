@@ -78,7 +78,8 @@
 			get desc() {
 				return m.module_legal_tag();
 			},
-			href: '/legal'
+			href: 'https://legal.povixa.cloud',
+			external: true
 		},
 		{
 			icon: IconMessageCircle,
@@ -102,9 +103,14 @@
 		}
 	];
 
-	const navItems = [
+	type NavItem = {
+		href: string;
+		label: () => string;
+		external?: boolean;
+	};
+
+	const navItems: NavItem[] = [
 		{ href: 'https://docs.povixa.cloud', label: () => m.nav_docs(), external: true },
-		{ href: '/#pricing', label: () => m.nav_pricing() },
 		{ href: '/blog', label: () => m.nav_blog() },
 		{ href: '/changelog', label: () => m.footer_changelog() },
 		{ href: '/#sponsors', label: () => m.nav_sponsors() }
@@ -114,8 +120,8 @@
 	let mobileOpen = $state(false);
 </script>
 
-<header class="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-md">
-	<div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+<header class="sticky top-0 z-50 border-b border-border/30 bg-background/80 backdrop-blur-md">
+	<div class="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-6 sm:px-8 lg:px-12">
 		<!-- Logo -->
 		<div class="flex items-center gap-8">
 			<a href="/" class="flex items-center gap-2">
@@ -269,7 +275,7 @@
 	<!-- Mobile menu -->
 	{#if mobileOpen}
 		<div class="border-t border-border/60 bg-background lg:hidden">
-			<nav class="mx-auto max-w-6xl space-y-1 px-6 py-4">
+			<nav class="mx-auto max-w-[1400px] space-y-1 px-6 sm:px-8 lg:px-12 py-4">
 				<p class="px-3 py-2 text-xs font-medium tracking-widest text-muted-foreground uppercase">
 					{m.nav_modules()}
 				</p>
