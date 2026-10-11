@@ -15,19 +15,25 @@ node_modules
 # Testing
 coverage
 
-# Turbo
+# Turbo & Tooling Cache
 .turbo
-
-# Vercel
+**/.turbo/
 .vercel
+**/.vercel/
 
 # Build Outputs
 .svelte-kit/
+**/.svelte-kit/
 .output/
+**/.output/
 .next/
+**/.next/
 out/
-build
-dist
+**/out/
+build/
+**/build/
+dist/
+**/dist/
 **/src/lib/paraglide/
 **/project.inlang/cache/
 
