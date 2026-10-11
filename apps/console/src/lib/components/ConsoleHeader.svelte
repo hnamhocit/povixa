@@ -449,7 +449,7 @@
 								<IconShield size={14} class="text-muted-foreground" />
 								<span>{m.nav_billing()}</span>
 							</a>
-							<a href="http://localhost:5174" target="_blank" class="flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs text-foreground hover:bg-accent">
+							<a href="https://id.povixa.cloud" target="_blank" class="flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs text-foreground hover:bg-accent">
 								<IconUser size={14} class="text-muted-foreground" />
 								<span>Povixa Central Auth</span>
 							</a>
@@ -469,7 +469,7 @@
 			</div>
 		{:else}
 			<a
-				href="http://localhost:5174?app=console&redirect_uri=http://localhost:5173"
+				href="https://id.povixa.cloud?app=console&redirect_uri=https://console.povixa.cloud"
 				class="inline-flex items-center gap-1.5 rounded-xl border border-border/70 bg-secondary/40 px-3 py-1.5 text-xs font-medium text-foreground hover:bg-secondary transition-colors"
 			>
 				<IconUser size={14} class="text-primary" />

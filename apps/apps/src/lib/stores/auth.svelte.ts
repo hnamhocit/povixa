@@ -10,7 +10,7 @@ class AuthStore {
 	loading = $state(false);
 	initialized = $state(false);
 
-	init(appName: 'apps' | 'console' | 'admin', ssoGatewayUrl = 'http://localhost:5174') {
+	init(appName: 'apps' | 'console' | 'admin', ssoGatewayUrl = 'https://id.povixa.cloud') {
 		if (typeof window === 'undefined') return;
 
 		try {
@@ -56,7 +56,7 @@ class AuthStore {
 		this.initialized = true;
 	}
 
-	signOut(appName: 'apps' | 'console' | 'admin', ssoGatewayUrl = 'http://localhost:5174') {
+	signOut(appName: 'apps' | 'console' | 'admin', ssoGatewayUrl = 'https://id.povixa.cloud') {
 		if (typeof window === 'undefined') return;
 		try {
 			localStorage.removeItem('pvx_sso_session');

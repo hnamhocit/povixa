@@ -84,7 +84,7 @@
 					<span class="text-emerald-500 font-semibold">Badge Verified</span>
 				</div>
 				<a
-					href="https://povixa.com/sponsor"
+					href="https://povixa.cloud/sponsor"
 					target="_blank"
 					class="text-xs text-primary font-medium hover:underline inline-flex items-center gap-1"
 				>

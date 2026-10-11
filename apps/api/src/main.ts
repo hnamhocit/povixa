@@ -44,7 +44,10 @@ async function bootstrap() {
   // 5. Cấu hình CORS
   const isProduction = configService.get<string>('NODE_ENV') === 'production';
   const allowedOrigins = configService
-    .get<string>('CORS_ORIGINS', 'http://localhost:3000,http://localhost:5173')
+    .get<string>(
+      'CORS_ORIGINS',
+      'https://povixa.cloud,https://admin.povixa.cloud,https://console.povixa.cloud,https://id.povixa.cloud,https://apps.povixa.cloud,http://localhost:3000,http://localhost:5173',
+    )
     .split(',')
     .map((origin) => origin.trim());
 
@@ -53,7 +56,12 @@ async function bootstrap() {
       origin: string | undefined,
       callback: (err: Error | null, allow?: boolean) => void,
     ) => {
-      if (!origin || allowedOrigins.includes(origin) || !isProduction) {
+      if (
+        !origin ||
+        allowedOrigins.includes(origin) ||
+        !isProduction ||
+        origin.endsWith('.povixa.cloud')
+      ) {
         callback(null, true);
       } else {
         callback(new Error('Blocked by CORS policy'));

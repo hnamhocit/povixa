@@ -32,6 +32,16 @@
 				description: 'Đăng ký tài khoản miễn phí trong 15 giây'
 			},
 			{
+				href: 'https://console.povixa.cloud',
+				label: 'Developer Console',
+				description: 'Bảng điều khiển dự án và cấu hình hạ tầng'
+			},
+			{
+				href: 'https://apps.povixa.cloud',
+				label: 'Applications Hub',
+				description: 'Kho mẫu dự án và triển khai ứng dụng biên'
+			},
+			{
 				href: 'https://povixa.cloud',
 				label: 'Nền tảng Povixa Cloud',
 				description: 'Khám phá nền tảng điều khiển ứng dụng'

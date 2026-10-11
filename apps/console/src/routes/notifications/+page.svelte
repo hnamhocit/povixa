@@ -64,7 +64,7 @@
 			id: 'ntf-02',
 			title: 'Xác nhận kích hoạt phiên dự án Ecommerce #910',
 			channel: 'Transactional Email',
-			recipient: 'developer@povixa.com',
+			recipient: 'developer@povixa.cloud',
 			status: 'Delivered',
 			retries: 0,
 			latency: '24ms',
@@ -478,7 +478,7 @@
 					<h3 class="font-bold text-sm text-foreground">SendGrid / Resend Transactional Mail API</h3>
 				</div>
 				<p class="text-xs text-muted-foreground">
-					Cấu hình khóa API phát email giao dịch và tên miền gửi đã xác thực DKIM/SPF (ví dụ: <code>noreply@povixa.com</code>).
+					Cấu hình khóa API phát email giao dịch và tên miền gửi đã xác thực DKIM/SPF (ví dụ: <code>noreply@povixa.cloud</code>).
 				</p>
 				<div class="rounded-xl border border-dashed border-border p-4 text-center text-xs text-muted-foreground bg-secondary/20">
 					Khóa SendGrid: <code class="font-mono text-emerald-500">SG.***...98a2</code> • Domain verified

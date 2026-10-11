@@ -26,10 +26,10 @@
 	const redirectUri = $derived(
 		page.url.searchParams.get('redirect_uri') ||
 			(requestedApp === 'apps'
-				? 'http://localhost:5175'
+				? 'https://apps.povixa.cloud'
 				: requestedApp === 'admin'
-					? 'http://localhost:5176'
-					: 'http://localhost:5173')
+					? 'https://admin.povixa.cloud'
+					: 'https://console.povixa.cloud')
 	);
 	const appDisplayName = $derived(
 		requestedApp === 'console'

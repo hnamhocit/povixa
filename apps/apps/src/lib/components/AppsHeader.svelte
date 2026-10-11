@@ -20,7 +20,8 @@
 
 	const navLinks = $derived([
 		{ href: '/', label: m.nav_apps() },
-		{ href: '/templates', label: m.nav_templates() }
+		{ href: '/templates', label: m.nav_templates() },
+		{ href: '/domains', label: m.nav_domains() }
 	]);
 </script>
 
@@ -61,7 +62,7 @@
 				{/each}
 
 				<a
-					href="http://localhost:5173"
+					href="https://console.povixa.cloud"
 					target="_blank"
 					rel="noopener noreferrer"
 					class="inline-flex items-center gap-1 rounded-lg px-3 py-1.5 text-xs font-semibold text-muted-foreground hover:bg-secondary/60 hover:text-foreground transition-all"
@@ -99,7 +100,7 @@
 							</div>
 							<div class="py-1">
 								<a
-									href="http://localhost:5173"
+									href="https://console.povixa.cloud"
 									target="_blank"
 									class="flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs text-foreground hover:bg-accent"
 								>
@@ -107,7 +108,7 @@
 									<span>Developer Console</span>
 								</a>
 								<a
-									href="http://localhost:5174"
+									href="https://id.povixa.cloud"
 									target="_blank"
 									class="flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-xs text-foreground hover:bg-accent"
 								>
@@ -130,7 +131,7 @@
 				</div>
 			{:else}
 				<a
-					href="http://localhost:5174?app=apps&redirect_uri=http://localhost:5175"
+					href="https://id.povixa.cloud?app=apps&redirect_uri=https://apps.povixa.cloud"
 					class="inline-flex items-center gap-1.5 rounded-xl border border-border/70 bg-secondary/40 px-3 py-1.5 text-xs font-medium text-foreground hover:bg-secondary transition-colors"
 				>
 					<IconUser size={14} class="text-primary" />
@@ -167,7 +168,7 @@
 				</a>
 			{/each}
 			<a
-				href="http://localhost:5173"
+				href="https://console.povixa.cloud"
 				target="_blank"
 				class="flex items-center justify-between rounded-lg px-3 py-2 font-medium text-muted-foreground hover:bg-accent"
 			>

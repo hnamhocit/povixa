@@ -97,7 +97,7 @@
 			color: 'text-red-500',
 			enabled: true,
 			clientId: '9841204812-***.apps.googleusercontent.com',
-			redirectUri: 'https://api.povixa.com/auth/callback/google'
+			redirectUri: 'https://api.povixa.cloud/auth/callback/google'
 		},
 		{
 			id: 'facebook',
@@ -106,7 +106,7 @@
 			color: 'text-blue-600',
 			enabled: true,
 			clientId: 'fb_app_99210481920',
-			redirectUri: 'https://api.povixa.com/auth/callback/facebook'
+			redirectUri: 'https://api.povixa.cloud/auth/callback/facebook'
 		},
 		{
 			id: 'github',
@@ -115,7 +115,7 @@
 			color: 'text-foreground',
 			enabled: true,
 			clientId: 'gh_client_8819024',
-			redirectUri: 'https://api.povixa.com/auth/callback/github'
+			redirectUri: 'https://api.povixa.cloud/auth/callback/github'
 		},
 		{
 			id: 'discord',
@@ -124,7 +124,7 @@
 			color: 'text-indigo-500',
 			enabled: true,
 			clientId: '12094819204819',
-			redirectUri: 'https://api.povixa.com/auth/callback/discord'
+			redirectUri: 'https://api.povixa.cloud/auth/callback/discord'
 		}
 	];
 
@@ -173,7 +173,7 @@
 
 			<div class="flex items-center gap-2 shrink-0">
 				<a
-					href="http://localhost:5174"
+					href="https://id.povixa.cloud"
 					target="_blank"
 					class="inline-flex items-center gap-1.5 rounded-xl border border-border/70 bg-secondary/50 px-3.5 py-2 text-xs font-semibold text-foreground hover:bg-secondary"
 				>

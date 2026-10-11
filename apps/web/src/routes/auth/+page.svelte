@@ -40,7 +40,7 @@
 			</nav>
 			<div class="flex items-center gap-2 text-xs text-muted-foreground">
 				<a
-					href="http://localhost:5174"
+					href="https://id.povixa.cloud"
 					class="flex items-center gap-1.5 rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-medium text-foreground hover:bg-accent"
 				>
 					<span>Mở Cổng Xác Thực SSO</span>
@@ -111,7 +111,7 @@
 				</div>
 
 				<a
-					href="http://localhost:5174"
+					href="https://id.povixa.cloud"
 					class="flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-primary text-xs font-bold text-primary-foreground shadow-md shadow-primary/20 hover:bg-primary/90 transition-all"
 				>
 					<span>Truy cập Cổng Đăng Nhập SSO</span>

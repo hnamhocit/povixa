@@ -6,7 +6,11 @@
 		IconUsers,
 		IconHistory,
 		IconShieldExclamation,
-		IconX
+		IconX,
+		IconBolt,
+		IconLayoutGrid,
+		IconShieldLock,
+		IconExternalLink
 	} from '@tabler/icons-svelte-runes';
 
 	interface Props {
@@ -157,6 +161,52 @@
 				{/each}
 			</div>
 		{/each}
+
+		<!-- Quick Ecosystem External Links -->
+		<div class="space-y-1 pt-3 border-t border-border/30">
+			<div class="px-2.5 mb-1.5 text-[10px] font-semibold text-muted-foreground/70 uppercase tracking-wider">
+				HỆ SINH THÁI POVIXA
+			</div>
+
+			<a
+				href="https://console.povixa.cloud"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs text-muted-foreground hover:bg-muted/40 hover:text-foreground transition-all"
+			>
+				<div class="flex items-center gap-2">
+					<IconBolt size={15} class="text-primary" />
+					<span>Developer Console</span>
+				</div>
+				<IconExternalLink size={12} class="opacity-50" />
+			</a>
+
+			<a
+				href="https://apps.povixa.cloud"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs text-muted-foreground hover:bg-muted/40 hover:text-foreground transition-all"
+			>
+				<div class="flex items-center gap-2">
+					<IconLayoutGrid size={15} class="text-cyan-500" />
+					<span>Applications Hub</span>
+				</div>
+				<IconExternalLink size={12} class="opacity-50" />
+			</a>
+
+			<a
+				href="https://id.povixa.cloud"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs text-muted-foreground hover:bg-muted/40 hover:text-foreground transition-all"
+			>
+				<div class="flex items-center gap-2">
+					<IconShieldLock size={15} class="text-indigo-500" />
+					<span>Central Auth SSO</span>
+				</div>
+				<IconExternalLink size={12} class="opacity-50" />
+			</a>
+		</div>
 	</nav>
 
 	<!-- Bottom: Clean Super Admin Profile -->

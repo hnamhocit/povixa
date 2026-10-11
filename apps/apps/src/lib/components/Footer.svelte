@@ -8,7 +8,7 @@
 		{
 			title: isEn ? 'Products' : 'Sản phẩm',
 			links: [
-				{ href: 'http://localhost:5173', label: 'Developer Console', external: true },
+				{ href: 'https://console.povixa.cloud', label: 'Developer Console', external: true },
 				{ href: '/', label: 'Applications Hub' },
 				{ href: 'https://povixa.cloud/#modules', label: isEn ? 'All Modules' : 'Tất cả Modules' },
 				{ href: 'https://povixa.cloud/status', label: isEn ? 'System Status' : 'Trạng thái hệ thống' }
@@ -17,18 +17,18 @@
 		{
 			title: isEn ? 'Core Infrastructure' : 'Hạ tầng cốt lõi',
 			links: [
-				{ href: 'http://localhost:5174', label: 'Povixa Auth (SSO)', external: true },
-				{ href: 'http://localhost:5173/config', label: 'Remote Config' },
-				{ href: 'http://localhost:5173/notifications', label: 'Notifications' },
-				{ href: 'http://localhost:5173/storage', label: 'Object Storage' },
-				{ href: 'http://localhost:5173/observability', label: 'Observability' }
+				{ href: 'https://id.povixa.cloud', label: 'Povixa Auth (SSO)', external: true },
+				{ href: 'https://console.povixa.cloud/config', label: 'Remote Config', external: true },
+				{ href: 'https://console.povixa.cloud/notifications', label: 'Notifications', external: true },
+				{ href: 'https://console.povixa.cloud/storage', label: 'Object Storage', external: true },
+				{ href: 'https://console.povixa.cloud/observability', label: 'Observability', external: true }
 			]
 		},
 		{
 			title: isEn ? 'Developers' : 'Nhà phát triển',
 			links: [
-				{ href: 'https://docs.povixa.com', label: isEn ? 'Documentation' : 'Tài liệu hướng dẫn', external: true },
-				{ href: 'http://localhost:5173/api-keys', label: 'API Keys & SDKs' },
+				{ href: 'https://docs.povixa.cloud', label: isEn ? 'Documentation' : 'Tài liệu hướng dẫn', external: true },
+				{ href: 'https://console.povixa.cloud/api-keys', label: 'API Keys & SDKs', external: true },
 				{ href: 'https://github.com/povixa', label: isEn ? 'Open Source GitHub' : 'GitHub Nguồn Mở', external: true }
 			]
 		},
@@ -44,8 +44,8 @@
 	]);
 
 	const legalLinks: FooterLink[] = $derived([
-		{ href: '/terms', label: isEn ? 'Terms of Service' : 'Điều khoản dịch vụ' },
-		{ href: '/privacy', label: isEn ? 'Privacy Policy' : 'Chính sách quyền riêng tư' },
+		{ href: 'https://povixa.cloud/legal/terms', label: isEn ? 'Terms of Service' : 'Điều khoản dịch vụ' },
+		{ href: 'https://povixa.cloud/legal/privacy', label: isEn ? 'Privacy Policy' : 'Chính sách quyền riêng tư' },
 		{ href: 'https://povixa.cloud/legal/dpa', label: 'DPA' },
 		{ href: 'https://povixa.cloud/legal/cookies', label: isEn ? 'Cookie Policy' : 'Chính sách Cookie' }
 	]);

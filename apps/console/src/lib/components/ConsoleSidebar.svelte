@@ -35,10 +35,10 @@
 	let { mobileOpen = $bindable(false) } = $props<{ mobileOpen?: boolean }>();
 
 	const ecosystemPortals = [
-		{ label: 'Applications Hub', href: 'http://localhost:5175', badge: 'Apps', icon: IconLayoutGrid },
-		{ label: 'Central Auth SSO', href: 'http://localhost:5174', badge: 'SSO', icon: IconShieldLock },
-		{ label: 'Super Admin Portal', href: 'http://localhost:5176', badge: 'Admin', icon: IconServer },
-		{ label: 'Documentation', href: 'https://docs.povixa.com', badge: 'Docs', icon: IconBook2 }
+		{ label: 'Applications Hub', href: 'https://apps.povixa.cloud', badge: 'Apps', icon: IconLayoutGrid },
+		{ label: 'Central Auth SSO', href: 'https://id.povixa.cloud', badge: 'SSO', icon: IconShieldLock },
+		{ label: 'Super Admin Portal', href: 'https://admin.povixa.cloud', badge: 'Admin', icon: IconServer },
+		{ label: 'Documentation', href: 'https://docs.povixa.cloud', badge: 'Docs', icon: IconBook2 }
 	];
 </script>
 
