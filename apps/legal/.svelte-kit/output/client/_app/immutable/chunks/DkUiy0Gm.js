@@ -1,1 +1,0 @@
-import{n as e,r as t}from"./DjWsquke.js";import{t as n}from"./DtvHRD56.js";var r=new Set([`$$slots`,`$$events`,`$$legacy`,`children`]);function i(i,a){let o=e(a,r),s=[[`path`,{d:`M7 8l-4 4l4 4`}],[`path`,{d:`M17 8l4 4l-4 4`}],[`path`,{d:`M14 4l-4 16`}]];n(i,t({type:`outline`,name:`code`},()=>o,{get iconNode(){return s},get children(){return a.children}}))}export{i as t};

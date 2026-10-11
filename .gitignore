@@ -22,10 +22,14 @@ coverage
 .vercel
 
 # Build Outputs
+.svelte-kit/
+.output/
 .next/
 out/
 build
 dist
+**/src/lib/paraglide/
+**/project.inlang/cache/
 
 
 # Debug

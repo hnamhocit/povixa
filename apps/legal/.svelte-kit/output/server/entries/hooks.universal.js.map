@@ -1,1 +1,0 @@
-{"version":3,"file":"hooks.universal.js","names":[],"sources":["../../../../src/hooks.ts"],"sourcesContent":["import type { Reroute } from '@sveltejs/kit/hooks';\nimport { deLocalizeUrl } from '#lib/paraglide/runtime.js';\n\nexport const reroute: Reroute = (request) => deLocalizeUrl(request.url).pathname;\n"],"mappings":";;AAGA,IAAa,WAAoB,YAAY,cAAc,QAAQ,GAAG,CAAC,CAAC"}
